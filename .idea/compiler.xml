@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="chat-javafx-client" />
+        <module name="chat-server" />
+        <module name="chat-vaadin-client" />
+        <module name="echo-client-lb-api" />
+        <module name="echo-client-lb-dns" />
+        <module name="echo-client-simple" />
+        <module name="echo-server" />
+        <module name="error-handling-client" />
+        <module name="error-server" />
+        <module name="eureka-server" />
+        <module name="guestbook-proto" />
+        <module name="guestbook-server" />
+        <module name="guestbook-ui" />
+        <module name="metadata-context-example" />
+        <module name="rxjava-client" />
+        <module name="rxjava-server" />
+        <module name="simple-grpc-client" />
+        <module name="simple-grpc-server" />
+        <module name="springboot-grpc-client" />
+        <module name="springboot-grpc-echo-proto" />
+        <module name="springboot-grpc-server" />
+        <module name="streaming-client" />
+        <module name="streaming-server" />
+        <module name="zipkin-prometheus-example" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="chat-example" target="1.5" />
+      <module name="chat-javafx-client" target="1.5" />
+      <module name="chat-server" target="1.5" />
+      <module name="chat-vaadin-client" target="1.8" />
+      <module name="echo-client-lb-api" target="1.5" />
+      <module name="echo-client-lb-dns" target="1.5" />
+      <module name="echo-client-simple" target="1.5" />
+      <module name="echo-server" target="1.5" />
+      <module name="error-handling-client" target="1.5" />
+      <module name="error-handling-example" target="1.5" />
+      <module name="error-server" target="1.5" />
+      <module name="eureka-server" target="1.5" />
+      <module name="grpc-demos" target="1.8" />
+      <module name="guestbook-proto" target="1.5" />
+      <module name="guestbook-server" target="1.5" />
+      <module name="guestbook-ui" target="1.5" />
+      <module name="jpa-example" target="1.5" />
+      <module name="kubernetes-lb-example" target="1.5" />
+      <module name="metadata-context-example" target="1.5" />
+      <module name="rxjava-client" target="1.5" />
+      <module name="rxjava-example" target="1.5" />
+      <module name="rxjava-server" target="1.5" />
+      <module name="simple-grpc-client" target="1.8" />
+      <module name="simple-grpc-server" target="1.8" />
+      <module name="springboot" target="1.5" />
+      <module name="springboot-grpc-client" target="1.5" />
+      <module name="springboot-grpc-echo-proto" target="1.5" />
+      <module name="springboot-grpc-server" target="1.5" />
+      <module name="streaming-client" target="1.5" />
+      <module name="streaming-example" target="1.5" />
+      <module name="streaming-server" target="1.5" />
+      <module name="zipkin-prometheus-example" target="1.5" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

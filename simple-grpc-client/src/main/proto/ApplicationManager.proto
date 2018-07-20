@@ -1,0 +1,29 @@
+syntax = "proto3";
+package com.example;
+option java_multiple_files = true;
+
+message DockerInfo{
+		string	docker_Ip = 1;
+		string	docker_Status = 2;
+	}
+
+message Docker{
+	string	docker_Name = 1;	
+	DockerInfo dockerInfo =2;
+}
+
+message Container {
+	string container_ip = 1;
+	repeated Docker dockerlist = 2; //repeated maps to an array
+}
+
+message ContainerBook{
+	repeated Container containerlist = 1;
+}
+
+service ListService{
+	rpc List (stream Container) returns (stream ContainerBook);
+}
+
+
+//protoc -I=. --go_out=. ApplicationManager.proto

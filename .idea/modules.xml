@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/chat-example/chat-example.iml" filepath="$PROJECT_DIR$/chat-example/chat-example.iml" />
+      <module fileurl="file://$PROJECT_DIR$/chat-example/chat-javafx-client/chat-javafx-client.iml" filepath="$PROJECT_DIR$/chat-example/chat-javafx-client/chat-javafx-client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/chat-example/chat-server/chat-server.iml" filepath="$PROJECT_DIR$/chat-example/chat-server/chat-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/chat-example/chat-vaadin-client/chat-vaadin-client.iml" filepath="$PROJECT_DIR$/chat-example/chat-vaadin-client/chat-vaadin-client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/kubernetes-lb-example/echo-client-lb-api/echo-client-lb-api.iml" filepath="$PROJECT_DIR$/kubernetes-lb-example/echo-client-lb-api/echo-client-lb-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/kubernetes-lb-example/echo-client-lb-dns/echo-client-lb-dns.iml" filepath="$PROJECT_DIR$/kubernetes-lb-example/echo-client-lb-dns/echo-client-lb-dns.iml" />
+      <module fileurl="file://$PROJECT_DIR$/kubernetes-lb-example/echo-client-simple/echo-client-simple.iml" filepath="$PROJECT_DIR$/kubernetes-lb-example/echo-client-simple/echo-client-simple.iml" />
+      <module fileurl="file://$PROJECT_DIR$/kubernetes-lb-example/echo-server/echo-server.iml" filepath="$PROJECT_DIR$/kubernetes-lb-example/echo-server/echo-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/error-handling-example/error-handling-client/error-handling-client.iml" filepath="$PROJECT_DIR$/error-handling-example/error-handling-client/error-handling-client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/error-handling-example/error-handling-example.iml" filepath="$PROJECT_DIR$/error-handling-example/error-handling-example.iml" />
+      <module fileurl="file://$PROJECT_DIR$/error-handling-example/error-server/error-server.iml" filepath="$PROJECT_DIR$/error-handling-example/error-server/error-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/springboot-example/eureka-server/eureka-server.iml" filepath="$PROJECT_DIR$/springboot-example/eureka-server/eureka-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/grpc-demos.iml" filepath="$PROJECT_DIR$/grpc-demos.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jpa-example/guestbook-proto/guestbook-proto.iml" filepath="$PROJECT_DIR$/jpa-example/guestbook-proto/guestbook-proto.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jpa-example/guestbook-server/guestbook-server.iml" filepath="$PROJECT_DIR$/jpa-example/guestbook-server/guestbook-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jpa-example/guestbook-ui/guestbook-ui.iml" filepath="$PROJECT_DIR$/jpa-example/guestbook-ui/guestbook-ui.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jpa-example/jpa-example.iml" filepath="$PROJECT_DIR$/jpa-example/jpa-example.iml" />
+      <module fileurl="file://$PROJECT_DIR$/kubernetes-lb-example/kubernetes-lb-example.iml" filepath="$PROJECT_DIR$/kubernetes-lb-example/kubernetes-lb-example.iml" />
+      <module fileurl="file://$PROJECT_DIR$/metadata-context-example/metadata-context-example.iml" filepath="$PROJECT_DIR$/metadata-context-example/metadata-context-example.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rxjava-example/rxjava-client/rxjava-client.iml" filepath="$PROJECT_DIR$/rxjava-example/rxjava-client/rxjava-client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rxjava-example/rxjava-example.iml" filepath="$PROJECT_DIR$/rxjava-example/rxjava-example.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rxjava-example/rxjava-server/rxjava-server.iml" filepath="$PROJECT_DIR$/rxjava-example/rxjava-server/rxjava-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/simple-grpc-client/simple-grpc-client.iml" filepath="$PROJECT_DIR$/simple-grpc-client/simple-grpc-client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/simple-grpc-server/simple-grpc-server.iml" filepath="$PROJECT_DIR$/simple-grpc-server/simple-grpc-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/springboot-example/springboot.iml" filepath="$PROJECT_DIR$/springboot-example/springboot.iml" />
+      <module fileurl="file://$PROJECT_DIR$/springboot-example/grpc-client/springboot-grpc-client.iml" filepath="$PROJECT_DIR$/springboot-example/grpc-client/springboot-grpc-client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/springboot-example/grpc-echo-proto/springboot-grpc-echo-proto.iml" filepath="$PROJECT_DIR$/springboot-example/grpc-echo-proto/springboot-grpc-echo-proto.iml" />
+      <module fileurl="file://$PROJECT_DIR$/springboot-example/grpc-server/springboot-grpc-server.iml" filepath="$PROJECT_DIR$/springboot-example/grpc-server/springboot-grpc-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/streaming-example/streaming-client/streaming-client.iml" filepath="$PROJECT_DIR$/streaming-example/streaming-client/streaming-client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/streaming-example/streaming-example.iml" filepath="$PROJECT_DIR$/streaming-example/streaming-example.iml" />
+      <module fileurl="file://$PROJECT_DIR$/streaming-example/streaming-server/streaming-server.iml" filepath="$PROJECT_DIR$/streaming-example/streaming-server/streaming-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/zipkin-prometheus-example/zipkin-prometheus-example.iml" filepath="$PROJECT_DIR$/zipkin-prometheus-example/zipkin-prometheus-example.iml" />
+    </modules>
+  </component>
+</project>
