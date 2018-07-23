@@ -21,26 +21,28 @@ import com.example.*;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 
-/**
- * Created by rayt on 5/16/16.
- */
 public class MyGrpcClient {
-  public static void main(String[] args) throws InterruptedException {
+  public static void main(String[] args) {
     ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", 8082)
-        .usePlaintext(true)
         .build();
 
     GreetingServiceGrpc.GreetingServiceBlockingStub stub =
         GreetingServiceGrpc.newBlockingStub(channel);
 
 
-    DockerInfo dockerInfo = DockerInfo.newBuilder().setDockerStatus("true").setDockerIp("192.168.18.15").build();
-    Docker docker = Docker.newBuilder().setDockerInfo(dockerInfo).setDockerName("Docker1").build();
+    DockerInfo dockerInfo = DockerInfo.newBuilder()
+            .setDockerStatus("true")
+            .setDockerIp("192.168.18.15").build();
+    Docker docker = Docker.newBuilder()
+            .setDockerInfo(dockerInfo)
+            .setDockerName("Docker1").build();
     Container container = Container.newBuilder()
-            .setContainerIp("1.1.1.1").addDockerlist(docker).build();
+            .setContainerIp("1.1.1.1")
+            .addDockerlist(docker).build();
     ContainerBook helloResponse = stub.greeting(container);
 
     System.out.println(helloResponse);
     channel.shutdown();
   }
+
 }

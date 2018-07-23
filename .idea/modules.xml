@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/AplicationGrpcManager.iml" filepath="$PROJECT_DIR$/AplicationGrpcManager.iml" />
       <module fileurl="file://$PROJECT_DIR$/chat-example/chat-example.iml" filepath="$PROJECT_DIR$/chat-example/chat-example.iml" />
       <module fileurl="file://$PROJECT_DIR$/chat-example/chat-javafx-client/chat-javafx-client.iml" filepath="$PROJECT_DIR$/chat-example/chat-javafx-client/chat-javafx-client.iml" />
       <module fileurl="file://$PROJECT_DIR$/chat-example/chat-server/chat-server.iml" filepath="$PROJECT_DIR$/chat-example/chat-server/chat-server.iml" />
@@ -14,7 +15,6 @@
       <module fileurl="file://$PROJECT_DIR$/error-handling-example/error-handling-example.iml" filepath="$PROJECT_DIR$/error-handling-example/error-handling-example.iml" />
       <module fileurl="file://$PROJECT_DIR$/error-handling-example/error-server/error-server.iml" filepath="$PROJECT_DIR$/error-handling-example/error-server/error-server.iml" />
       <module fileurl="file://$PROJECT_DIR$/springboot-example/eureka-server/eureka-server.iml" filepath="$PROJECT_DIR$/springboot-example/eureka-server/eureka-server.iml" />
-      <module fileurl="file://$PROJECT_DIR$/grpc-demos.iml" filepath="$PROJECT_DIR$/grpc-demos.iml" />
       <module fileurl="file://$PROJECT_DIR$/jpa-example/guestbook-proto/guestbook-proto.iml" filepath="$PROJECT_DIR$/jpa-example/guestbook-proto/guestbook-proto.iml" />
       <module fileurl="file://$PROJECT_DIR$/jpa-example/guestbook-server/guestbook-server.iml" filepath="$PROJECT_DIR$/jpa-example/guestbook-server/guestbook-server.iml" />
       <module fileurl="file://$PROJECT_DIR$/jpa-example/guestbook-ui/guestbook-ui.iml" filepath="$PROJECT_DIR$/jpa-example/guestbook-ui/guestbook-ui.iml" />

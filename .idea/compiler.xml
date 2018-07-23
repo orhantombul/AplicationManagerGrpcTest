@@ -33,6 +33,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="AplicationGrpcManager" target="1.8" />
       <module name="chat-example" target="1.5" />
       <module name="chat-javafx-client" target="1.5" />
       <module name="chat-server" target="1.5" />
@@ -45,7 +46,6 @@
       <module name="error-handling-example" target="1.5" />
       <module name="error-server" target="1.5" />
       <module name="eureka-server" target="1.5" />
-      <module name="grpc-demos" target="1.8" />
       <module name="guestbook-proto" target="1.5" />
       <module name="guestbook-server" target="1.5" />
       <module name="guestbook-ui" target="1.5" />
