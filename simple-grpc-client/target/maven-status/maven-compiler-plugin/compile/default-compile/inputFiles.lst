@@ -1,0 +1,13 @@
+/home/argela/AplicationManagerGrpc/simple-grpc-client/target/generated-sources/protobuf/java/com/example/grpc/client/Docker.java
+/home/argela/AplicationManagerGrpc/simple-grpc-client/target/generated-sources/protobuf/java/com/example/grpc/client/DockerInfoOrBuilder.java
+/home/argela/AplicationManagerGrpc/simple-grpc-client/target/generated-sources/protobuf/java/com/example/grpc/client/DockerInfo.java
+/home/argela/AplicationManagerGrpc/simple-grpc-client/target/generated-sources/protobuf/java/com/example/grpc/client/ContainerList.java
+/home/argela/AplicationManagerGrpc/simple-grpc-client/target/generated-sources/protobuf/java/com/example/grpc/client/ContainerListOrBuilder.java
+/home/argela/AplicationManagerGrpc/simple-grpc-client/target/generated-sources/protobuf/java/com/example/grpc/client/Response.java
+/home/argela/AplicationManagerGrpc/simple-grpc-client/target/generated-sources/protobuf/java/com/example/grpc/client/DockerOrBuilder.java
+/home/argela/AplicationManagerGrpc/simple-grpc-client/target/generated-sources/protobuf/java/com/example/grpc/client/ContainerOrBuilder.java
+/home/argela/AplicationManagerGrpc/simple-grpc-client/target/generated-sources/protobuf/grpc-java/com/example/grpc/client/SentServiceStatusGrpc.java
+/home/argela/AplicationManagerGrpc/simple-grpc-client/src/main/java/com/example/grpc/client/MyGrpcClient.java
+/home/argela/AplicationManagerGrpc/simple-grpc-client/target/generated-sources/protobuf/java/com/example/grpc/client/ResponseOrBuilder.java
+/home/argela/AplicationManagerGrpc/simple-grpc-client/target/generated-sources/protobuf/java/com/example/grpc/client/ContainerServer.java
+/home/argela/AplicationManagerGrpc/simple-grpc-client/target/generated-sources/protobuf/java/com/example/grpc/client/Container.java

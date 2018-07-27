@@ -1,0 +1,27 @@
+syntax = "proto3";
+option java_multiple_files = true;
+package com.example.grpc.client;
+
+message DockerInfo{
+	string	dockerip = 1;
+	string	dockerstatus = 2;
+}
+message Docker{
+	string	dockername = 1;
+	DockerInfo dockerinfo =2;
+}
+message Container {
+	string containerip = 1;
+	repeated Docker dockerlist = 2; //repeated maps to an array
+}
+message ContainerList{
+	repeated Container containerlist = 1;
+}
+message Response{
+}
+service SentServiceStatus{
+	rpc contlist(ContainerList) returns (Response){}
+}
+
+
+//protoc -I=. --go_out=. ApplicationManager.proto

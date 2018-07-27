@@ -16,33 +16,33 @@
 
 package com.example.grpc.client;
 
-
-import com.example.*;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 
+import java.util.ArrayList;
+import java.util.List;
+
+
 public class MyGrpcClient {
   public static void main(String[] args) {
-    ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", 8082)
-        .build();
+    ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", 5013)
+            .build();
 
-    GreetingServiceGrpc.GreetingServiceBlockingStub stub =
-        GreetingServiceGrpc.newBlockingStub(channel);
+    SentServiceStatusGrpc.SentServiceStatusBlockingStub sentServiceStatusBlockingStub =
+            SentServiceStatusGrpc.newBlockingStub(channel);
 
+    List<Docker>  dockerList  =new ArrayList<>();
+    DockerInfo dockerInfo = DockerInfo.newBuilder().setDockerip("192.168.1.1").setDockerstatus("PASS").build();
+    Docker docker = Docker.newBuilder().setDockername("DOCKER1").setDockerinfo(dockerInfo).build();
+    dockerList.add(docker);
 
-    DockerInfo dockerInfo = DockerInfo.newBuilder()
-            .setDockerStatus("true")
-            .setDockerIp("192.168.18.15").build();
-    Docker docker = Docker.newBuilder()
-            .setDockerInfo(dockerInfo)
-            .setDockerName("Docker1").build();
-    Container container = Container.newBuilder()
-            .setContainerIp("1.1.1.1")
-            .addDockerlist(docker).build();
-    ContainerBook helloResponse = stub.greeting(container);
+    Iterable<Docker> dockerIterable = dockerList;
+    Container container = Container.newBuilder().addAllDockerlist(dockerIterable).setContainerip("192.168.2.2").build();
+    List<Container> containers = new ArrayList<>();
+    containers.add(container);
+    Iterable<Container> containerIterable = containers;
 
-    System.out.println(helloResponse);
-    channel.shutdown();
+    sentServiceStatusBlockingStub.contlist(ContainerList.newBuilder().addAllContainerlist(containerIterable).build());
+
   }
-
 }
