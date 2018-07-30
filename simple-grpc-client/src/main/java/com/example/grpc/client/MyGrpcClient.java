@@ -18,14 +18,15 @@ package com.example.grpc.client;
 
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
+import testpythonwithjava.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class MyGrpcClient {
   public static void main(String[] args) {
-    ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", 5013)
+
+    ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", 5015).usePlaintext(true)
             .build();
 
     SentServiceStatusGrpc.SentServiceStatusBlockingStub sentServiceStatusBlockingStub =
@@ -37,12 +38,18 @@ public class MyGrpcClient {
     dockerList.add(docker);
 
     Iterable<Docker> dockerIterable = dockerList;
-    Container container = Container.newBuilder().addAllDockerlist(dockerIterable).setContainerip("192.168.2.2").build();
+    Container container = Container.newBuilder().addAllDockerlist(dockerIterable).setContainerip("192.168.3.2").build();
     List<Container> containers = new ArrayList<>();
     containers.add(container);
-    Iterable<Container> containerIterable = containers;
+    ContainerList containerList = ContainerList.newBuilder().addAllContainerlist(containers).build();
+    System.out.println("sending");
 
-    sentServiceStatusBlockingStub.contlist(ContainerList.newBuilder().addAllContainerlist(containerIterable).build());
+    Response response = sentServiceStatusBlockingStub.contlist(containerList);
+    System.out.println(response);
+    //ClientCallStreamObserver<Container> containerClientCallStreamObserver =
+    //sentServiceStatusBlockingStub.contlist(containers,);
 
-  }
+   }
 }
+
+
