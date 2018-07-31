@@ -1,27 +1,27 @@
 syntax = "proto3";
 option java_multiple_files = true;
-package testpythonwithjava;
+package tr.com.argela.grpcserver;
 
 message DockerInfo{
-	string	dockerip = 1;
-	string	dockerstatus = 2;
+	string	ip = 1;
+	string	status = 2;
 }
 message Docker{
-	string	dockername = 1;
-	DockerInfo dockerinfo =2;
+	string	name = 1;
+	DockerInfo info =2;
 }
 message Container {
-	string containerip = 1;
+	string ip = 1;
 	repeated Docker dockerlist = 2; //repeated maps to an array
 }
-message ContainerList{
+message ContainerListRequest{
 	repeated Container containerlist = 1;
 }
-message Response{
+message ContainerListResponse{
+	int32 response = 1;
 }
-service SentServiceStatus{
-	rpc contlist(ContainerList) returns (Response){}
+service SendService{
+	rpc contlist(ContainerListRequest) returns (ContainerListResponse){}
 }
-
 
 //protoc -I=. --go_out=. ApplicationManager.proto
