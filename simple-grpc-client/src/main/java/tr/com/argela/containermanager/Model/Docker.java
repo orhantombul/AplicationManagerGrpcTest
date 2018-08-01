@@ -7,6 +7,9 @@ public class Docker {
     private String name;
     private DockerInfo info;
 
+    public Docker() {
+    }
+
     public Docker(String name, DockerInfo info) {
         this.name = name;
         this.info = info;

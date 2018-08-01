@@ -13,6 +13,10 @@ public class Container {
         this.dockerlist = dockerlist;
     }
 
+    public Container() {
+        return;
+    }
+
     public String getIp() {
         return ip;
     }
