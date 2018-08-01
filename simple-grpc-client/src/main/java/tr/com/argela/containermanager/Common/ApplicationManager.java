@@ -37,19 +37,19 @@ public class ApplicationManager {
 
     public void addDockerByContainerIp(String ip,Docker docker){
         Container container =this.containerHashMap.get(ip);
-        List docker_list = container.getDockerlist();
+        List<Docker> docker_list = container.getDockerlist();
         docker_list.add(docker);
     }
 
-    public void getDocker(String container_ip, String docker_ip){
+    public Docker getDocker(String container_ip, String docker_ip){
        Container container = this.containerHashMap.get(container_ip);
-       List docker_list = container.getDockerlist();
+       List<Docker> docker_list = container.getDockerlist();
 
 
-       //for (int i = 0; i < docker_list.size(); i++) {
-         //   if(docker_list.get(i) == docker_ip){
-           //     return i;
-            //}
+       for (Docker docker : docker_list){
+           if(docker.getInfo().getIp().equals(docker_ip)) return docker;
+       }
+        return null;
     }
 
     public void getContainers(){}
