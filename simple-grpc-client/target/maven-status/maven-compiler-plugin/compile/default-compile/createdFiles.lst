@@ -6,11 +6,14 @@ tr/com/argela/grpcserver/Container.class
 tr/com/argela/grpcserver/DockerInfo.class
 tr/com/argela/grpcserver/ContainerServer$1.class
 tr/com/argela/grpcserver/SendServiceGrpc$SendServiceImplBase.class
+tr/com/argela/containermanager/Model/DockerInfo.class
 tr/com/argela/grpcserver/Docker$Builder.class
 tr/com/argela/grpcserver/SendServiceGrpc.class
 tr/com/argela/grpcserver/SendServiceGrpc$SendServiceBlockingStub.class
 tr/com/argela/grpcserver/DockerOrBuilder.class
+tr/com/argela/containermanager/Model/Docker.class
 tr/com/argela/grpcserver/ContainerListRequestOrBuilder.class
+tr/com/argela/containermanager/Common/ApplicationManager.class
 tr/com/argela/grpcserver/SendServiceGrpc$SendServiceStub.class
 tr/com/argela/grpcserver/ContainerListResponseOrBuilder.class
 tr/com/argela/grpcserver/DockerInfo$1.class
@@ -21,8 +24,10 @@ tr/com/argela/grpcserver/Docker.class
 tr/com/argela/grpcserver/SendServiceGrpc$SendServiceMethodDescriptorSupplier.class
 tr/com/argela/grpcserver/Docker$1.class
 tr/com/argela/grpcserver/ContainerListResponse$1.class
+tr/com/argela/containermanager/Model/Container.class
 tr/com/argela/grpcserver/ContainerListRequest.class
 tr/com/argela/grpcserver/DockerInfo$Builder.class
+tr/com/argela/containermanager/Controller/ApplicationControllerUtil.class
 tr/com/argela/grpcserver/ContainerOrBuilder.class
 tr/com/argela/grpcserver/Container$1.class
 tr/com/argela/grpcserver/SendServiceGrpc$MethodHandlers.class
