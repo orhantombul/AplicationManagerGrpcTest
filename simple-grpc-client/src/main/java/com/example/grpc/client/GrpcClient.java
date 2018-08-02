@@ -44,8 +44,7 @@ public class GrpcClient {
     ContainerListRequest containerList = ContainerListRequest.newBuilder().addAllContainerlist(containers).build();
     System.out.println("sending");
 
-    ContainerListResponse response = sendServiceBlockingStub.contlist(containerList);
-    System.out.println(response);
+
 
 
    }

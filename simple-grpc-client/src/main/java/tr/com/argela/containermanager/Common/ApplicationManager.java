@@ -4,18 +4,18 @@ import tr.com.argela.containermanager.Model.Container;
 import tr.com.argela.containermanager.Model.Docker;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
 
 
 public class ApplicationManager {
-    private final HashMap<String, Container> containerHashMap = new HashMap<String, Container>();
-    private final ApplicationManager applicationManager= new ApplicationManager();
+    private final ConcurrentHashMap<String, Container> containerHashMap = new ConcurrentHashMap<String, Container>();
+    private static final ApplicationManager applicationManager= new ApplicationManager();
 
     private ApplicationManager() {
     }
 
-    public ApplicationManager getApplicationManager() {
+    public static ApplicationManager getApplicationManager() {
         return applicationManager;
     }
 
@@ -76,7 +76,7 @@ public class ApplicationManager {
         return null;
     }
 
-    public HashMap<String, Container> getContainers(){
+    public ConcurrentHashMap<String, Container> getContainers(){
         return this.containerHashMap;
     }
 
