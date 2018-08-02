@@ -8,7 +8,7 @@ public class Container {
     private String ip;
     private List<Docker> dockerlist;
 
-    public Container(String ip, List dockerlist) {
+    public Container(String ip, List<Docker> dockerlist) {
         this.ip = ip;
         this.dockerlist = dockerlist;
     }
@@ -25,11 +25,11 @@ public class Container {
         this.ip = ip;
     }
 
-    public List getDockerlist() {
+    public List<Docker> getDockerlist() {
         return dockerlist;
     }
 
-    public void setDockerlist(List dockerlist) {
+    public void setDockerlist(List<Docker> dockerlist) {
         this.dockerlist = dockerlist;
     }
 

@@ -3,8 +3,11 @@ package tr.com.argela.containermanager.Common;
 import tr.com.argela.containermanager.Model.Container;
 import tr.com.argela.containermanager.Model.Docker;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+
 public class ApplicationManager {
     private final HashMap<String, Container> containerHashMap = new HashMap<String, Container>();
     private final ApplicationManager applicationManager= new ApplicationManager();
@@ -17,32 +20,53 @@ public class ApplicationManager {
     }
 
     public void setContainer(String ip,Container container){
-
+        if(ip == null || container == null) {
+            return;
+        }
         this.containerHashMap.put(ip,container);
 
     }
-    //TODO ask here is true ?
+
     public Container getContainer(String ip){
+        if(ip == null ) {
+            return null;
+        }
       return this.containerHashMap.get(ip);
     }
 
-    public void createDockerWithContainerIp(String ip){
+    public Container createDockerWithContainerIp(String ip){
+        if(ip == null || this.containerHashMap.get(ip) != null) {
+            return null;
+        }
         Container container = new Container();
         container.setIp(ip);
-        //TODO  Create new dockerlist
-        List docker_list = container.getDockerlist();
+
+        List<Docker> docker_list = new ArrayList<>();
         container.setDockerlist(docker_list);
         this.containerHashMap.put(ip,container);
+        return container;
     }
 
     public void addDockerByContainerIp(String ip,Docker docker){
+        if(ip == null || docker == null) {
+            return;
+        }
         Container container =this.containerHashMap.get(ip);
+        if(container == null)
+        {
+            container = createDockerWithContainerIp(ip);
+
+        }
         List<Docker> docker_list = container.getDockerlist();
         docker_list.add(docker);
+
     }
 
     public Docker getDocker(String container_ip, String docker_ip){
-       Container container = this.containerHashMap.get(container_ip);
+        if(container_ip == null || docker_ip == null) {
+            return null;
+        }
+        Container container = this.containerHashMap.get(container_ip);
        List<Docker> docker_list = container.getDockerlist();
 
 
@@ -52,9 +76,13 @@ public class ApplicationManager {
         return null;
     }
 
-    public void getContainers(){}
+    public HashMap<String, Container> getContainers(){
+        return this.containerHashMap;
+    }
 
-    public void clearAll(){}
+    public void clearAll(){
+        this.containerHashMap.clear();
+    }
 
 
 }
