@@ -26,7 +26,7 @@ import java.util.List;
 public class GrpcClient {
   public static void main(String[] args) {
 
-   ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", 5015).usePlaintext(true)
+   ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", 5016).usePlaintext(true)
             .build();
 
     SendServiceGrpc.SendServiceBlockingStub sendServiceBlockingStub =
@@ -45,6 +45,10 @@ public class GrpcClient {
     System.out.println("sending");
 
 
+    ContainerListResponse response = sendServiceBlockingStub.contlist(containerList);
+    System.out.println(response);
+    //ClientCallStreamObserver<Container> containerClientCallStreamObserver =
+    //sentServiceStatusBlockingStub.contlist(containers,);
 
 
    }

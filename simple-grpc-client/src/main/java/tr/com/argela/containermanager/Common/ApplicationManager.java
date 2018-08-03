@@ -5,11 +5,13 @@ import tr.com.argela.containermanager.Model.Docker;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Observable;
 import java.util.concurrent.ConcurrentHashMap;
 
 
-public class ApplicationManager {
-    private final ConcurrentHashMap<String, Container> containerHashMap = new ConcurrentHashMap<String, Container>();
+public class ApplicationManager extends Observable {
+    private final Map<String, Container> containerHashMap = new ConcurrentHashMap<String, Container>();
     private static final ApplicationManager applicationManager= new ApplicationManager();
 
     private ApplicationManager() {
@@ -19,14 +21,24 @@ public class ApplicationManager {
         return applicationManager;
     }
 
+
+    /**
+     * sets the container
+     * @param ip
+     * @param container
+     */
     public void setContainer(String ip,Container container){
         if(ip == null || container == null) {
             return;
         }
         this.containerHashMap.put(ip,container);
-
     }
 
+    /**
+     *
+     * @param ip
+     * @return the container which has  same ip as @{param: ip}
+     */
     public Container getContainer(String ip){
         if(ip == null ) {
             return null;
@@ -34,7 +46,7 @@ public class ApplicationManager {
       return this.containerHashMap.get(ip);
     }
 
-    public Container createDockerWithContainerIp(String ip){
+    private Container createDockerWithContainerIp(String ip){
         if(ip == null || this.containerHashMap.get(ip) != null) {
             return null;
         }
@@ -47,6 +59,11 @@ public class ApplicationManager {
         return container;
     }
 
+    /**
+     * add container ip according to given ip and docker
+     * @param ip of container
+     * @param docker which will be add to container
+     */
     public void addDockerByContainerIp(String ip,Docker docker){
         if(ip == null || docker == null) {
             return;
@@ -55,20 +72,30 @@ public class ApplicationManager {
         if(container == null)
         {
             container = createDockerWithContainerIp(ip);
-
         }
         List<Docker> docker_list = container.getDockerlist();
+        for(Docker docker1 : docker_list) {
+            if (docker1.equals(docker)){
+             return;
+            }
+        }
         docker_list.add(docker);
-
+        notifyGRPC();
     }
 
+    /**
+     * fetches the docker according to its container ip and docker ip
+     * @param container_ip of the docker
+     * @param docker_ip of the docker
+     * @return docker
+     */
     public Docker getDocker(String container_ip, String docker_ip){
         if(container_ip == null || docker_ip == null) {
             return null;
         }
         Container container = this.containerHashMap.get(container_ip);
-       List<Docker> docker_list = container.getDockerlist();
 
+        List<Docker> docker_list = container.getDockerlist();
 
        for (Docker docker : docker_list){
            if(docker.getInfo().getIp().equals(docker_ip)) return docker;
@@ -76,13 +103,27 @@ public class ApplicationManager {
         return null;
     }
 
-    public ConcurrentHashMap<String, Container> getContainers(){
-        return this.containerHashMap;
+    /**
+     * @return all the containers
+     */
+    public Map<String, Container> getContainers(){
+        return containerHashMap;
     }
 
+    /**
+     * clear all the containers
+     */
     public void clearAll(){
         this.containerHashMap.clear();
     }
 
+
+
+    private void notifyGRPC()
+    {
+        setChanged();
+        notifyObservers();
+        clearChanged();
+    }
 
 }
