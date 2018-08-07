@@ -10,6 +10,7 @@ public class TestClass {
         ApplicationManager applicationManager = ApplicationManager.getApplicationManager();
         GRPCStateNotifier grpcStateNotifier = GRPCStateNotifier.getGrpcStateNotifier();
         grpcStateNotifier.startObserving(applicationManager);
+
         ApplicationControllerUtil.addDockerToAppManager("192.168.1.2","Docker1","192.168.28.55","PASS");
 // 1.container 2. docker
         ApplicationControllerUtil.addDockerToAppManager("192.168.1.1","Docker2","192.168.28.56","PASS");
@@ -24,6 +25,8 @@ public class TestClass {
 // 3.container 3.docker
         ApplicationControllerUtil.addDockerToAppManager("192.168.1.3","Docker7","192.168.28.61","PASS");
         //    System.out.println(applicationManager.getContainers());
+
+
 
     }
 }

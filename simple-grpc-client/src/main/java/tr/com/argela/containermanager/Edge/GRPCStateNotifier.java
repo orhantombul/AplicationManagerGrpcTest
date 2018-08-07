@@ -35,7 +35,7 @@ public class GRPCStateNotifier implements Observer {
 
     @Override
     public void update(Observable observable, Object o) {
-        ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", 5016).usePlaintext(true)
+        ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", 6002).usePlaintext(true)
                 .build();
 
         SendServiceGrpc.SendServiceBlockingStub sendServiceBlockingStub = SendServiceGrpc.newBlockingStub(channel);

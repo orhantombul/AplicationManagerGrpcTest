@@ -26,7 +26,7 @@ import java.util.List;
 public class GrpcClient {
   public static void main(String[] args) {
 
-   ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", 5017).usePlaintext(true)
+   ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", 6002).usePlaintext(true)
             .build();
 
     SendServiceGrpc.SendServiceBlockingStub sendServiceBlockingStub =

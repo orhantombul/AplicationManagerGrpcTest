@@ -5,10 +5,19 @@ import tr.com.argela.grpcserver.Container;
 import tr.com.argela.grpcserver.Docker;
 import tr.com.argela.grpcserver.DockerInfo;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ApplicationControllerUtil {
+
+    private static Integer firstChar = 0;
+    private static Integer secondChar = 1;
 
     private ApplicationControllerUtil() {
     }
@@ -73,6 +82,69 @@ public class ApplicationControllerUtil {
         applicationManager.addDockerByContainerIp(containerIp,docker);
     }
 
+    public static Map<String,Map<String,String>> parseContainer(String filePath, String parsingCharacter) {
+        try {
+            Path path = Paths.get(filePath);
+            if(!Files.exists(path) || !Files.isReadable(path))
+            {
 
+                return null;
+            }
+
+            List<String> lines = Files.readAllLines(path);
+            if(lines == null)
+                return null;
+            Map<String, Map<String,String>> mappedLines = new HashMap<>();
+            Integer counter = 0;
+            Map<String, String> dockerMap = new HashMap<>();
+            String currentDockerIp = null;
+
+            for (String line : lines)
+            {
+                String [] parsedLine = line.split(parsingCharacter);
+                if(parsedLine.length == 2 &&
+                        null != parsedLine[firstChar] &&
+                        null != parsedLine[secondChar] &&
+                        null == mappedLines.get(parsedLine[firstChar])) {
+                    if (counter == 0) {
+                        mappedLines.put(parsedLine[secondChar], new HashMap<>());
+                        currentDockerIp = parsedLine[secondChar];
+                        dockerMap = new HashMap<>();
+                    }
+                    else {
+                        Map<String,String> parsedDocker  = parseDocker(parsedLine);
+                        if(parsedDocker == null)
+                            continue;
+                        dockerMap.putAll(parsedDocker);
+                    }
+                    counter++;
+
+                }
+                else {
+                    counter =0;
+                    if(currentDockerIp == null)
+                        continue;
+                    Map<String, String> currentDockerMap = mappedLines.get(currentDockerIp);
+                    currentDockerMap.putAll(dockerMap);
+                }
+            }
+
+            return mappedLines;
+
+        } catch (IOException e) {
+
+            return null;
+        }
+    }
+
+    private static Map<String,String> parseDocker(String[] parsedLine) {
+        if(null != parsedLine[firstChar] &&
+                null != parsedLine[secondChar]) {
+            Map<String ,String> dockerMap = new HashMap<>();
+            dockerMap.put(parsedLine[firstChar],parsedLine[secondChar]);
+            return dockerMap;
+        }
+        return null;
+    }
 
 }
