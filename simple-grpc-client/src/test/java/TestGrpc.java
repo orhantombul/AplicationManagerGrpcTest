@@ -65,12 +65,14 @@ public class TestGrpc {
     @Test
     public void parseContainer(){
         Map<String,Map<String,String>> containerMap=
-                ApplicationControllerUtil.parseContainer("src/test/resources/container_ip.txt","=");
+                ApplicationControllerUtil.parseContainerTest("src/test/resources/container_ip.txt","=");
         containerMap.forEach((s, stringStringMap) -> {System.out.println(s);
             stringStringMap.forEach((s1, s2) -> System.out.println(s1 +" : " +s2));
         }
         );
     }
+    @Test
+    public void updateContainerDockerIp(){}
 
 
 }
