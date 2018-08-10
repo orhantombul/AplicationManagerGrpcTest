@@ -1,0 +1,5 @@
+/.tox/
+/heatbridge.egg-info/
+/.project
+/.pydevproject
+/target/

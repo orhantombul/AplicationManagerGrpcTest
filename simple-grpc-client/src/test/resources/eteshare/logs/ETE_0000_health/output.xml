@@ -1,0 +1,3340 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generated="20180806 11:34:12.062" generator="Robot 3.0.4 (Python 2.7.15rc1 on linux2)">
+<suite source="/var/opt/OpenECOMP_ETE" id="s1" name="OpenECOMP ETE">
+<suite source="/var/opt/OpenECOMP_ETE/robot" id="s1-s1" name="Robot">
+<suite source="/var/opt/OpenECOMP_ETE/robot/testsuites" id="s1-s1-s1" name="Testsuites">
+<suite source="/var/opt/OpenECOMP_ETE/robot/testsuites/health-check.robot" id="s1-s1-s1-s1" name="Health-Check">
+<test id="s1-s1-s1-s1-t1" name="Basic A&amp;AI Health Check">
+<kw name="Run A&amp;AI Health Check" library="aai_interface">
+<doc>Runs an A&amp;AI health check</doc>
+<msg timestamp="20180806 11:34:14.321" level="TRACE">Arguments: [  ]</msg>
+<kw name="Run A&amp;AI Get Request" library="aai_interface">
+<doc>Runs an A&amp;AI get request</doc>
+<arguments>
+<arg>${AAI_HEALTH_PATH}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20180806 11:34:14.322" level="TRACE">Arguments: [ ${data_path}='/aai/util/echo?action=long' ]</msg>
+<kw name="Disable Warnings" library="HTTPUtils">
+<doc>Disable the cert warnings when creating sessions for A&amp;AI API Calls</doc>
+<msg timestamp="20180806 11:34:14.322" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20180806 11:34:14.322" level="DEBUG">Test timeout 1 minute active. 59.997 seconds left.</msg>
+<msg timestamp="20180806 11:34:14.322" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20180806 11:34:14.323" starttime="20180806 11:34:14.322"></status>
+</kw>
+<kw name="Create List" library="BuiltIn">
+<doc>Returns a list containing given items.</doc>
+<arguments>
+<arg>${GLOBAL_AAI_USERNAME}</arg>
+<arg>${GLOBAL_AAI_PASSWORD}</arg>
+</arguments>
+<assign>
+<var>${auth}</var>
+</assign>
+<msg timestamp="20180806 11:34:14.323" level="TRACE">Arguments: [ b'AAI' | b'AAI' ]</msg>
+<msg timestamp="20180806 11:34:14.323" level="DEBUG">Test timeout 1 minute active. 59.996 seconds left.</msg>
+<msg timestamp="20180806 11:34:14.323" level="TRACE">Return: [b'AAI', b'AAI']</msg>
+<msg timestamp="20180806 11:34:14.323" level="INFO">${auth} = ['AAI', 'AAI']</msg>
+<status status="PASS" endtime="20180806 11:34:14.324" starttime="20180806 11:34:14.323"></status>
+</kw>
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>aai</arg>
+<arg>${AAI_FRONTEND_ENDPOINT}</arg>
+<arg>auth=${auth}</arg>
+</arguments>
+<assign>
+<var>${session}</var>
+</assign>
+<msg timestamp="20180806 11:34:14.324" level="TRACE">Arguments: [ 'aai' | 'https://192.168.61.18:8443' | auth=[b'AAI', b'AAI'] ]</msg>
+<msg timestamp="20180806 11:34:14.324" level="DEBUG">Test timeout 1 minute active. 59.995 seconds left.</msg>
+<msg timestamp="20180806 11:34:14.324" level="INFO">Creating Session using : alias=aai, url=https://192.168.61.18:8443, headers={},                     cookies=None, auth=&lt;requests.auth.HTTPBasicAuth object at 0x7fddb2e68190&gt;, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<msg timestamp="20180806 11:34:14.324" level="DEBUG">Creating session: aai</msg>
+<msg timestamp="20180806 11:34:14.325" level="DEBUG">Argument types are:
+&lt;type 'int'&gt;</msg>
+<msg timestamp="20180806 11:34:14.325" level="TRACE">Return: &lt;requests.sessions.Session object at 0x7fddb287ba90&gt;</msg>
+<msg timestamp="20180806 11:34:14.325" level="INFO">${session} = &lt;requests.sessions.Session object at 0x7fddb287ba90&gt;</msg>
+<status status="PASS" endtime="20180806 11:34:14.325" starttime="20180806 11:34:14.324"></status>
+</kw>
+<kw name="Generate UUID" library="UUID">
+<doc>generate a uuid</doc>
+<assign>
+<var>${uuid}</var>
+</assign>
+<msg timestamp="20180806 11:34:14.326" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20180806 11:34:14.326" level="DEBUG">Test timeout 1 minute active. 59.994 seconds left.</msg>
+<msg timestamp="20180806 11:34:14.326" level="TRACE">Return: UUID('518f522f-7ee4-4a2c-b730-23fb42f5350a')</msg>
+<msg timestamp="20180806 11:34:14.326" level="INFO">${uuid} = 518f522f-7ee4-4a2c-b730-23fb42f5350a</msg>
+<status status="PASS" endtime="20180806 11:34:14.326" starttime="20180806 11:34:14.325"></status>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>Accept=application/json</arg>
+<arg>Content-Type=application/json</arg>
+<arg>X-TransactionId=${GLOBAL_APPLICATION_ID}-${uuid}</arg>
+<arg>X-FromAppId=${GLOBAL_APPLICATION_ID}</arg>
+</arguments>
+<assign>
+<var>${headers}</var>
+</assign>
+<msg timestamp="20180806 11:34:14.326" level="TRACE">Arguments: [ 'Accept=application/json' | 'Content-Type=application/json' | 'X-TransactionId=${GLOBAL_APPLICATION_ID}-${uuid}' | 'X-FromAppId=${GLOBAL_APPLICATION_ID}' ]</msg>
+<msg timestamp="20180806 11:34:14.327" level="TRACE">Return: {'Accept': 'application/json', 'Content-Type': 'application/json', 'X-FromAppId': 'robot-ete', 'X-TransactionId': 'robot-ete-518f522f-7ee4-4a2c-b730-23fb42f5350a'}</msg>
+<msg timestamp="20180806 11:34:14.327" level="INFO">${headers} = {u'Accept': u'application/json', u'Content-Type': u'application/json', u'X-TransactionId': u'robot-ete-518f522f-7ee4-4a2c-b730-23fb42f5350a', u'X-FromAppId': u'robot-ete'}</msg>
+<status status="PASS" endtime="20180806 11:34:14.327" starttime="20180806 11:34:14.326"></status>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the</doc>
+<arguments>
+<arg>aai</arg>
+<arg>${data_path}</arg>
+<arg>headers=${headers}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20180806 11:34:14.328" level="TRACE">Arguments: [ 'aai' | '/aai/util/echo?action=long' | headers={'Accept': 'application/json', 'Content-Type': 'application/json', 'X-FromAppId': 'robot-ete', 'X-TransactionId': 'robot-ete-518f522f-7ee4-4a2c-b730-23fb42f5350a'} ]</msg>
+<msg timestamp="20180806 11:34:14.328" level="DEBUG">Test timeout 1 minute active. 59.991 seconds left.</msg>
+<msg timestamp="20180806 11:34:14.330" level="DEBUG">Starting new HTTPS connection (1): 192.168.61.18</msg>
+<msg timestamp="20180806 11:34:14.475" level="DEBUG">https://192.168.61.18:8443 "GET /aai/util/echo?action=long HTTP/1.1" 200 252</msg>
+<msg timestamp="20180806 11:34:14.476" level="INFO">Get Request using : alias=aai, uri=/aai/util/echo?action=long, headers={u'Accept': u'application/json', u'Content-Type': u'application/json', u'X-TransactionId': u'robot-ete-518f522f-7ee4-4a2c-b730-23fb42f5350a', u'X-FromAppId': u'robot-ete'} </msg>
+<msg timestamp="20180806 11:34:14.476" level="TRACE">Return: &lt;Response [200]&gt;</msg>
+<msg timestamp="20180806 11:34:14.476" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20180806 11:34:14.476" starttime="20180806 11:34:14.328"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>Received response from aai ${resp.text}</arg>
+</arguments>
+<msg timestamp="20180806 11:34:14.477" level="TRACE">Arguments: [ 'Received response from aai {"responseMessages":{"responseMessage":[{"messageId":"INF0001","text":"Success X-FromAppId=%1 X-TransactionId=%2 (msg=%3) (rc=%4)","variables":{"variable":["robot-ete","f9bf7510-7d7a-434b-98f7-dcf61b0a8114","Successful health check:OK","0.0.0002"]}}]}}' ]</msg>
+<msg timestamp="20180806 11:34:14.477" level="DEBUG">Test timeout 1 minute active. 59.842 seconds left.</msg>
+<msg timestamp="20180806 11:34:14.477" level="INFO">Received response from aai {"responseMessages":{"responseMessage":[{"messageId":"INF0001","text":"Success X-FromAppId=%1 X-TransactionId=%2 (msg=%3) (rc=%4)","variables":{"variable":["robot-ete","f9bf7510-7d7a-434b-98f7-dcf61b0a8114","Successful health check:OK","0.0.0002"]}}]}}</msg>
+<msg timestamp="20180806 11:34:14.477" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20180806 11:34:14.478" starttime="20180806 11:34:14.477"></status>
+</kw>
+<msg timestamp="20180806 11:34:14.478" level="TRACE">Return: &lt;Response [200]&gt;</msg>
+<msg timestamp="20180806 11:34:14.478" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20180806 11:34:14.478" starttime="20180806 11:34:14.321"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${resp.status_code}</arg>
+<arg>200</arg>
+</arguments>
+<msg timestamp="20180806 11:34:14.479" level="TRACE">Arguments: [ 200 | '200' ]</msg>
+<msg timestamp="20180806 11:34:14.479" level="DEBUG">Test timeout 1 minute active. 59.841 seconds left.</msg>
+<msg timestamp="20180806 11:34:14.479" level="INFO">Argument types are:
+&lt;type 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<msg timestamp="20180806 11:34:14.479" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20180806 11:34:14.479" starttime="20180806 11:34:14.478"></status>
+</kw>
+<msg timestamp="20180806 11:34:14.479" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20180806 11:34:14.479" starttime="20180806 11:34:14.321"></status>
+</kw>
+<tags>
+<tag>core</tag>
+<tag>health</tag>
+</tags>
+<timeout value="1 minute"></timeout>
+<status status="PASS" endtime="20180806 11:34:14.479" critical="yes" starttime="20180806 11:34:14.319"></status>
+</test>
+<test id="s1-s1-s1-s1-t2" name="Basic AAF Health Check">
+<kw name="Run AAF Health Check" library="aaf_interface">
+<doc>Runs AAF Health check</doc>
+<msg timestamp="20180806 11:34:14.482" level="TRACE">Arguments: [  ]</msg>
+<kw name="Run AAF Get Request" library="aaf_interface">
+<doc>Runs AAF Get request</doc>
+<arguments>
+<arg>${AAF_HEALTH_CHECK_PATH}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20180806 11:34:14.482" level="TRACE">Arguments: [ ${data_path}='/authz/perms/user/demo@people.osaaf.org' ]</msg>
+<kw name="Create List" library="BuiltIn">
+<doc>Returns a list containing given items.</doc>
+<arguments>
+<arg>${GLOBAL_AAF_USERNAME}</arg>
+<arg>${GLOBAL_AAF_PASSWORD}</arg>
+</arguments>
+<assign>
+<var>${auth}</var>
+</assign>
+<msg timestamp="20180806 11:34:14.483" level="TRACE">Arguments: [ b'demo@people.osaaf.org' | b'demo123456!' ]</msg>
+<msg timestamp="20180806 11:34:14.483" level="DEBUG">Test timeout 1 minute active. 59.997 seconds left.</msg>
+<msg timestamp="20180806 11:34:14.483" level="TRACE">Return: [b'demo@people.osaaf.org', b'demo123456!']</msg>
+<msg timestamp="20180806 11:34:14.483" level="INFO">${auth} = ['demo@people.osaaf.org', 'demo123456!']</msg>
+<status status="PASS" endtime="20180806 11:34:14.483" starttime="20180806 11:34:14.483"></status>
+</kw>
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>aaf</arg>
+<arg>${GLOBAL_AAF_SERVER}</arg>
+<arg>auth=${auth}</arg>
+</arguments>
+<assign>
+<var>${session}</var>
+</assign>
+<msg timestamp="20180806 11:34:14.484" level="TRACE">Arguments: [ 'aaf' | b'https://aaf.api.simpledemo.onap.org:8100' | auth=[b'demo@people.osaaf.org', b'demo123456!'] ]</msg>
+<msg timestamp="20180806 11:34:14.484" level="DEBUG">Test timeout 1 minute active. 59.996 seconds left.</msg>
+<msg timestamp="20180806 11:34:14.484" level="INFO">Creating Session using : alias=aaf, url=https://aaf.api.simpledemo.onap.org:8100, headers={},                     cookies=None, auth=&lt;requests.auth.HTTPBasicAuth object at 0x7fddb04596d0&gt;, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<msg timestamp="20180806 11:34:14.484" level="DEBUG">Creating session: aaf</msg>
+<msg timestamp="20180806 11:34:14.485" level="DEBUG">Argument types are:
+&lt;type 'int'&gt;</msg>
+<msg timestamp="20180806 11:34:14.485" level="TRACE">Return: &lt;requests.sessions.Session object at 0x7fddb0459510&gt;</msg>
+<msg timestamp="20180806 11:34:14.485" level="INFO">${session} = &lt;requests.sessions.Session object at 0x7fddb0459510&gt;</msg>
+<status status="PASS" endtime="20180806 11:34:14.485" starttime="20180806 11:34:14.484"></status>
+</kw>
+<kw name="Generate UUID" library="UUID">
+<doc>generate a uuid</doc>
+<assign>
+<var>${uuid}</var>
+</assign>
+<msg timestamp="20180806 11:34:14.486" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20180806 11:34:14.486" level="DEBUG">Test timeout 1 minute active. 59.995 seconds left.</msg>
+<msg timestamp="20180806 11:34:14.486" level="TRACE">Return: UUID('177d9bb3-5d44-421a-a4a0-efef9a17ff9d')</msg>
+<msg timestamp="20180806 11:34:14.486" level="INFO">${uuid} = 177d9bb3-5d44-421a-a4a0-efef9a17ff9d</msg>
+<status status="PASS" endtime="20180806 11:34:14.486" starttime="20180806 11:34:14.486"></status>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>Accept=application/json</arg>
+<arg>Content-Type=application/json</arg>
+<arg>X-TransactionId=${GLOBAL_APPLICATION_ID}-${uuid}</arg>
+<arg>X-FromAppId=${GLOBAL_APPLICATION_ID}</arg>
+</arguments>
+<assign>
+<var>${headers}</var>
+</assign>
+<msg timestamp="20180806 11:34:14.487" level="TRACE">Arguments: [ 'Accept=application/json' | 'Content-Type=application/json' | 'X-TransactionId=${GLOBAL_APPLICATION_ID}-${uuid}' | 'X-FromAppId=${GLOBAL_APPLICATION_ID}' ]</msg>
+<msg timestamp="20180806 11:34:14.487" level="TRACE">Return: {'Accept': 'application/json', 'Content-Type': 'application/json', 'X-FromAppId': 'robot-ete', 'X-TransactionId': 'robot-ete-177d9bb3-5d44-421a-a4a0-efef9a17ff9d'}</msg>
+<msg timestamp="20180806 11:34:14.487" level="INFO">${headers} = {u'Accept': u'application/json', u'Content-Type': u'application/json', u'X-TransactionId': u'robot-ete-177d9bb3-5d44-421a-a4a0-efef9a17ff9d', u'X-FromAppId': u'robot-ete'}</msg>
+<status status="PASS" endtime="20180806 11:34:14.487" starttime="20180806 11:34:14.486"></status>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the</doc>
+<arguments>
+<arg>aaf</arg>
+<arg>${data_path}</arg>
+<arg>headers=${headers}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20180806 11:34:14.488" level="TRACE">Arguments: [ 'aaf' | '/authz/perms/user/demo@people.osaaf.org' | headers={'Accept': 'application/json', 'Content-Type': 'application/json', 'X-FromAppId': 'robot-ete', 'X-TransactionId': 'robot-ete-177d9bb3-5d44-421a-a4a0-efef9a17ff9d'} ]</msg>
+<msg timestamp="20180806 11:34:14.488" level="DEBUG">Test timeout 1 minute active. 59.992 seconds left.</msg>
+<msg timestamp="20180806 11:34:14.489" level="DEBUG">Starting new HTTPS connection (1): aaf.api.simpledemo.onap.org</msg>
+<msg timestamp="20180806 11:35:14.481" level="FAIL">Test timeout 1 minute exceeded.</msg>
+<status status="FAIL" endtime="20180806 11:35:14.481" starttime="20180806 11:34:14.488"></status>
+</kw>
+<status status="FAIL" endtime="20180806 11:35:14.482" starttime="20180806 11:34:14.482"></status>
+</kw>
+<status status="FAIL" endtime="20180806 11:35:14.482" starttime="20180806 11:34:14.481"></status>
+</kw>
+<tags>
+<tag>core</tag>
+<tag>health</tag>
+</tags>
+<timeout value="1 minute"></timeout>
+<status status="FAIL" endtime="20180806 11:35:14.483" critical="yes" starttime="20180806 11:34:14.480">Test timeout 1 minute exceeded.</status>
+</test>
+<test id="s1-s1-s1-s1-t3" name="Basic AAF SMS Health Check">
+<kw name="Run SMS Health Check" library="sms_interface">
+<doc>Runs SMS Health check</doc>
+<msg timestamp="20180806 11:35:14.487" level="TRACE">Arguments: [  ]</msg>
+<kw name="Run SMS Get Request" library="sms_interface">
+<doc>Runs SMS Get request</doc>
+<arguments>
+<arg>${SMS_HEALTH_CHECK_PATH}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20180806 11:35:14.489" level="TRACE">Arguments: [ ${data_path}='/v1/sms/healthcheck' ]</msg>
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>smssession</arg>
+<arg>${SMS_ENDPOINT}</arg>
+</arguments>
+<assign>
+<var>${session}</var>
+</assign>
+<msg timestamp="20180806 11:35:14.490" level="TRACE">Arguments: [ 'smssession' | 'https://aaf-sms.api.simpledemo.onap.org:10443' ]</msg>
+<msg timestamp="20180806 11:35:14.490" level="DEBUG">Test timeout 1 minute active. 59.995 seconds left.</msg>
+<msg timestamp="20180806 11:35:14.490" level="INFO">Creating Session using : alias=smssession, url=https://aaf-sms.api.simpledemo.onap.org:10443, headers={},                     cookies=None, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<msg timestamp="20180806 11:35:14.490" level="DEBUG">Creating session: smssession</msg>
+<msg timestamp="20180806 11:35:14.491" level="DEBUG">Argument types are:
+&lt;type 'int'&gt;</msg>
+<msg timestamp="20180806 11:35:14.491" level="TRACE">Return: &lt;requests.sessions.Session object at 0x7fddb050bdd0&gt;</msg>
+<msg timestamp="20180806 11:35:14.491" level="INFO">${session} = &lt;requests.sessions.Session object at 0x7fddb050bdd0&gt;</msg>
+<status status="PASS" endtime="20180806 11:35:14.491" starttime="20180806 11:35:14.489"></status>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the</doc>
+<arguments>
+<arg>smssession</arg>
+<arg>${data_path}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20180806 11:35:14.492" level="TRACE">Arguments: [ 'smssession' | '/v1/sms/healthcheck' ]</msg>
+<msg timestamp="20180806 11:35:14.492" level="DEBUG">Test timeout 1 minute active. 59.993 seconds left.</msg>
+<msg timestamp="20180806 11:35:14.512" level="DEBUG">Starting new HTTPS connection (1): aaf-sms.api.simpledemo.onap.org</msg>
+<msg timestamp="20180806 11:36:14.486" level="FAIL">Test timeout 1 minute exceeded.</msg>
+<status status="FAIL" endtime="20180806 11:36:14.486" starttime="20180806 11:35:14.491"></status>
+</kw>
+<status status="FAIL" endtime="20180806 11:36:14.487" starttime="20180806 11:35:14.488"></status>
+</kw>
+<status status="FAIL" endtime="20180806 11:36:14.487" starttime="20180806 11:35:14.487"></status>
+</kw>
+<tags>
+<tag>core</tag>
+<tag>health</tag>
+</tags>
+<timeout value="1 minute"></timeout>
+<status status="FAIL" endtime="20180806 11:36:14.488" critical="yes" starttime="20180806 11:35:14.484">Test timeout 1 minute exceeded.</status>
+</test>
+<test id="s1-s1-s1-s1-t4" name="Basic APPC Health Check">
+<kw name="Run APPC Health Check" library="appc_interface">
+<doc>Runs an APPC healthcheck</doc>
+<msg timestamp="20180806 11:36:14.492" level="TRACE">Arguments: [  ]</msg>
+<kw name="Run APPC Post Request" library="appc_interface">
+<doc>Runs an APPC post request</doc>
+<arguments>
+<arg>${APPC_INDEX PATH}${APPC_HEALTHCHECK_OPERATION_PATH}</arg>
+<arg>${None}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20180806 11:36:14.493" level="TRACE">Arguments: [ ${data_path}='/restconf/operations/SLI-API:healthcheck' | ${data}=None | ${content}='json' ]</msg>
+<kw name="Create List" library="BuiltIn">
+<doc>Returns a list containing given items.</doc>
+<arguments>
+<arg>${GLOBAL_APPC_USERNAME}</arg>
+<arg>${GLOBAL_APPC_PASSWORD}</arg>
+</arguments>
+<assign>
+<var>${auth}</var>
+</assign>
+<msg timestamp="20180806 11:36:14.495" level="TRACE">Arguments: [ b'admin' | b'admin' ]</msg>
+<msg timestamp="20180806 11:36:14.495" level="DEBUG">Test timeout 1 minute active. 59.995 seconds left.</msg>
+<msg timestamp="20180806 11:36:14.495" level="TRACE">Return: [b'admin', b'admin']</msg>
+<msg timestamp="20180806 11:36:14.495" level="INFO">${auth} = ['admin', 'admin']</msg>
+<status status="PASS" endtime="20180806 11:36:14.495" starttime="20180806 11:36:14.494"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>Creating session ${APPC_ENDPOINT}</arg>
+</arguments>
+<msg timestamp="20180806 11:36:14.496" level="TRACE">Arguments: [ 'Creating session http://192.168.61.15:8282' ]</msg>
+<msg timestamp="20180806 11:36:14.496" level="DEBUG">Test timeout 1 minute active. 59.993 seconds left.</msg>
+<msg timestamp="20180806 11:36:14.497" level="INFO">Creating session http://192.168.61.15:8282</msg>
+<msg timestamp="20180806 11:36:14.497" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20180806 11:36:14.497" starttime="20180806 11:36:14.496"></status>
+</kw>
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>appc</arg>
+<arg>${APPC_ENDPOINT}</arg>
+<arg>auth=${auth}</arg>
+</arguments>
+<assign>
+<var>${session}</var>
+</assign>
+<msg timestamp="20180806 11:36:14.498" level="TRACE">Arguments: [ 'appc' | 'http://192.168.61.15:8282' | auth=[b'admin', b'admin'] ]</msg>
+<msg timestamp="20180806 11:36:14.499" level="DEBUG">Test timeout 1 minute active. 59.991 seconds left.</msg>
+<msg timestamp="20180806 11:36:14.499" level="INFO">Creating Session using : alias=appc, url=http://192.168.61.15:8282, headers={},                     cookies=None, auth=&lt;requests.auth.HTTPBasicAuth object at 0x7fddb03d1cd0&gt;, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<msg timestamp="20180806 11:36:14.499" level="DEBUG">Creating session: appc</msg>
+<msg timestamp="20180806 11:36:14.500" level="DEBUG">Argument types are:
+&lt;type 'int'&gt;</msg>
+<msg timestamp="20180806 11:36:14.501" level="TRACE">Return: &lt;requests.sessions.Session object at 0x7fddb03d1ed0&gt;</msg>
+<msg timestamp="20180806 11:36:14.501" level="INFO">${session} = &lt;requests.sessions.Session object at 0x7fddb03d1ed0&gt;</msg>
+<status status="PASS" endtime="20180806 11:36:14.501" starttime="20180806 11:36:14.498"></status>
+</kw>
+<kw name="Generate UUID" library="UUID">
+<doc>generate a uuid</doc>
+<assign>
+<var>${uuid}</var>
+</assign>
+<msg timestamp="20180806 11:36:14.502" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20180806 11:36:14.502" level="DEBUG">Test timeout 1 minute active. 59.987 seconds left.</msg>
+<msg timestamp="20180806 11:36:14.502" level="TRACE">Return: UUID('42f9aa03-3e73-423b-b8bd-f26f34e23d38')</msg>
+<msg timestamp="20180806 11:36:14.502" level="INFO">${uuid} = 42f9aa03-3e73-423b-b8bd-f26f34e23d38</msg>
+<status status="PASS" endtime="20180806 11:36:14.503" starttime="20180806 11:36:14.502"></status>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>Accept=application/${content}</arg>
+<arg>Content-Type=application/${content}</arg>
+<arg>X-TransactionId=${GLOBAL_APPLICATION_ID}-${uuid}</arg>
+<arg>X-FromAppId=${GLOBAL_APPLICATION_ID}</arg>
+</arguments>
+<assign>
+<var>${headers}</var>
+</assign>
+<msg timestamp="20180806 11:36:14.503" level="TRACE">Arguments: [ 'Accept=application/${content}' | 'Content-Type=application/${content}' | 'X-TransactionId=${GLOBAL_APPLICATION_ID}-${uuid}' | 'X-FromAppId=${GLOBAL_APPLICATION_ID}' ]</msg>
+<msg timestamp="20180806 11:36:14.504" level="TRACE">Return: {'Accept': 'application/json', 'Content-Type': 'application/json', 'X-FromAppId': 'robot-ete', 'X-TransactionId': 'robot-ete-42f9aa03-3e73-423b-b8bd-f26f34e23d38'}</msg>
+<msg timestamp="20180806 11:36:14.504" level="INFO">${headers} = {u'Accept': u'application/json', u'Content-Type': u'application/json', u'X-TransactionId': u'robot-ete-42f9aa03-3e73-423b-b8bd-f26f34e23d38', u'X-FromAppId': u'robot-ete'}</msg>
+<status status="PASS" endtime="20180806 11:36:14.504" starttime="20180806 11:36:14.503"></status>
+</kw>
+<kw name="Post Request" library="RequestsLibrary">
+<doc>Send a POST request on the session object found using the</doc>
+<arguments>
+<arg>appc</arg>
+<arg>${data_path}</arg>
+<arg>data=${data}</arg>
+<arg>headers=${headers}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20180806 11:36:14.505" level="TRACE">Arguments: [ 'appc' | '/restconf/operations/SLI-API:healthcheck' | data=None | headers={'Accept': 'application/json', 'Content-Type': 'application/json', 'X-FromAppId': 'robot-ete', 'X-TransactionId': 'robot-ete-42f9aa03-3e73-423b-b8bd-f26f34e23d38'} ]</msg>
+<msg timestamp="20180806 11:36:14.505" level="DEBUG">Test timeout 1 minute active. 59.984 seconds left.</msg>
+<msg timestamp="20180806 11:36:14.506" level="DEBUG">Starting new HTTP connection (1): 192.168.61.15</msg>
+<msg timestamp="20180806 11:36:14.589" level="DEBUG">http://192.168.61.15:8282 "POST /restconf/operations/SLI-API:healthcheck HTTP/1.1" 200 None</msg>
+<msg timestamp="20180806 11:36:14.591" level="DEBUG">post response: {"output":{"ack-final-indicator":"Y","response-code":"200","response-message":"SDN-C is healthy"}}</msg>
+<msg timestamp="20180806 11:36:14.591" level="INFO">Post Request using : alias=appc, uri=/restconf/operations/SLI-API:healthcheck, data=None,                     headers={u'Accept': u'application/json', u'Content-Type': u'application/json', u'X-TransactionId': u'robot-ete-42f9aa03-3e73-423b-b8bd-f26f34e23d38', u'X-FromAppId': u'robot-ete'}, files=None, allow_redirects=True </msg>
+<msg timestamp="20180806 11:36:14.591" level="TRACE">Return: &lt;Response [200]&gt;</msg>
+<msg timestamp="20180806 11:36:14.592" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20180806 11:36:14.592" starttime="20180806 11:36:14.505"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>Received response from appc ${resp.text}</arg>
+</arguments>
+<msg timestamp="20180806 11:36:14.593" level="TRACE">Arguments: [ 'Received response from appc {"output":{"ack-final-indicator":"Y","response-code":"200","response-message":"SDN-C is healthy"}}' ]</msg>
+<msg timestamp="20180806 11:36:14.593" level="DEBUG">Test timeout 1 minute active. 59.897 seconds left.</msg>
+<msg timestamp="20180806 11:36:14.593" level="INFO">Received response from appc {"output":{"ack-final-indicator":"Y","response-code":"200","response-message":"SDN-C is healthy"}}</msg>
+<msg timestamp="20180806 11:36:14.593" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20180806 11:36:14.593" starttime="20180806 11:36:14.592"></status>
+</kw>
+<msg timestamp="20180806 11:36:14.594" level="TRACE">Return: &lt;Response [200]&gt;</msg>
+<msg timestamp="20180806 11:36:14.594" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20180806 11:36:14.594" starttime="20180806 11:36:14.492"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${resp.status_code}</arg>
+<arg>200</arg>
+</arguments>
+<msg timestamp="20180806 11:36:14.595" level="TRACE">Arguments: [ 200 | '200' ]</msg>
+<msg timestamp="20180806 11:36:14.595" level="DEBUG">Test timeout 1 minute active. 59.895 seconds left.</msg>
+<msg timestamp="20180806 11:36:14.595" level="INFO">Argument types are:
+&lt;type 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<msg timestamp="20180806 11:36:14.595" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20180806 11:36:14.595" starttime="20180806 11:36:14.594"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${resp.json()['output']['response-code']}</arg>
+<arg>200</arg>
+</arguments>
+<msg timestamp="20180806 11:36:14.596" level="TRACE">Arguments: [ '200' | '200' ]</msg>
+<msg timestamp="20180806 11:36:14.596" level="DEBUG">Test timeout 1 minute active. 59.893 seconds left.</msg>
+<msg timestamp="20180806 11:36:14.596" level="DEBUG">Argument types are:
+&lt;type 'unicode'&gt;
+&lt;type 'unicode'&gt;</msg>
+<msg timestamp="20180806 11:36:14.596" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20180806 11:36:14.596" starttime="20180806 11:36:14.595"></status>
+</kw>
+<msg timestamp="20180806 11:36:14.597" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20180806 11:36:14.597" starttime="20180806 11:36:14.491"></status>
+</kw>
+<tags>
+<tag>core</tag>
+<tag>health</tag>
+</tags>
+<timeout value="1 minute"></timeout>
+<status status="PASS" endtime="20180806 11:36:14.597" critical="yes" starttime="20180806 11:36:14.489"></status>
+</test>
+<test id="s1-s1-s1-s1-t5" name="Basic CLI Health Check">
+<kw name="Run CLI Health Check" library="cli_interface">
+<doc>Runs CLI Health check</doc>
+<msg timestamp="20180806 11:36:14.599" level="TRACE">Arguments: [  ]</msg>
+<kw name="Run CLI Get Request" library="cli_interface">
+<doc>Runs CLI Get request</doc>
+<arguments>
+<arg>${CLI_HEALTH_CHECK_PATH}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20180806 11:36:14.600" level="TRACE">Arguments: [ ${data_path}='/' ]</msg>
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>cli</arg>
+<arg>${CLI_ENDPOINT}</arg>
+</arguments>
+<assign>
+<var>${session}</var>
+</assign>
+<msg timestamp="20180806 11:36:14.601" level="TRACE">Arguments: [ 'cli' | 'http://10.0.9.1:8080' ]</msg>
+<msg timestamp="20180806 11:36:14.601" level="DEBUG">Test timeout 1 minute active. 59.997 seconds left.</msg>
+<msg timestamp="20180806 11:36:14.601" level="INFO">Creating Session using : alias=cli, url=http://10.0.9.1:8080, headers={},                     cookies=None, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<msg timestamp="20180806 11:36:14.601" level="DEBUG">Creating session: cli</msg>
+<msg timestamp="20180806 11:36:14.602" level="DEBUG">Argument types are:
+&lt;type 'int'&gt;</msg>
+<msg timestamp="20180806 11:36:14.602" level="TRACE">Return: &lt;requests.sessions.Session object at 0x7fddb0463390&gt;</msg>
+<msg timestamp="20180806 11:36:14.602" level="INFO">${session} = &lt;requests.sessions.Session object at 0x7fddb0463390&gt;</msg>
+<status status="PASS" endtime="20180806 11:36:14.602" starttime="20180806 11:36:14.601"></status>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the</doc>
+<arguments>
+<arg>cli</arg>
+<arg>${data_path}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20180806 11:36:14.603" level="TRACE">Arguments: [ 'cli' | '/' ]</msg>
+<msg timestamp="20180806 11:36:14.603" level="DEBUG">Test timeout 1 minute active. 59.995 seconds left.</msg>
+<msg timestamp="20180806 11:36:14.604" level="DEBUG">Starting new HTTP connection (1): 10.0.9.1</msg>
+<msg timestamp="20180806 11:37:14.599" level="FAIL">Test timeout 1 minute exceeded.</msg>
+<status status="FAIL" endtime="20180806 11:37:14.599" starttime="20180806 11:36:14.602"></status>
+</kw>
+<status status="FAIL" endtime="20180806 11:37:14.599" starttime="20180806 11:36:14.600"></status>
+</kw>
+<status status="FAIL" endtime="20180806 11:37:14.600" starttime="20180806 11:36:14.599"></status>
+</kw>
+<tags>
+<tag>core</tag>
+<tag>health</tag>
+</tags>
+<timeout value="1 minute"></timeout>
+<status status="FAIL" endtime="20180806 11:37:14.600" critical="yes" starttime="20180806 11:36:14.598">Test timeout 1 minute exceeded.</status>
+</test>
+<test id="s1-s1-s1-s1-t6" name="Basic CLAMP Health Check">
+<kw name="Run CLAMP Health Check" library="clamp_interface">
+<doc>Runs CLAMP Health check</doc>
+<msg timestamp="20180806 11:37:14.605" level="TRACE">Arguments: [  ]</msg>
+<kw name="Run CLAMP Get Request" library="clamp_interface">
+<doc>Runs CLAMP Get request</doc>
+<arguments>
+<arg>${CLAMP_HEALTH_CHECK_PATH}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20180806 11:37:14.607" level="TRACE">Arguments: [ ${data_path}='/restservices/clds/v1/clds/healthcheck' ]</msg>
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>session</arg>
+<arg>${CLAMP_ENDPOINT}</arg>
+</arguments>
+<assign>
+<var>${session}</var>
+</assign>
+<msg timestamp="20180806 11:37:14.608" level="TRACE">Arguments: [ 'session' | 'http://192.168.61.21:8080' ]</msg>
+<msg timestamp="20180806 11:37:14.609" level="DEBUG">Test timeout 1 minute active. 59.994 seconds left.</msg>
+<msg timestamp="20180806 11:37:14.609" level="INFO">Creating Session using : alias=session, url=http://192.168.61.21:8080, headers={},                     cookies=None, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<msg timestamp="20180806 11:37:14.609" level="DEBUG">Creating session: session</msg>
+<msg timestamp="20180806 11:37:14.610" level="DEBUG">Argument types are:
+&lt;type 'int'&gt;</msg>
+<msg timestamp="20180806 11:37:14.610" level="TRACE">Return: &lt;requests.sessions.Session object at 0x7fddb03e3d10&gt;</msg>
+<msg timestamp="20180806 11:37:14.610" level="INFO">${session} = &lt;requests.sessions.Session object at 0x7fddb03e3d10&gt;</msg>
+<status status="PASS" endtime="20180806 11:37:14.610" starttime="20180806 11:37:14.608"></status>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the</doc>
+<arguments>
+<arg>session</arg>
+<arg>${data_path}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20180806 11:37:14.611" level="TRACE">Arguments: [ 'session' | '/restservices/clds/v1/clds/healthcheck' ]</msg>
+<msg timestamp="20180806 11:37:14.611" level="DEBUG">Test timeout 1 minute active. 59.991 seconds left.</msg>
+<msg timestamp="20180806 11:37:14.612" level="DEBUG">Starting new HTTP connection (1): 192.168.61.21</msg>
+<msg timestamp="20180806 11:37:14.691" level="DEBUG">http://192.168.61.21:8080 "GET /restservices/clds/v1/clds/healthcheck HTTP/1.1" 200 79</msg>
+<msg timestamp="20180806 11:37:14.692" level="INFO">Get Request using : alias=session, uri=/restservices/clds/v1/clds/healthcheck, headers=None </msg>
+<msg timestamp="20180806 11:37:14.692" level="TRACE">Return: &lt;Response [200]&gt;</msg>
+<msg timestamp="20180806 11:37:14.693" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20180806 11:37:14.693" starttime="20180806 11:37:14.611"></status>
+</kw>
+<kw name="Should Be Equal As Integers" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<arguments>
+<arg>${resp.status_code}</arg>
+<arg>200</arg>
+</arguments>
+<msg timestamp="20180806 11:37:14.694" level="TRACE">Arguments: [ 200 | '200' ]</msg>
+<msg timestamp="20180806 11:37:14.695" level="DEBUG">Test timeout 1 minute active. 59.908 seconds left.</msg>
+<msg timestamp="20180806 11:37:14.695" level="INFO">Argument types are:
+&lt;type 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<msg timestamp="20180806 11:37:14.695" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20180806 11:37:14.695" starttime="20180806 11:37:14.694"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>Received response from CLAMP ${resp.text}</arg>
+</arguments>
+<msg timestamp="20180806 11:37:14.697" level="TRACE">Arguments: [ 'Received response from CLAMP {"healthCheckComponent":"CLDS-APP","healthCheckStatus":"UP","description":"OK"}' ]</msg>
+<msg timestamp="20180806 11:37:14.697" level="DEBUG">Test timeout 1 minute active. 59.906 seconds left.</msg>
+<msg timestamp="20180806 11:37:14.697" level="INFO">Received response from CLAMP {"healthCheckComponent":"CLDS-APP","healthCheckStatus":"UP","description":"OK"}</msg>
+<msg timestamp="20180806 11:37:14.697" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20180806 11:37:14.697" starttime="20180806 11:37:14.696"></status>
+</kw>
+<msg timestamp="20180806 11:37:14.698" level="TRACE">Return: &lt;Response [200]&gt;</msg>
+<msg timestamp="20180806 11:37:14.698" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20180806 11:37:14.698" starttime="20180806 11:37:14.606"></status>
+</kw>
+<kw name="Should Be Equal As Integers" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<arguments>
+<arg>${resp.status_code}</arg>
+<arg>200</arg>
+</arguments>
+<msg timestamp="20180806 11:37:14.700" level="TRACE">Arguments: [ 200 | '200' ]</msg>
+<msg timestamp="20180806 11:37:14.700" level="DEBUG">Test timeout 1 minute active. 59.903 seconds left.</msg>
+<msg timestamp="20180806 11:37:14.700" level="INFO">Argument types are:
+&lt;type 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<msg timestamp="20180806 11:37:14.700" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20180806 11:37:14.701" starttime="20180806 11:37:14.699"></status>
+</kw>
+<msg timestamp="20180806 11:37:14.701" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20180806 11:37:14.701" starttime="20180806 11:37:14.605"></status>
+</kw>
+<tags>
+<tag>core</tag>
+<tag>health</tag>
+</tags>
+<timeout value="1 minute"></timeout>
+<status status="PASS" endtime="20180806 11:37:14.701" critical="yes" starttime="20180806 11:37:14.602"></status>
+</test>
+<test id="s1-s1-s1-s1-t7" name="Basic DCAE Health Check">
+<kw name="Run DCAE Health Check" library="dcae_interface">
+<doc>Runs a DCAE health check</doc>
+<msg timestamp="20180806 11:37:14.703" level="TRACE">Arguments: [  ]</msg>
+<kw name="Create List" library="BuiltIn">
+<doc>Returns a list containing given items.</doc>
+<arguments>
+<arg>${GLOBAL_DCAE_USERNAME}</arg>
+<arg>${GLOBAL_DCAE_PASSWORD}</arg>
+</arguments>
+<assign>
+<var>${auth}</var>
+</assign>
+<msg timestamp="20180806 11:37:14.704" level="TRACE">Arguments: [ b'console' | b'ZjJkYjllMjljMTI2M2Iz' ]</msg>
+<msg timestamp="20180806 11:37:14.704" level="DEBUG">Test timeout 1 minute active. 59.998 seconds left.</msg>
+<msg timestamp="20180806 11:37:14.704" level="TRACE">Return: [b'console', b'ZjJkYjllMjljMTI2M2Iz']</msg>
+<msg timestamp="20180806 11:37:14.704" level="INFO">${auth} = ['console', 'ZjJkYjllMjljMTI2M2Iz']</msg>
+<status status="PASS" endtime="20180806 11:37:14.705" starttime="20180806 11:37:14.704"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>Creating session ${DCAE_HEALTH_ENDPOINT}</arg>
+</arguments>
+<msg timestamp="20180806 11:37:14.705" level="TRACE">Arguments: [ 'Creating session http://192.168.61.31:8000' ]</msg>
+<msg timestamp="20180806 11:37:14.705" level="DEBUG">Test timeout 1 minute active. 59.997 seconds left.</msg>
+<msg timestamp="20180806 11:37:14.705" level="INFO">Creating session http://192.168.61.31:8000</msg>
+<msg timestamp="20180806 11:37:14.705" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20180806 11:37:14.706" starttime="20180806 11:37:14.705"></status>
+</kw>
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>dcae</arg>
+<arg>${DCAE_HEALTH_ENDPOINT}</arg>
+<arg>auth=${auth}</arg>
+</arguments>
+<assign>
+<var>${session}</var>
+</assign>
+<msg timestamp="20180806 11:37:14.706" level="TRACE">Arguments: [ 'dcae' | 'http://192.168.61.31:8000' | auth=[b'console', b'ZjJkYjllMjljMTI2M2Iz'] ]</msg>
+<msg timestamp="20180806 11:37:14.706" level="DEBUG">Test timeout 1 minute active. 59.996 seconds left.</msg>
+<msg timestamp="20180806 11:37:14.706" level="INFO">Creating Session using : alias=dcae, url=http://192.168.61.31:8000, headers={},                     cookies=None, auth=&lt;requests.auth.HTTPBasicAuth object at 0x7fddb03d1a10&gt;, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<msg timestamp="20180806 11:37:14.706" level="DEBUG">Creating session: dcae</msg>
+<msg timestamp="20180806 11:37:14.707" level="DEBUG">Argument types are:
+&lt;type 'int'&gt;</msg>
+<msg timestamp="20180806 11:37:14.707" level="TRACE">Return: &lt;requests.sessions.Session object at 0x7fddafd4d090&gt;</msg>
+<msg timestamp="20180806 11:37:14.707" level="INFO">${session} = &lt;requests.sessions.Session object at 0x7fddafd4d090&gt;</msg>
+<status status="PASS" endtime="20180806 11:37:14.707" starttime="20180806 11:37:14.706"></status>
+</kw>
+<kw name="Generate UUID" library="UUID">
+<doc>generate a uuid</doc>
+<assign>
+<var>${uuid}</var>
+</assign>
+<msg timestamp="20180806 11:37:14.707" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20180806 11:37:14.708" level="DEBUG">Test timeout 1 minute active. 59.995 seconds left.</msg>
+<msg timestamp="20180806 11:37:14.708" level="TRACE">Return: UUID('602a8897-049f-4457-aa4a-9c92d8b50253')</msg>
+<msg timestamp="20180806 11:37:14.708" level="INFO">${uuid} = 602a8897-049f-4457-aa4a-9c92d8b50253</msg>
+<status status="PASS" endtime="20180806 11:37:14.708" starttime="20180806 11:37:14.707"></status>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>X-ECOMP-Client-Version=ONAP-R2</arg>
+<arg>action=getTable</arg>
+<arg>Accept=application/json</arg>
+<arg>Content-Type=application/json</arg>
+<arg>X-TransactionId=${GLOBAL_APPLICATION_ID}-${uuid}</arg>
+<arg>X-FromAppId=${GLOBAL_APPLICATION_ID}</arg>
+</arguments>
+<assign>
+<var>${headers}</var>
+</assign>
+<msg timestamp="20180806 11:37:14.708" level="TRACE">Arguments: [ 'X-ECOMP-Client-Version=ONAP-R2' | 'action=getTable' | 'Accept=application/json' | 'Content-Type=application/json' | 'X-TransactionId=${GLOBAL_APPLICATION_ID}-${uuid}' | 'X-FromAppId=${GLOBAL_APPLICATION_ID}' ]</msg>
+<msg timestamp="20180806 11:37:14.709" level="TRACE">Return: {'Accept': 'application/json', 'Content-Type': 'application/json', 'X-ECOMP-Client-Version': 'ONAP-R2', 'X-FromAppId': 'robot-ete', 'X-TransactionId': 'robot-ete-602a8897-049f-4457-aa4a-9c92d8b50253', 'action': 'getTable'}</msg>
+<msg timestamp="20180806 11:37:14.709" level="INFO">${headers} = {u'X-ECOMP-Client-Version': u'ONAP-R2', u'action': u'getTable', u'Accept': u'application/json', u'Content-Type': u'application/json', u'X-TransactionId': u'robot-ete-602a8897-049f-4457-aa4a-9c92d8b502...</msg>
+<status status="PASS" endtime="20180806 11:37:14.709" starttime="20180806 11:37:14.708"></status>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the</doc>
+<arguments>
+<arg>dcae</arg>
+<arg>${DCAE_HEALTH_CHECK_PATH}</arg>
+<arg>headers=${headers}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20180806 11:37:14.710" level="TRACE">Arguments: [ 'dcae' | '/healthcheck' | headers={'Accept': 'application/json', 'Content-Type': 'application/json', 'X-ECOMP-Client-Version': 'ONAP-R2', 'X-FromAppId': 'robot-ete', 'X-TransactionId': 'robot-ete-602a8897-049f-4457-aa4a-9c92d8b50253', 'action': 'getTable'} ]</msg>
+<msg timestamp="20180806 11:37:14.710" level="DEBUG">Test timeout 1 minute active. 59.992 seconds left.</msg>
+<msg timestamp="20180806 11:37:14.711" level="DEBUG">Starting new HTTP connection (1): 192.168.61.31</msg>
+<msg timestamp="20180806 11:37:14.713" level="DEBUG">Incremented Retry for (url='/healthcheck'): Retry(total=2, connect=None, read=None, redirect=None, status=None)</msg>
+<msg timestamp="20180806 11:37:14.713" level="WARN">Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x7fddafd4dd10&gt;: Failed to establish a new connection: [Errno 111] Connection refused',)': /healthcheck</msg>
+<msg timestamp="20180806 11:37:14.714" level="DEBUG">Starting new HTTP connection (2): 192.168.61.31</msg>
+<msg timestamp="20180806 11:37:14.717" level="DEBUG">Incremented Retry for (url='/healthcheck'): Retry(total=1, connect=None, read=None, redirect=None, status=None)</msg>
+<msg timestamp="20180806 11:37:14.918" level="WARN">Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x7fddafd4df50&gt;: Failed to establish a new connection: [Errno 111] Connection refused',)': /healthcheck</msg>
+<msg timestamp="20180806 11:37:14.918" level="DEBUG">Starting new HTTP connection (3): 192.168.61.31</msg>
+<msg timestamp="20180806 11:37:14.922" level="DEBUG">Incremented Retry for (url='/healthcheck'): Retry(total=0, connect=None, read=None, redirect=None, status=None)</msg>
+<msg timestamp="20180806 11:37:15.323" level="WARN">Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x7fddafd5e1d0&gt;: Failed to establish a new connection: [Errno 111] Connection refused',)': /healthcheck</msg>
+<msg timestamp="20180806 11:37:15.324" level="DEBUG">Starting new HTTP connection (4): 192.168.61.31</msg>
+<msg timestamp="20180806 11:37:15.359" level="FAIL">ConnectionError: HTTPConnectionPool(host='192.168.61.31', port=8000): Max retries exceeded with url: /healthcheck (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x7fddafd4d890&gt;: Failed to establish a new connection: [Errno 111] Connection refused',))</msg>
+<msg timestamp="20180806 11:37:15.359" level="DEBUG">Traceback (most recent call last):
+  File "/var/opt/OpenECOMP_ETE/robot/library/RequestsLibrary/RequestsKeywords.py", line 338, in get_request
+    session, uri, params, headers, redir, timeout)
+  File "/var/opt/OpenECOMP_ETE/robot/library/RequestsLibrary/RequestsKeywords.py", line 842, in _get_request
+    cookies=self.cookies)
+  File "/var/opt/OpenECOMP_ETE/robot/library/requests/sessions.py", line 521, in get
+    return self.request('GET', url, **kwargs)
+  File "/var/opt/OpenECOMP_ETE/robot/library/requests/sessions.py", line 508, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/var/opt/OpenECOMP_ETE/robot/library/requests/sessions.py", line 618, in send
+    r = adapter.send(request, **kwargs)
+  File "/var/opt/OpenECOMP_ETE/robot/library/requests/adapters.py", line 508, in send
+    raise ConnectionError(e, request=request)</msg>
+<status status="FAIL" endtime="20180806 11:37:15.359" starttime="20180806 11:37:14.710"></status>
+</kw>
+<status status="FAIL" endtime="20180806 11:37:15.359" starttime="20180806 11:37:14.703"></status>
+</kw>
+<tags>
+<tag>dcae</tag>
+<tag>health</tag>
+</tags>
+<timeout value="1 minute"></timeout>
+<status status="FAIL" endtime="20180806 11:37:15.359" critical="yes" starttime="20180806 11:37:14.702">ConnectionError: HTTPConnectionPool(host='192.168.61.31', port=8000): Max retries exceeded with url: /healthcheck (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x7fddafd4d890&gt;: Failed to establish a new connection: [Errno 111] Connection refused',))</status>
+</test>
+<test id="s1-s1-s1-s1-t8" name="Basic DMAAP Message Router Health Check">
+<kw name="Run MR Health Check" library="mr_interface">
+<doc>Runs MR Health check</doc>
+<msg timestamp="20180806 11:37:15.362" level="TRACE">Arguments: [  ]</msg>
+<kw name="Run MR Get Request" library="mr_interface">
+<doc>Runs MR Get request</doc>
+<arguments>
+<arg>${MR_HEALTH_CHECK_PATH}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20180806 11:37:15.363" level="TRACE">Arguments: [ ${data_path}='/topics' ]</msg>
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>mr</arg>
+<arg>${MR_ENDPOINT}</arg>
+</arguments>
+<assign>
+<var>${session}</var>
+</assign>
+<msg timestamp="20180806 11:37:15.364" level="TRACE">Arguments: [ 'mr' | 'http://192.168.61.17:3904' ]</msg>
+<msg timestamp="20180806 11:37:15.364" level="DEBUG">Test timeout 1 minute active. 59.996 seconds left.</msg>
+<msg timestamp="20180806 11:37:15.364" level="INFO">Creating Session using : alias=mr, url=http://192.168.61.17:3904, headers={},                     cookies=None, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<msg timestamp="20180806 11:37:15.365" level="DEBUG">Creating session: mr</msg>
+<msg timestamp="20180806 11:37:15.365" level="DEBUG">Argument types are:
+&lt;type 'int'&gt;</msg>
+<msg timestamp="20180806 11:37:15.365" level="TRACE">Return: &lt;requests.sessions.Session object at 0x7fddafd4d950&gt;</msg>
+<msg timestamp="20180806 11:37:15.365" level="INFO">${session} = &lt;requests.sessions.Session object at 0x7fddafd4d950&gt;</msg>
+<status status="PASS" endtime="20180806 11:37:15.365" starttime="20180806 11:37:15.364"></status>
+</kw>
+<kw name="Generate UUID" library="UUID">
+<doc>generate a uuid</doc>
+<assign>
+<var>${uuid}</var>
+</assign>
+<msg timestamp="20180806 11:37:15.366" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20180806 11:37:15.366" level="DEBUG">Test timeout 1 minute active. 59.994 seconds left.</msg>
+<msg timestamp="20180806 11:37:15.366" level="TRACE">Return: UUID('e69110ca-7243-48f2-9f63-5b68c7bbab9e')</msg>
+<msg timestamp="20180806 11:37:15.367" level="INFO">${uuid} = e69110ca-7243-48f2-9f63-5b68c7bbab9e</msg>
+<status status="PASS" endtime="20180806 11:37:15.367" starttime="20180806 11:37:15.366"></status>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>Accept=application/json</arg>
+<arg>Content-Type=application/json</arg>
+<arg>X-TransactionId=${GLOBAL_APPLICATION_ID}-${uuid}</arg>
+<arg>X-FromAppId=${GLOBAL_APPLICATION_ID}</arg>
+</arguments>
+<assign>
+<var>${headers}</var>
+</assign>
+<msg timestamp="20180806 11:37:15.367" level="TRACE">Arguments: [ 'Accept=application/json' | 'Content-Type=application/json' | 'X-TransactionId=${GLOBAL_APPLICATION_ID}-${uuid}' | 'X-FromAppId=${GLOBAL_APPLICATION_ID}' ]</msg>
+<msg timestamp="20180806 11:37:15.368" level="TRACE">Return: {'Accept': 'application/json', 'Content-Type': 'application/json', 'X-FromAppId': 'robot-ete', 'X-TransactionId': 'robot-ete-e69110ca-7243-48f2-9f63-5b68c7bbab9e'}</msg>
+<msg timestamp="20180806 11:37:15.368" level="INFO">${headers} = {u'Accept': u'application/json', u'Content-Type': u'application/json', u'X-TransactionId': u'robot-ete-e69110ca-7243-48f2-9f63-5b68c7bbab9e', u'X-FromAppId': u'robot-ete'}</msg>
+<status status="PASS" endtime="20180806 11:37:15.369" starttime="20180806 11:37:15.367"></status>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the</doc>
+<arguments>
+<arg>mr</arg>
+<arg>${data_path}</arg>
+<arg>headers=${headers}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20180806 11:37:15.369" level="TRACE">Arguments: [ 'mr' | '/topics' | headers={'Accept': 'application/json', 'Content-Type': 'application/json', 'X-FromAppId': 'robot-ete', 'X-TransactionId': 'robot-ete-e69110ca-7243-48f2-9f63-5b68c7bbab9e'} ]</msg>
+<msg timestamp="20180806 11:37:15.370" level="DEBUG">Test timeout 1 minute active. 59.991 seconds left.</msg>
+<msg timestamp="20180806 11:37:15.371" level="DEBUG">Starting new HTTP connection (1): 192.168.61.17</msg>
+<msg timestamp="20180806 11:37:15.395" level="DEBUG">http://192.168.61.17:3904 "GET /topics HTTP/1.1" 200 724</msg>
+<msg timestamp="20180806 11:37:15.396" level="INFO">Get Request using : alias=mr, uri=/topics, headers={u'Accept': u'application/json', u'Content-Type': u'application/json', u'X-TransactionId': u'robot-ete-e69110ca-7243-48f2-9f63-5b68c7bbab9e', u'X-FromAppId': u'robot-ete'} </msg>
+<msg timestamp="20180806 11:37:15.396" level="TRACE">Return: &lt;Response [200]&gt;</msg>
+<msg timestamp="20180806 11:37:15.396" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20180806 11:37:15.396" starttime="20180806 11:37:15.369"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>Received response from message router ${resp.text}</arg>
+</arguments>
+<msg timestamp="20180806 11:37:15.398" level="TRACE">Arguments: [ 'Received response from message router {"topics": [\n    "ECOMP-PORTAL-OUTBOX-APP1",\n    "unauthenticated.MEASUREMENT_OSAM_OUTPUT",\n    "ECOMP-PORTAL-OUTBOX-POL1",\n    "SDC-DISTR-STATUS-TOPIC-AUTO",\n    "msgrtr.apinode.metrics.dmaap",\n    "APPC-CL",\n    "PDPD-CONFIGURATION",\n    "POLICY-CL-MGT",\n    "SDC-DISTR-NOTIF-TOPIC-SDC-OPENSOURCE-ENV1",\n    "SDC-DISTR-NOTIF-TOPIC-AUTO",\n    "unauthenticated.SEC_MEASUREMENT_OUTPUT",\n    "SDC-DISTR-STATUS-TOPIC-SDC-OPENSOURCE-ENV1",\n    "AAI-EVENT",\n    "ECOMP-PORTAL-OUTBOX-VID1",\n    "ECOMP-PORTAL-INBOX",\n    "ECOMP-PORTAL-OUTBOX-SDC1",\n    "unauthenticated.VES_MEASUREMENT_OSAM_OUTPUT",\n    "unauthenticated.TCA_EVENT_OUTPUT",\n    "DCAE-CL-EVENT",\n    "APPC-TEST2",\n    "APPC-TEST1",\n    "ECOMP-PORTAL-OUTBOX-DBC1"\n]}' ]</msg>
+<msg timestamp="20180806 11:37:15.399" level="DEBUG">Test timeout 1 minute active. 59.962 seconds left.</msg>
+<msg timestamp="20180806 11:37:15.399" level="INFO">Received response from message router {"topics": [
+    "ECOMP-PORTAL-OUTBOX-APP1",
+    "unauthenticated.MEASUREMENT_OSAM_OUTPUT",
+    "ECOMP-PORTAL-OUTBOX-POL1",
+    "SDC-DISTR-STATUS-TOPIC-AUTO",
+    "msgrtr.apinode.metrics.dmaap",
+    "APPC-CL",
+    "PDPD-CONFIGURATION",
+    "POLICY-CL-MGT",
+    "SDC-DISTR-NOTIF-TOPIC-SDC-OPENSOURCE-ENV1",
+    "SDC-DISTR-NOTIF-TOPIC-AUTO",
+    "unauthenticated.SEC_MEASUREMENT_OUTPUT",
+    "SDC-DISTR-STATUS-TOPIC-SDC-OPENSOURCE-ENV1",
+    "AAI-EVENT",
+    "ECOMP-PORTAL-OUTBOX-VID1",
+    "ECOMP-PORTAL-INBOX",
+    "ECOMP-PORTAL-OUTBOX-SDC1",
+    "unauthenticated.VES_MEASUREMENT_OSAM_OUTPUT",
+    "unauthenticated.TCA_EVENT_OUTPUT",
+    "DCAE-CL-EVENT",
+    "APPC-TEST2",
+    "APPC-TEST1",
+    "ECOMP-PORTAL-OUTBOX-DBC1"
+]}</msg>
+<msg timestamp="20180806 11:37:15.399" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20180806 11:37:15.399" starttime="20180806 11:37:15.397"></status>
+</kw>
+<msg timestamp="20180806 11:37:15.400" level="TRACE">Return: &lt;Response [200]&gt;</msg>
+<msg timestamp="20180806 11:37:15.400" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20180806 11:37:15.400" starttime="20180806 11:37:15.363"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${resp.status_code}</arg>
+<arg>200</arg>
+</arguments>
+<msg timestamp="20180806 11:37:15.401" level="TRACE">Arguments: [ 200 | '200' ]</msg>
+<msg timestamp="20180806 11:37:15.402" level="DEBUG">Test timeout 1 minute active. 59.959 seconds left.</msg>
+<msg timestamp="20180806 11:37:15.402" level="INFO">Argument types are:
+&lt;type 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<msg timestamp="20180806 11:37:15.402" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20180806 11:37:15.402" starttime="20180806 11:37:15.401"></status>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<arguments>
+<arg>${resp.json()}</arg>
+<arg>topics</arg>
+</arguments>
+<msg timestamp="20180806 11:37:15.403" level="TRACE">Arguments: [ {'topics': ['ECOMP-PORTAL-OUTBOX-APP1',
+            'unauthenticated.MEASUREMENT_OSAM_OUTPUT',
+            'ECOMP-PORTAL-OUTBOX-POL1',
+            'SDC-DISTR-STATUS-TOPIC-AUTO',
+            'msgrtr.apinode.metrics.dmaap',
+            'APPC-CL',
+            'PDPD-CONFIGURATION',
+            'POLICY-CL-MGT',
+            'SDC-DISTR-NOTIF-TOPIC-SDC-OPENSOURCE-ENV1',
+            'SDC-DISTR-NOTIF-TOPIC-AUTO',
+            'unauthenticated.SEC_MEASUREMENT_OUTPUT',
+            'SDC-DISTR-STATUS-TOPIC-SDC-OPENSOURCE-ENV1',
+            'AAI-EVENT',
+            'ECOMP-PORTAL-OUTBOX-VID1',
+            'ECOMP-PORTAL-INBOX',
+            'ECOMP-PORTAL-OUTBOX-SDC1',
+            'unauthenticated.VES_MEASUREMENT_OSAM_OUTPUT',
+            'unauthenticated.TCA_EVENT_OUTPUT',
+            'DCAE-CL-EVENT',
+            'APPC-TEST2',
+            'APPC-TEST1',
+            'ECOMP-PORTAL-OUTBOX-DBC1']} | 'topics' ]</msg>
+<msg timestamp="20180806 11:37:15.404" level="DEBUG">Test timeout 1 minute active. 59.956 seconds left.</msg>
+<msg timestamp="20180806 11:37:15.405" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20180806 11:37:15.405" starttime="20180806 11:37:15.403"></status>
+</kw>
+<msg timestamp="20180806 11:37:15.405" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20180806 11:37:15.405" starttime="20180806 11:37:15.362"></status>
+</kw>
+<tags>
+<tag>core</tag>
+<tag>health</tag>
+</tags>
+<timeout value="1 minute"></timeout>
+<status status="PASS" endtime="20180806 11:37:15.406" critical="yes" starttime="20180806 11:37:15.360"></status>
+</test>
+<test id="s1-s1-s1-s1-t9" name="Basic External API NBI Health Check">
+<kw name="Run NBI Health Check" library="nbi_interface">
+<doc>Runs NBI Health check</doc>
+<msg timestamp="20180806 11:37:15.409" level="TRACE">Arguments: [  ]</msg>
+<kw name="Run NBI Get Request" library="nbi_interface">
+<doc>Runs NBI Get request</doc>
+<arguments>
+<arg>${NBI_HEALTH_CHECK_PATH}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20180806 11:37:15.410" level="TRACE">Arguments: [ ${data_path}='/nbi/api/v1/status' ]</msg>
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>session</arg>
+<arg>${NBI_ENDPOINT}</arg>
+</arguments>
+<assign>
+<var>${session}</var>
+</assign>
+<msg timestamp="20180806 11:37:15.410" level="TRACE">Arguments: [ 'session' | 'http://192.168.61.19:8080' ]</msg>
+<msg timestamp="20180806 11:37:15.411" level="DEBUG">Test timeout 1 minute active. 59.996 seconds left.</msg>
+<msg timestamp="20180806 11:37:15.411" level="INFO">Creating Session using : alias=session, url=http://192.168.61.19:8080, headers={},                     cookies=None, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<msg timestamp="20180806 11:37:15.411" level="DEBUG">Creating session: session</msg>
+<msg timestamp="20180806 11:37:15.411" level="DEBUG">Argument types are:
+&lt;type 'int'&gt;</msg>
+<msg timestamp="20180806 11:37:15.411" level="TRACE">Return: &lt;requests.sessions.Session object at 0x7fddafd548d0&gt;</msg>
+<msg timestamp="20180806 11:37:15.411" level="INFO">${session} = &lt;requests.sessions.Session object at 0x7fddafd548d0&gt;</msg>
+<status status="PASS" endtime="20180806 11:37:15.412" starttime="20180806 11:37:15.410"></status>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the</doc>
+<arguments>
+<arg>session</arg>
+<arg>${data_path}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20180806 11:37:15.412" level="TRACE">Arguments: [ 'session' | '/nbi/api/v1/status' ]</msg>
+<msg timestamp="20180806 11:37:15.412" level="DEBUG">Test timeout 1 minute active. 59.995 seconds left.</msg>
+<msg timestamp="20180806 11:37:15.414" level="DEBUG">Starting new HTTP connection (1): 192.168.61.19</msg>
+<msg timestamp="20180806 11:37:15.466" level="DEBUG">http://192.168.61.19:8080 "GET /nbi/api/v1/status HTTP/1.1" 200 None</msg>
+<msg timestamp="20180806 11:37:15.467" level="INFO">Get Request using : alias=session, uri=/nbi/api/v1/status, headers=None </msg>
+<msg timestamp="20180806 11:37:15.467" level="TRACE">Return: &lt;Response [200]&gt;</msg>
+<msg timestamp="20180806 11:37:15.468" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20180806 11:37:15.468" starttime="20180806 11:37:15.412"></status>
+</kw>
+<kw name="Should Be Equal As Integers" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<arguments>
+<arg>${resp.status_code}</arg>
+<arg>200</arg>
+</arguments>
+<msg timestamp="20180806 11:37:15.469" level="TRACE">Arguments: [ 200 | '200' ]</msg>
+<msg timestamp="20180806 11:37:15.469" level="DEBUG">Test timeout 1 minute active. 59.938 seconds left.</msg>
+<msg timestamp="20180806 11:37:15.470" level="INFO">Argument types are:
+&lt;type 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<msg timestamp="20180806 11:37:15.470" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20180806 11:37:15.470" starttime="20180806 11:37:15.468"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>Received response from NBI ${resp.text}</arg>
+</arguments>
+<msg timestamp="20180806 11:37:15.471" level="TRACE">Arguments: [ 'Received response from NBI {"name":"nbi","status":"ok","version":"v1"}' ]</msg>
+<msg timestamp="20180806 11:37:15.471" level="DEBUG">Test timeout 1 minute active. 59.936 seconds left.</msg>
+<msg timestamp="20180806 11:37:15.472" level="INFO">Received response from NBI {"name":"nbi","status":"ok","version":"v1"}</msg>
+<msg timestamp="20180806 11:37:15.472" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20180806 11:37:15.472" starttime="20180806 11:37:15.471"></status>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<arguments>
+<arg>${resp.json()}</arg>
+</arguments>
+<assign>
+<var>${json}</var>
+</assign>
+<msg timestamp="20180806 11:37:15.473" level="TRACE">Arguments: [ {'name': 'nbi', 'status': 'ok', 'version': 'v1'} ]</msg>
+<msg timestamp="20180806 11:37:15.474" level="DEBUG">Test timeout 1 minute active. 59.933 seconds left.</msg>
+<msg timestamp="20180806 11:37:15.474" level="TRACE">Return: {'name': 'nbi', 'status': 'ok', 'version': 'v1'}</msg>
+<msg timestamp="20180806 11:37:15.474" level="INFO">${json} = {u'status': u'ok', u'version': u'v1', u'name': u'nbi'}</msg>
+<status status="PASS" endtime="20180806 11:37:15.475" starttime="20180806 11:37:15.473"></status>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<arguments>
+<arg>${json}</arg>
+<arg>status</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20180806 11:37:15.476" level="TRACE">Arguments: [ {'name': 'nbi', 'status': 'ok', 'version': 'v1'} | 'status' ]</msg>
+<msg timestamp="20180806 11:37:15.476" level="DEBUG">Test timeout 1 minute active. 59.931 seconds left.</msg>
+<msg timestamp="20180806 11:37:15.476" level="TRACE">Return: 'ok'</msg>
+<msg timestamp="20180806 11:37:15.477" level="INFO">${status} = ok</msg>
+<status status="PASS" endtime="20180806 11:37:15.477" starttime="20180806 11:37:15.475"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${status}</arg>
+<arg>ok</arg>
+</arguments>
+<msg timestamp="20180806 11:37:15.478" level="TRACE">Arguments: [ 'ok' | 'ok' ]</msg>
+<msg timestamp="20180806 11:37:15.478" level="DEBUG">Test timeout 1 minute active. 59.929 seconds left.</msg>
+<msg timestamp="20180806 11:37:15.478" level="DEBUG">Argument types are:
+&lt;type 'unicode'&gt;
+&lt;type 'unicode'&gt;</msg>
+<msg timestamp="20180806 11:37:15.478" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20180806 11:37:15.478" starttime="20180806 11:37:15.477"></status>
+</kw>
+<msg timestamp="20180806 11:37:15.478" level="TRACE">Return: &lt;Response [200]&gt;</msg>
+<msg timestamp="20180806 11:37:15.478" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20180806 11:37:15.478" starttime="20180806 11:37:15.409"></status>
+</kw>
+<kw name="Should Be Equal As Integers" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<arguments>
+<arg>${resp.status_code}</arg>
+<arg>200</arg>
+</arguments>
+<msg timestamp="20180806 11:37:15.479" level="TRACE">Arguments: [ 200 | '200' ]</msg>
+<msg timestamp="20180806 11:37:15.479" level="DEBUG">Test timeout 1 minute active. 59.928 seconds left.</msg>
+<msg timestamp="20180806 11:37:15.479" level="INFO">Argument types are:
+&lt;type 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<msg timestamp="20180806 11:37:15.479" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20180806 11:37:15.480" starttime="20180806 11:37:15.479"></status>
+</kw>
+<msg timestamp="20180806 11:37:15.480" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20180806 11:37:15.480" starttime="20180806 11:37:15.408"></status>
+</kw>
+<tags>
+<tag>api</tag>
+<tag>externalapi</tag>
+<tag>health</tag>
+</tags>
+<timeout value="1 minute"></timeout>
+<status status="PASS" endtime="20180806 11:37:15.480" critical="yes" starttime="20180806 11:37:15.407"></status>
+</test>
+<test id="s1-s1-s1-s1-t10" name="Basic Microservice Bus Health Check">
+<kw name="Run MSB Health Check" library="msb_interface">
+<doc>Runs MSB Health check</doc>
+<msg timestamp="20180806 11:37:15.483" level="TRACE">Arguments: [  ]</msg>
+<kw name="Run MSB Get Request" library="msb_interface">
+<doc>Runs MSB Get request</doc>
+<arguments>
+<arg>${MSB_HEALTH_CHECK_PATH}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20180806 11:37:15.484" level="TRACE">Arguments: [ ${data_path}='/iui/microservices/default.html' ]</msg>
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>msb</arg>
+<arg>${MSB_ENDPOINT}</arg>
+</arguments>
+<assign>
+<var>${session}</var>
+</assign>
+<msg timestamp="20180806 11:37:15.484" level="TRACE">Arguments: [ 'msb' | 'http://10.0.14.1:80' ]</msg>
+<msg timestamp="20180806 11:37:15.485" level="DEBUG">Test timeout 1 minute active. 59.996 seconds left.</msg>
+<msg timestamp="20180806 11:37:15.485" level="INFO">Creating Session using : alias=msb, url=http://10.0.14.1:80, headers={},                     cookies=None, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<msg timestamp="20180806 11:37:15.485" level="DEBUG">Creating session: msb</msg>
+<msg timestamp="20180806 11:37:15.485" level="DEBUG">Argument types are:
+&lt;type 'int'&gt;</msg>
+<msg timestamp="20180806 11:37:15.485" level="TRACE">Return: &lt;requests.sessions.Session object at 0x7fddafcfba50&gt;</msg>
+<msg timestamp="20180806 11:37:15.486" level="INFO">${session} = &lt;requests.sessions.Session object at 0x7fddafcfba50&gt;</msg>
+<status status="PASS" endtime="20180806 11:37:15.486" starttime="20180806 11:37:15.484"></status>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the</doc>
+<arguments>
+<arg>msb</arg>
+<arg>${data_path}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20180806 11:37:15.486" level="TRACE">Arguments: [ 'msb' | '/iui/microservices/default.html' ]</msg>
+<msg timestamp="20180806 11:37:15.486" level="DEBUG">Test timeout 1 minute active. 59.994 seconds left.</msg>
+<msg timestamp="20180806 11:37:15.488" level="DEBUG">Starting new HTTP connection (1): 10.0.14.1</msg>
+<msg timestamp="20180806 11:38:15.481" level="FAIL">Test timeout 1 minute exceeded.</msg>
+<status status="FAIL" endtime="20180806 11:38:15.481" starttime="20180806 11:37:15.486"></status>
+</kw>
+<status status="FAIL" endtime="20180806 11:38:15.482" starttime="20180806 11:37:15.483"></status>
+</kw>
+<status status="FAIL" endtime="20180806 11:38:15.482" starttime="20180806 11:37:15.482"></status>
+</kw>
+<tags>
+<tag>core</tag>
+<tag>health</tag>
+</tags>
+<timeout value="1 minute"></timeout>
+<status status="FAIL" endtime="20180806 11:38:15.482" critical="yes" starttime="20180806 11:37:15.481">Test timeout 1 minute exceeded.</status>
+</test>
+<test id="s1-s1-s1-s1-t11" name="Basic Multicloud API Health Check">
+<kw name="Run MSB Get Request" library="msb_interface">
+<doc>Runs MSB Get request</doc>
+<arguments>
+<arg>/api/multicloud/v0/swagger.json</arg>
+</arguments>
+<msg timestamp="20180806 11:38:15.485" level="TRACE">Arguments: [ ${data_path}='/api/multicloud/v0/swagger.json' ]</msg>
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>msb</arg>
+<arg>${MSB_ENDPOINT}</arg>
+</arguments>
+<assign>
+<var>${session}</var>
+</assign>
+<msg timestamp="20180806 11:38:15.486" level="TRACE">Arguments: [ 'msb' | 'http://10.0.14.1:80' ]</msg>
+<msg timestamp="20180806 11:38:15.486" level="DEBUG">Test timeout 1 minute active. 59.997 seconds left.</msg>
+<msg timestamp="20180806 11:38:15.486" level="INFO">Creating Session using : alias=msb, url=http://10.0.14.1:80, headers={},                     cookies=None, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<msg timestamp="20180806 11:38:15.486" level="DEBUG">Creating session: msb</msg>
+<msg timestamp="20180806 11:38:15.486" level="DEBUG">Argument types are:
+&lt;type 'int'&gt;</msg>
+<msg timestamp="20180806 11:38:15.487" level="TRACE">Return: &lt;requests.sessions.Session object at 0x7fddafd0e0d0&gt;</msg>
+<msg timestamp="20180806 11:38:15.487" level="INFO">${session} = &lt;requests.sessions.Session object at 0x7fddafd0e0d0&gt;</msg>
+<status status="PASS" endtime="20180806 11:38:15.487" starttime="20180806 11:38:15.486"></status>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the</doc>
+<arguments>
+<arg>msb</arg>
+<arg>${data_path}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20180806 11:38:15.487" level="TRACE">Arguments: [ 'msb' | '/api/multicloud/v0/swagger.json' ]</msg>
+<msg timestamp="20180806 11:38:15.488" level="DEBUG">Test timeout 1 minute active. 59.996 seconds left.</msg>
+<msg timestamp="20180806 11:38:15.489" level="DEBUG">Starting new HTTP connection (1): 10.0.14.1</msg>
+<msg timestamp="20180806 11:39:15.484" level="FAIL">Test timeout 1 minute exceeded.</msg>
+<status status="FAIL" endtime="20180806 11:39:15.485" starttime="20180806 11:38:15.487"></status>
+</kw>
+<status status="FAIL" endtime="20180806 11:39:15.485" starttime="20180806 11:38:15.485"></status>
+</kw>
+<tags>
+<tag>health</tag>
+<tag>multicloud</tag>
+</tags>
+<timeout value="1 minute"></timeout>
+<status status="FAIL" endtime="20180806 11:39:15.485" critical="yes" starttime="20180806 11:38:15.483">Test timeout 1 minute exceeded.</status>
+</test>
+<test id="s1-s1-s1-s1-t12" name="Basic Multicloud-ocata API Health Check">
+<kw name="Run MSB Get Request" library="msb_interface">
+<doc>Runs MSB Get request</doc>
+<arguments>
+<arg>/api/multicloud-ocata/v0/swagger.json</arg>
+</arguments>
+<msg timestamp="20180806 11:39:15.488" level="TRACE">Arguments: [ ${data_path}='/api/multicloud-ocata/v0/swagger.json' ]</msg>
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>msb</arg>
+<arg>${MSB_ENDPOINT}</arg>
+</arguments>
+<assign>
+<var>${session}</var>
+</assign>
+<msg timestamp="20180806 11:39:15.489" level="TRACE">Arguments: [ 'msb' | 'http://10.0.14.1:80' ]</msg>
+<msg timestamp="20180806 11:39:15.490" level="DEBUG">Test timeout 1 minute active. 59.997 seconds left.</msg>
+<msg timestamp="20180806 11:39:15.490" level="INFO">Creating Session using : alias=msb, url=http://10.0.14.1:80, headers={},                     cookies=None, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<msg timestamp="20180806 11:39:15.490" level="DEBUG">Creating session: msb</msg>
+<msg timestamp="20180806 11:39:15.493" level="DEBUG">Argument types are:
+&lt;type 'int'&gt;</msg>
+<msg timestamp="20180806 11:39:15.494" level="TRACE">Return: &lt;requests.sessions.Session object at 0x7fddafd20e10&gt;</msg>
+<msg timestamp="20180806 11:39:15.494" level="INFO">${session} = &lt;requests.sessions.Session object at 0x7fddafd20e10&gt;</msg>
+<status status="PASS" endtime="20180806 11:39:15.494" starttime="20180806 11:39:15.489"></status>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the</doc>
+<arguments>
+<arg>msb</arg>
+<arg>${data_path}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20180806 11:39:15.495" level="TRACE">Arguments: [ 'msb' | '/api/multicloud-ocata/v0/swagger.json' ]</msg>
+<msg timestamp="20180806 11:39:15.495" level="DEBUG">Test timeout 1 minute active. 59.991 seconds left.</msg>
+<msg timestamp="20180806 11:39:15.497" level="DEBUG">Starting new HTTP connection (1): 10.0.14.1</msg>
+<msg timestamp="20180806 11:40:15.487" level="FAIL">Test timeout 1 minute exceeded.</msg>
+<status status="FAIL" endtime="20180806 11:40:15.487" starttime="20180806 11:39:15.495"></status>
+</kw>
+<status status="FAIL" endtime="20180806 11:40:15.488" starttime="20180806 11:39:15.488"></status>
+</kw>
+<tags>
+<tag>health</tag>
+<tag>multicloud</tag>
+</tags>
+<timeout value="1 minute"></timeout>
+<status status="FAIL" endtime="20180806 11:40:15.488" critical="yes" starttime="20180806 11:39:15.486">Test timeout 1 minute exceeded.</status>
+</test>
+<test id="s1-s1-s1-s1-t13" name="Basic Multicloud-titanium_cloud API Health Check">
+<kw name="Run MSB Get Request" library="msb_interface">
+<doc>Runs MSB Get request</doc>
+<arguments>
+<arg>/api/multicloud-titanium_cloud/v0/swagger.json</arg>
+</arguments>
+<msg timestamp="20180806 11:40:15.491" level="TRACE">Arguments: [ ${data_path}='/api/multicloud-titanium_cloud/v0/swagger.json' ]</msg>
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>msb</arg>
+<arg>${MSB_ENDPOINT}</arg>
+</arguments>
+<assign>
+<var>${session}</var>
+</assign>
+<msg timestamp="20180806 11:40:15.492" level="TRACE">Arguments: [ 'msb' | 'http://10.0.14.1:80' ]</msg>
+<msg timestamp="20180806 11:40:15.492" level="DEBUG">Test timeout 1 minute active. 59.997 seconds left.</msg>
+<msg timestamp="20180806 11:40:15.492" level="INFO">Creating Session using : alias=msb, url=http://10.0.14.1:80, headers={},                     cookies=None, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<msg timestamp="20180806 11:40:15.492" level="DEBUG">Creating session: msb</msg>
+<msg timestamp="20180806 11:40:15.493" level="DEBUG">Argument types are:
+&lt;type 'int'&gt;</msg>
+<msg timestamp="20180806 11:40:15.493" level="TRACE">Return: &lt;requests.sessions.Session object at 0x7fddafd27ed0&gt;</msg>
+<msg timestamp="20180806 11:40:15.493" level="INFO">${session} = &lt;requests.sessions.Session object at 0x7fddafd27ed0&gt;</msg>
+<status status="PASS" endtime="20180806 11:40:15.493" starttime="20180806 11:40:15.492"></status>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the</doc>
+<arguments>
+<arg>msb</arg>
+<arg>${data_path}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20180806 11:40:15.494" level="TRACE">Arguments: [ 'msb' | '/api/multicloud-titanium_cloud/v0/swagger.json' ]</msg>
+<msg timestamp="20180806 11:40:15.494" level="DEBUG">Test timeout 1 minute active. 59.995 seconds left.</msg>
+<msg timestamp="20180806 11:40:15.496" level="DEBUG">Starting new HTTP connection (1): 10.0.14.1</msg>
+<msg timestamp="20180806 11:41:15.490" level="FAIL">Test timeout 1 minute exceeded.</msg>
+<status status="FAIL" endtime="20180806 11:41:15.490" starttime="20180806 11:40:15.494"></status>
+</kw>
+<status status="FAIL" endtime="20180806 11:41:15.491" starttime="20180806 11:40:15.491"></status>
+</kw>
+<tags>
+<tag>health</tag>
+<tag>multicloud</tag>
+</tags>
+<timeout value="1 minute"></timeout>
+<status status="FAIL" endtime="20180806 11:41:15.491" critical="yes" starttime="20180806 11:40:15.489">Test timeout 1 minute exceeded.</status>
+</test>
+<test id="s1-s1-s1-s1-t14" name="Basic Multicloud-vio API Health Check">
+<kw name="Run MSB Get Request" library="msb_interface">
+<doc>Runs MSB Get request</doc>
+<arguments>
+<arg>/api/multicloud-vio/v0/swagger.json</arg>
+</arguments>
+<msg timestamp="20180806 11:41:15.495" level="TRACE">Arguments: [ ${data_path}='/api/multicloud-vio/v0/swagger.json' ]</msg>
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>msb</arg>
+<arg>${MSB_ENDPOINT}</arg>
+</arguments>
+<assign>
+<var>${session}</var>
+</assign>
+<msg timestamp="20180806 11:41:15.496" level="TRACE">Arguments: [ 'msb' | 'http://10.0.14.1:80' ]</msg>
+<msg timestamp="20180806 11:41:15.497" level="DEBUG">Test timeout 1 minute active. 59.996 seconds left.</msg>
+<msg timestamp="20180806 11:41:15.497" level="INFO">Creating Session using : alias=msb, url=http://10.0.14.1:80, headers={},                     cookies=None, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<msg timestamp="20180806 11:41:15.497" level="DEBUG">Creating session: msb</msg>
+<msg timestamp="20180806 11:41:15.497" level="DEBUG">Argument types are:
+&lt;type 'int'&gt;</msg>
+<msg timestamp="20180806 11:41:15.498" level="TRACE">Return: &lt;requests.sessions.Session object at 0x7fddafd0e490&gt;</msg>
+<msg timestamp="20180806 11:41:15.498" level="INFO">${session} = &lt;requests.sessions.Session object at 0x7fddafd0e490&gt;</msg>
+<status status="PASS" endtime="20180806 11:41:15.498" starttime="20180806 11:41:15.496"></status>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the</doc>
+<arguments>
+<arg>msb</arg>
+<arg>${data_path}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20180806 11:41:15.499" level="TRACE">Arguments: [ 'msb' | '/api/multicloud-vio/v0/swagger.json' ]</msg>
+<msg timestamp="20180806 11:41:15.500" level="DEBUG">Test timeout 1 minute active. 59.993 seconds left.</msg>
+<msg timestamp="20180806 11:41:15.502" level="DEBUG">Starting new HTTP connection (1): 10.0.14.1</msg>
+<msg timestamp="20180806 11:42:15.494" level="FAIL">Test timeout 1 minute exceeded.</msg>
+<status status="FAIL" endtime="20180806 11:42:15.494" starttime="20180806 11:41:15.499"></status>
+</kw>
+<status status="FAIL" endtime="20180806 11:42:15.495" starttime="20180806 11:41:15.495"></status>
+</kw>
+<tags>
+<tag>health</tag>
+<tag>multicloud</tag>
+</tags>
+<timeout value="1 minute"></timeout>
+<status status="FAIL" endtime="20180806 11:42:15.495" critical="yes" starttime="20180806 11:41:15.493">Test timeout 1 minute exceeded.</status>
+</test>
+<test id="s1-s1-s1-s1-t15" name="Basic OOF-Homing Health Check">
+<kw name="Run OOF-Homing Health Check" library="oof_interface">
+<doc>Runs OOF-Homing Health check</doc>
+<msg timestamp="20180806 11:42:15.500" level="TRACE">Arguments: [  ]</msg>
+<kw name="Run OOF-Homing Get Request" library="oof_interface">
+<doc>Runs OOF-Homing Get request</doc>
+<arguments>
+<arg>${OOF_HOMING_HEALTH_CHECK_PATH}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20180806 11:42:15.501" level="TRACE">Arguments: [ ${data_path}='/v1/plans/healthcheck' ]</msg>
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>session</arg>
+<arg>${OOF_HOMING_ENDPOINT}</arg>
+</arguments>
+<assign>
+<var>${session}</var>
+</assign>
+<msg timestamp="20180806 11:42:15.502" level="TRACE">Arguments: [ 'session' | 'http://192.168.61.23:8091' ]</msg>
+<msg timestamp="20180806 11:42:15.502" level="DEBUG">Test timeout 1 minute active. 59.995 seconds left.</msg>
+<msg timestamp="20180806 11:42:15.503" level="INFO">Creating Session using : alias=session, url=http://192.168.61.23:8091, headers={},                     cookies=None, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<msg timestamp="20180806 11:42:15.503" level="DEBUG">Creating session: session</msg>
+<msg timestamp="20180806 11:42:15.503" level="DEBUG">Argument types are:
+&lt;type 'int'&gt;</msg>
+<msg timestamp="20180806 11:42:15.503" level="TRACE">Return: &lt;requests.sessions.Session object at 0x7fddafd59590&gt;</msg>
+<msg timestamp="20180806 11:42:15.504" level="INFO">${session} = &lt;requests.sessions.Session object at 0x7fddafd59590&gt;</msg>
+<status status="PASS" endtime="20180806 11:42:15.504" starttime="20180806 11:42:15.502"></status>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the</doc>
+<arguments>
+<arg>session</arg>
+<arg>${data_path}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20180806 11:42:15.504" level="TRACE">Arguments: [ 'session' | '/v1/plans/healthcheck' ]</msg>
+<msg timestamp="20180806 11:42:15.505" level="DEBUG">Test timeout 1 minute active. 59.993 seconds left.</msg>
+<msg timestamp="20180806 11:42:15.506" level="DEBUG">Starting new HTTP connection (1): 192.168.61.23</msg>
+<msg timestamp="20180806 11:42:18.707" level="DEBUG">http://192.168.61.23:8091 "GET /v1/plans/healthcheck HTTP/1.1" 200 155</msg>
+<msg timestamp="20180806 11:42:18.708" level="INFO">Get Request using : alias=session, uri=/v1/plans/healthcheck, headers=None </msg>
+<msg timestamp="20180806 11:42:18.709" level="TRACE">Return: &lt;Response [200]&gt;</msg>
+<msg timestamp="20180806 11:42:18.709" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20180806 11:42:18.709" starttime="20180806 11:42:15.504"></status>
+</kw>
+<kw name="Should Be Equal As Integers" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<arguments>
+<arg>${resp.status_code}</arg>
+<arg>200</arg>
+</arguments>
+<msg timestamp="20180806 11:42:18.711" level="TRACE">Arguments: [ 200 | '200' ]</msg>
+<msg timestamp="20180806 11:42:18.711" level="DEBUG">Test timeout 1 minute active. 56.787 seconds left.</msg>
+<msg timestamp="20180806 11:42:18.711" level="INFO">Argument types are:
+&lt;type 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<msg timestamp="20180806 11:42:18.711" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20180806 11:42:18.712" starttime="20180806 11:42:18.710"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>Received response from OOF-Homing ${resp.text}</arg>
+</arguments>
+<msg timestamp="20180806 11:42:18.713" level="TRACE">Arguments: [ 'Received response from OOF-Homing {"plans": [{"status": "done", "name": "foo", "links": [[{"href": "http://192.168.61.23:8091/v1/plans/healthcheck", "rel": "self"}]], "id": "healthcheck"}]}' ]</msg>
+<msg timestamp="20180806 11:42:18.713" level="DEBUG">Test timeout 1 minute active. 56.785 seconds left.</msg>
+<msg timestamp="20180806 11:42:18.713" level="INFO">Received response from OOF-Homing {"plans": [{"status": "done", "name": "foo", "links": [[{"href": "http://192.168.61.23:8091/v1/plans/healthcheck", "rel": "self"}]], "id": "healthcheck"}]}</msg>
+<msg timestamp="20180806 11:42:18.714" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20180806 11:42:18.714" starttime="20180806 11:42:18.712"></status>
+</kw>
+<msg timestamp="20180806 11:42:18.714" level="TRACE">Return: &lt;Response [200]&gt;</msg>
+<msg timestamp="20180806 11:42:18.714" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20180806 11:42:18.714" starttime="20180806 11:42:15.501"></status>
+</kw>
+<kw name="Should Be Equal As Integers" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<arguments>
+<arg>${resp.status_code}</arg>
+<arg>200</arg>
+</arguments>
+<msg timestamp="20180806 11:42:18.715" level="TRACE">Arguments: [ 200 | '200' ]</msg>
+<msg timestamp="20180806 11:42:18.715" level="DEBUG">Test timeout 1 minute active. 56.783 seconds left.</msg>
+<msg timestamp="20180806 11:42:18.715" level="INFO">Argument types are:
+&lt;type 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<msg timestamp="20180806 11:42:18.716" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20180806 11:42:18.716" starttime="20180806 11:42:18.715"></status>
+</kw>
+<msg timestamp="20180806 11:42:18.716" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20180806 11:42:18.716" starttime="20180806 11:42:15.500"></status>
+</kw>
+<tags>
+<tag>core</tag>
+<tag>health</tag>
+</tags>
+<timeout value="1 minute"></timeout>
+<status status="PASS" endtime="20180806 11:42:18.716" critical="yes" starttime="20180806 11:42:15.498"></status>
+</test>
+<test id="s1-s1-s1-s1-t16" name="Basic OOF-SNIRO Health Check">
+<kw name="Run OOF-SNIRO Health Check" library="oof_interface">
+<doc>Runs OOF-SNIRO Health check</doc>
+<msg timestamp="20180806 11:42:18.719" level="TRACE">Arguments: [  ]</msg>
+<kw name="Run OOF-SNIRO Get Request" library="oof_interface">
+<doc>Runs OOF-SNIRO Get request</doc>
+<arguments>
+<arg>${OOF_SNIRO_HEALTH_CHECK_PATH}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20180806 11:42:18.720" level="TRACE">Arguments: [ ${data_path}='/api/oof/v1/healthcheck' ]</msg>
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>session</arg>
+<arg>${OOF_SNIRO_ENDPOINT}</arg>
+</arguments>
+<assign>
+<var>${session}</var>
+</assign>
+<msg timestamp="20180806 11:42:18.721" level="TRACE">Arguments: [ 'session' | 'http://192.168.61.23:8698' ]</msg>
+<msg timestamp="20180806 11:42:18.721" level="DEBUG">Test timeout 1 minute active. 59.996 seconds left.</msg>
+<msg timestamp="20180806 11:42:18.721" level="INFO">Creating Session using : alias=session, url=http://192.168.61.23:8698, headers={},                     cookies=None, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<msg timestamp="20180806 11:42:18.722" level="DEBUG">Creating session: session</msg>
+<msg timestamp="20180806 11:42:18.722" level="DEBUG">Argument types are:
+&lt;type 'int'&gt;</msg>
+<msg timestamp="20180806 11:42:18.722" level="TRACE">Return: &lt;requests.sessions.Session object at 0x7fddafd59350&gt;</msg>
+<msg timestamp="20180806 11:42:18.722" level="INFO">${session} = &lt;requests.sessions.Session object at 0x7fddafd59350&gt;</msg>
+<status status="PASS" endtime="20180806 11:42:18.722" starttime="20180806 11:42:18.721"></status>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the</doc>
+<arguments>
+<arg>session</arg>
+<arg>${data_path}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20180806 11:42:18.723" level="TRACE">Arguments: [ 'session' | '/api/oof/v1/healthcheck' ]</msg>
+<msg timestamp="20180806 11:42:18.723" level="DEBUG">Test timeout 1 minute active. 59.994 seconds left.</msg>
+<msg timestamp="20180806 11:42:18.725" level="DEBUG">Starting new HTTP connection (1): 192.168.61.23</msg>
+<msg timestamp="20180806 11:42:18.738" level="DEBUG">http://192.168.61.23:8698 "GET /api/oof/v1/healthcheck HTTP/1.1" 200 2</msg>
+<msg timestamp="20180806 11:42:18.739" level="INFO">Get Request using : alias=session, uri=/api/oof/v1/healthcheck, headers=None </msg>
+<msg timestamp="20180806 11:42:18.740" level="TRACE">Return: &lt;Response [200]&gt;</msg>
+<msg timestamp="20180806 11:42:18.740" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20180806 11:42:18.740" starttime="20180806 11:42:18.723"></status>
+</kw>
+<kw name="Should Be Equal As Integers" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<arguments>
+<arg>${resp.status_code}</arg>
+<arg>200</arg>
+</arguments>
+<msg timestamp="20180806 11:42:18.742" level="TRACE">Arguments: [ 200 | '200' ]</msg>
+<msg timestamp="20180806 11:42:18.743" level="DEBUG">Test timeout 1 minute active. 59.975 seconds left.</msg>
+<msg timestamp="20180806 11:42:18.743" level="INFO">Argument types are:
+&lt;type 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<msg timestamp="20180806 11:42:18.743" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20180806 11:42:18.743" starttime="20180806 11:42:18.741"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>Received response from OOF-SNIRO ${resp.text}</arg>
+</arguments>
+<msg timestamp="20180806 11:42:18.745" level="TRACE">Arguments: [ 'Received response from OOF-SNIRO OK' ]</msg>
+<msg timestamp="20180806 11:42:18.745" level="DEBUG">Test timeout 1 minute active. 59.973 seconds left.</msg>
+<msg timestamp="20180806 11:42:18.745" level="INFO">Received response from OOF-SNIRO OK</msg>
+<msg timestamp="20180806 11:42:18.745" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20180806 11:42:18.746" starttime="20180806 11:42:18.744"></status>
+</kw>
+<msg timestamp="20180806 11:42:18.746" level="TRACE">Return: &lt;Response [200]&gt;</msg>
+<msg timestamp="20180806 11:42:18.746" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20180806 11:42:18.746" starttime="20180806 11:42:18.720"></status>
+</kw>
+<kw name="Should Be Equal As Integers" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<arguments>
+<arg>${resp.status_code}</arg>
+<arg>200</arg>
+</arguments>
+<msg timestamp="20180806 11:42:18.747" level="TRACE">Arguments: [ 200 | '200' ]</msg>
+<msg timestamp="20180806 11:42:18.747" level="DEBUG">Test timeout 1 minute active. 59.971 seconds left.</msg>
+<msg timestamp="20180806 11:42:18.747" level="INFO">Argument types are:
+&lt;type 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<msg timestamp="20180806 11:42:18.747" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20180806 11:42:18.748" starttime="20180806 11:42:18.747"></status>
+</kw>
+<msg timestamp="20180806 11:42:18.748" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20180806 11:42:18.748" starttime="20180806 11:42:18.719"></status>
+</kw>
+<tags>
+<tag>core</tag>
+<tag>health</tag>
+</tags>
+<timeout value="1 minute"></timeout>
+<status status="PASS" endtime="20180806 11:42:18.748" critical="yes" starttime="20180806 11:42:18.717"></status>
+</test>
+<test id="s1-s1-s1-s1-t17" name="Basic Policy Health Check">
+<kw name="Run Policy Health Check" library="policy_interface">
+<doc>Runs Policy Health check</doc>
+<msg timestamp="20180806 11:42:18.751" level="TRACE">Arguments: [  ]</msg>
+<kw name="Create List" library="BuiltIn">
+<doc>Returns a list containing given items.</doc>
+<arguments>
+<arg>${GLOBAL_POLICY_USERNAME}</arg>
+<arg>${GLOBAL_POLICY_PASSWORD}</arg>
+</arguments>
+<assign>
+<var>${auth}</var>
+</assign>
+<msg timestamp="20180806 11:42:18.753" level="TRACE">Arguments: [ b'healthcheck' | b'zb!XztG34' ]</msg>
+<msg timestamp="20180806 11:42:18.753" level="DEBUG">Test timeout 1 minute active. 59.997 seconds left.</msg>
+<msg timestamp="20180806 11:42:18.753" level="TRACE">Return: [b'healthcheck', b'zb!XztG34']</msg>
+<msg timestamp="20180806 11:42:18.753" level="INFO">${auth} = ['healthcheck', 'zb!XztG34']</msg>
+<status status="PASS" endtime="20180806 11:42:18.753" starttime="20180806 11:42:18.752"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>Creating session ${POLICY_ENDPOINT}</arg>
+</arguments>
+<msg timestamp="20180806 11:42:18.754" level="TRACE">Arguments: [ 'Creating session http://192.168.61.14:8081' ]</msg>
+<msg timestamp="20180806 11:42:18.754" level="DEBUG">Test timeout 1 minute active. 59.995 seconds left.</msg>
+<msg timestamp="20180806 11:42:18.755" level="INFO">Creating session http://192.168.61.14:8081</msg>
+<msg timestamp="20180806 11:42:18.755" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20180806 11:42:18.755" starttime="20180806 11:42:18.754"></status>
+</kw>
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>policy</arg>
+<arg>${POLICY_HEALTHCHECK_ENDPOINT}</arg>
+<arg>auth=${auth}</arg>
+</arguments>
+<assign>
+<var>${session}</var>
+</assign>
+<msg timestamp="20180806 11:42:18.756" level="TRACE">Arguments: [ 'policy' | 'http://192.168.61.14:6969' | auth=[b'healthcheck', b'zb!XztG34'] ]</msg>
+<msg timestamp="20180806 11:42:18.756" level="DEBUG">Test timeout 1 minute active. 59.994 seconds left.</msg>
+<msg timestamp="20180806 11:42:18.756" level="INFO">Creating Session using : alias=policy, url=http://192.168.61.14:6969, headers={},                     cookies=None, auth=&lt;requests.auth.HTTPBasicAuth object at 0x7fddafd0e890&gt;, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<msg timestamp="20180806 11:42:18.756" level="DEBUG">Creating session: policy</msg>
+<msg timestamp="20180806 11:42:18.757" level="DEBUG">Argument types are:
+&lt;type 'int'&gt;</msg>
+<msg timestamp="20180806 11:42:18.757" level="TRACE">Return: &lt;requests.sessions.Session object at 0x7fddb05aec50&gt;</msg>
+<msg timestamp="20180806 11:42:18.757" level="INFO">${session} = &lt;requests.sessions.Session object at 0x7fddb05aec50&gt;</msg>
+<status status="PASS" endtime="20180806 11:42:18.757" starttime="20180806 11:42:18.755"></status>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>Accept=application/json</arg>
+<arg>Content-Type=application/json</arg>
+</arguments>
+<assign>
+<var>${headers}</var>
+</assign>
+<msg timestamp="20180806 11:42:18.758" level="TRACE">Arguments: [ 'Accept=application/json' | 'Content-Type=application/json' ]</msg>
+<msg timestamp="20180806 11:42:18.758" level="TRACE">Return: {'Accept': 'application/json', 'Content-Type': 'application/json'}</msg>
+<msg timestamp="20180806 11:42:18.759" level="INFO">${headers} = {u'Accept': u'application/json', u'Content-Type': u'application/json'}</msg>
+<status status="PASS" endtime="20180806 11:42:18.759" starttime="20180806 11:42:18.758"></status>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the</doc>
+<arguments>
+<arg>policy</arg>
+<arg>${POLICY_HEALTH_CHECK_PATH}</arg>
+<arg>headers=${headers}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20180806 11:42:18.760" level="TRACE">Arguments: [ 'policy' | '/healthcheck' | headers={'Accept': 'application/json', 'Content-Type': 'application/json'} ]</msg>
+<msg timestamp="20180806 11:42:18.760" level="DEBUG">Test timeout 1 minute active. 59.989 seconds left.</msg>
+<msg timestamp="20180806 11:42:18.762" level="DEBUG">Starting new HTTP connection (1): 192.168.61.14</msg>
+<msg timestamp="20180806 11:42:18.788" level="DEBUG">http://192.168.61.14:6969 "GET /healthcheck HTTP/1.1" 200 276</msg>
+<msg timestamp="20180806 11:42:18.789" level="INFO">Get Request using : alias=policy, uri=/healthcheck, headers={u'Accept': u'application/json', u'Content-Type': u'application/json'} </msg>
+<msg timestamp="20180806 11:42:18.789" level="TRACE">Return: &lt;Response [200]&gt;</msg>
+<msg timestamp="20180806 11:42:18.789" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20180806 11:42:18.789" starttime="20180806 11:42:18.759"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>Received response from policy ${resp.text}</arg>
+</arguments>
+<msg timestamp="20180806 11:42:18.790" level="TRACE">Arguments: [ 'Received response from policy {"healthy":true,"details":[{"name":"PDP-D","url":"self","healthy":true,"code":200,"message":"alive"},{"name":"PAP","url":"http://pap:9091/pap/test","healthy":true,"code":200,"message":""},{"name":"PDP","url":"http://pdp:8081/pdp/test","healthy":true,"code":200,"message":""}]}' ]</msg>
+<msg timestamp="20180806 11:42:18.790" level="DEBUG">Test timeout 1 minute active. 59.959 seconds left.</msg>
+<msg timestamp="20180806 11:42:18.790" level="INFO">Received response from policy {"healthy":true,"details":[{"name":"PDP-D","url":"self","healthy":true,"code":200,"message":"alive"},{"name":"PAP","url":"http://pap:9091/pap/test","healthy":true,"code":200,"message":""},{"name":"PDP","url":"http://pdp:8081/pdp/test","healthy":true,"code":200,"message":""}]}</msg>
+<msg timestamp="20180806 11:42:18.790" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20180806 11:42:18.791" starttime="20180806 11:42:18.790"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${resp.status_code}</arg>
+<arg>200</arg>
+</arguments>
+<msg timestamp="20180806 11:42:18.791" level="TRACE">Arguments: [ 200 | '200' ]</msg>
+<msg timestamp="20180806 11:42:18.791" level="DEBUG">Test timeout 1 minute active. 59.958 seconds left.</msg>
+<msg timestamp="20180806 11:42:18.791" level="INFO">Argument types are:
+&lt;type 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<msg timestamp="20180806 11:42:18.792" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20180806 11:42:18.792" starttime="20180806 11:42:18.791"></status>
+</kw>
+<kw name="Should Be True" library="BuiltIn">
+<doc>Fails if the given condition is not true.</doc>
+<arguments>
+<arg>${resp.json()['healthy']}</arg>
+</arguments>
+<msg timestamp="20180806 11:42:18.793" level="TRACE">Arguments: [ True ]</msg>
+<msg timestamp="20180806 11:42:18.793" level="DEBUG">Test timeout 1 minute active. 59.957 seconds left.</msg>
+<msg timestamp="20180806 11:42:18.793" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20180806 11:42:18.793" starttime="20180806 11:42:18.792"></status>
+</kw>
+<kw name="Copy List" library="Collections">
+<doc>Returns a copy of the given list.</doc>
+<arguments>
+<arg>${resp.json()['details']}</arg>
+</arguments>
+<assign>
+<var>@{ITEMS}</var>
+</assign>
+<msg timestamp="20180806 11:42:18.794" level="TRACE">Arguments: [ [{'code': 200, 'healthy': True, 'message': 'alive', 'name': 'PDP-D', 'url': 'self'}, {'code': 200, 'healthy': True, 'message': '', 'name': 'PAP', 'url': 'http://pap:9091/pap/test'}, {'code': 200, 'healthy': True, 'message': '', 'name': 'PDP', 'url': 'http://pdp:8081/pdp/test'}] ]</msg>
+<msg timestamp="20180806 11:42:18.795" level="DEBUG">Test timeout 1 minute active. 59.955 seconds left.</msg>
+<msg timestamp="20180806 11:42:18.795" level="TRACE">Return: [{'code': 200, 'healthy': True, 'message': 'alive', 'name': 'PDP-D', 'url': 'self'}, {'code': 200, 'healthy': True, 'message': '', 'name': 'PAP', 'url': 'http://pap:9091/pap/test'}, {'code': 200, 'healthy': True, 'message': '', 'name': 'PDP', 'url': 'http://pdp:8081/pdp/test'}]</msg>
+<msg timestamp="20180806 11:42:18.795" level="INFO">@{ITEMS} = [ {u'url': u'self', u'healthy': True, u'message': u'alive', u'code': 200, u'name': u'PDP-D'} | {u'url': u'http://pap:9091/pap/test', u'healthy': True, u'message': u'', u'code': 200, u'name': u'PAP'} |...</msg>
+<status status="PASS" endtime="20180806 11:42:18.795" starttime="20180806 11:42:18.794"></status>
+</kw>
+<kw type="for" name="${ELEMENT} IN [ @{ITEMS} ]">
+<kw type="foritem" name="${ELEMENT} = {u'url': u'self', u'healthy': True, u'message': u'alive', u'code': 200, u'name': u'PDP-D'}">
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${ELEMENT['code']}</arg>
+<arg>200</arg>
+</arguments>
+<msg timestamp="20180806 11:42:18.797" level="TRACE">Arguments: [ 200 | '200' ]</msg>
+<msg timestamp="20180806 11:42:18.797" level="DEBUG">Test timeout 1 minute active. 59.953 seconds left.</msg>
+<msg timestamp="20180806 11:42:18.797" level="INFO">Argument types are:
+&lt;type 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<msg timestamp="20180806 11:42:18.797" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20180806 11:42:18.797" starttime="20180806 11:42:18.796"></status>
+</kw>
+<kw name="Should Be True" library="BuiltIn">
+<doc>Fails if the given condition is not true.</doc>
+<arguments>
+<arg>${ELEMENT['healthy']}</arg>
+</arguments>
+<msg timestamp="20180806 11:42:18.798" level="TRACE">Arguments: [ True ]</msg>
+<msg timestamp="20180806 11:42:18.799" level="DEBUG">Test timeout 1 minute active. 59.951 seconds left.</msg>
+<msg timestamp="20180806 11:42:18.799" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20180806 11:42:18.799" starttime="20180806 11:42:18.798"></status>
+</kw>
+<status status="PASS" endtime="20180806 11:42:18.799" starttime="20180806 11:42:18.796"></status>
+</kw>
+<kw type="foritem" name="${ELEMENT} = {u'url': u'http://pap:9091/pap/test', u'healthy': True, u'message': u'', u'code': 200, u'name': u'PAP'}">
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${ELEMENT['code']}</arg>
+<arg>200</arg>
+</arguments>
+<msg timestamp="20180806 11:42:18.800" level="TRACE">Arguments: [ 200 | '200' ]</msg>
+<msg timestamp="20180806 11:42:18.800" level="DEBUG">Test timeout 1 minute active. 59.949 seconds left.</msg>
+<msg timestamp="20180806 11:42:18.801" level="INFO">Argument types are:
+&lt;type 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<msg timestamp="20180806 11:42:18.801" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20180806 11:42:18.801" starttime="20180806 11:42:18.800"></status>
+</kw>
+<kw name="Should Be True" library="BuiltIn">
+<doc>Fails if the given condition is not true.</doc>
+<arguments>
+<arg>${ELEMENT['healthy']}</arg>
+</arguments>
+<msg timestamp="20180806 11:42:18.802" level="TRACE">Arguments: [ True ]</msg>
+<msg timestamp="20180806 11:42:18.802" level="DEBUG">Test timeout 1 minute active. 59.947 seconds left.</msg>
+<msg timestamp="20180806 11:42:18.803" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20180806 11:42:18.803" starttime="20180806 11:42:18.802"></status>
+</kw>
+<status status="PASS" endtime="20180806 11:42:18.803" starttime="20180806 11:42:18.799"></status>
+</kw>
+<kw type="foritem" name="${ELEMENT} = {u'url': u'http://pdp:8081/pdp/test', u'healthy': True, u'message': u'', u'code': 200, u'name': u'PDP'}">
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${ELEMENT['code']}</arg>
+<arg>200</arg>
+</arguments>
+<msg timestamp="20180806 11:42:18.804" level="TRACE">Arguments: [ 200 | '200' ]</msg>
+<msg timestamp="20180806 11:42:18.804" level="DEBUG">Test timeout 1 minute active. 59.946 seconds left.</msg>
+<msg timestamp="20180806 11:42:18.804" level="INFO">Argument types are:
+&lt;type 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<msg timestamp="20180806 11:42:18.804" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20180806 11:42:18.804" starttime="20180806 11:42:18.803"></status>
+</kw>
+<kw name="Should Be True" library="BuiltIn">
+<doc>Fails if the given condition is not true.</doc>
+<arguments>
+<arg>${ELEMENT['healthy']}</arg>
+</arguments>
+<msg timestamp="20180806 11:42:18.805" level="TRACE">Arguments: [ True ]</msg>
+<msg timestamp="20180806 11:42:18.805" level="DEBUG">Test timeout 1 minute active. 59.945 seconds left.</msg>
+<msg timestamp="20180806 11:42:18.805" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20180806 11:42:18.805" starttime="20180806 11:42:18.805"></status>
+</kw>
+<status status="PASS" endtime="20180806 11:42:18.805" starttime="20180806 11:42:18.803"></status>
+</kw>
+<status status="PASS" endtime="20180806 11:42:18.805" starttime="20180806 11:42:18.796"></status>
+</kw>
+<msg timestamp="20180806 11:42:18.805" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20180806 11:42:18.805" starttime="20180806 11:42:18.751"></status>
+</kw>
+<tags>
+<tag>core</tag>
+<tag>health</tag>
+</tags>
+<timeout value="1 minute"></timeout>
+<status status="PASS" endtime="20180806 11:42:18.806" critical="yes" starttime="20180806 11:42:18.749"></status>
+</test>
+<test id="s1-s1-s1-s1-t18" name="Basic Portal Health Check">
+<kw name="Run Portal Health Check" library="portal_interface">
+<doc>Runs Portal Health check</doc>
+<msg timestamp="20180806 11:42:18.808" level="TRACE">Arguments: [  ]</msg>
+<kw name="Run Portal Get Request" library="portal_interface">
+<doc>Runs Portal Get request</doc>
+<arguments>
+<arg>${PORTAL_HEALTH_CHECK_PATH}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20180806 11:42:18.808" level="TRACE">Arguments: [ ${data_path}='/ONAPPORTAL/portalApi/healthCheck' ]</msg>
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>portal</arg>
+<arg>${PORTAL_ENDPOINT}</arg>
+</arguments>
+<assign>
+<var>${session}</var>
+</assign>
+<msg timestamp="20180806 11:42:18.809" level="TRACE">Arguments: [ 'portal' | 'http://192.168.61.16:8989' ]</msg>
+<msg timestamp="20180806 11:42:18.809" level="DEBUG">Test timeout 1 minute active. 59.997 seconds left.</msg>
+<msg timestamp="20180806 11:42:18.809" level="INFO">Creating Session using : alias=portal, url=http://192.168.61.16:8989, headers={},                     cookies=None, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<msg timestamp="20180806 11:42:18.809" level="DEBUG">Creating session: portal</msg>
+<msg timestamp="20180806 11:42:18.810" level="DEBUG">Argument types are:
+&lt;type 'int'&gt;</msg>
+<msg timestamp="20180806 11:42:18.810" level="TRACE">Return: &lt;requests.sessions.Session object at 0x7fddafd59950&gt;</msg>
+<msg timestamp="20180806 11:42:18.810" level="INFO">${session} = &lt;requests.sessions.Session object at 0x7fddafd59950&gt;</msg>
+<status status="PASS" endtime="20180806 11:42:18.810" starttime="20180806 11:42:18.809"></status>
+</kw>
+<kw name="Generate UUID" library="UUID">
+<doc>generate a uuid</doc>
+<assign>
+<var>${uuid}</var>
+</assign>
+<msg timestamp="20180806 11:42:18.810" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20180806 11:42:18.810" level="DEBUG">Test timeout 1 minute active. 59.996 seconds left.</msg>
+<msg timestamp="20180806 11:42:18.811" level="TRACE">Return: UUID('e43c9579-fc67-46f6-9056-6bc073157960')</msg>
+<msg timestamp="20180806 11:42:18.811" level="INFO">${uuid} = e43c9579-fc67-46f6-9056-6bc073157960</msg>
+<status status="PASS" endtime="20180806 11:42:18.811" starttime="20180806 11:42:18.810"></status>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>Accept=application/json</arg>
+<arg>Content-Type=application/json</arg>
+<arg>X-TransactionId=${GLOBAL_APPLICATION_ID}-${uuid}</arg>
+<arg>X-FromAppId=${GLOBAL_APPLICATION_ID}</arg>
+</arguments>
+<assign>
+<var>${headers}</var>
+</assign>
+<msg timestamp="20180806 11:42:18.811" level="TRACE">Arguments: [ 'Accept=application/json' | 'Content-Type=application/json' | 'X-TransactionId=${GLOBAL_APPLICATION_ID}-${uuid}' | 'X-FromAppId=${GLOBAL_APPLICATION_ID}' ]</msg>
+<msg timestamp="20180806 11:42:18.812" level="TRACE">Return: {'Accept': 'application/json', 'Content-Type': 'application/json', 'X-FromAppId': 'robot-ete', 'X-TransactionId': 'robot-ete-e43c9579-fc67-46f6-9056-6bc073157960'}</msg>
+<msg timestamp="20180806 11:42:18.812" level="INFO">${headers} = {u'Accept': u'application/json', u'Content-Type': u'application/json', u'X-TransactionId': u'robot-ete-e43c9579-fc67-46f6-9056-6bc073157960', u'X-FromAppId': u'robot-ete'}</msg>
+<status status="PASS" endtime="20180806 11:42:18.812" starttime="20180806 11:42:18.811"></status>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the</doc>
+<arguments>
+<arg>portal</arg>
+<arg>${data_path}</arg>
+<arg>headers=${headers}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20180806 11:42:18.813" level="TRACE">Arguments: [ 'portal' | '/ONAPPORTAL/portalApi/healthCheck' | headers={'Accept': 'application/json', 'Content-Type': 'application/json', 'X-FromAppId': 'robot-ete', 'X-TransactionId': 'robot-ete-e43c9579-fc67-46f6-9056-6bc073157960'} ]</msg>
+<msg timestamp="20180806 11:42:18.813" level="DEBUG">Test timeout 1 minute active. 59.993 seconds left.</msg>
+<msg timestamp="20180806 11:42:18.814" level="DEBUG">Starting new HTTP connection (1): 192.168.61.16</msg>
+<msg timestamp="20180806 11:42:18.988" level="DEBUG">http://192.168.61.16:8989 "GET /ONAPPORTAL/portalApi/healthCheck HTTP/1.1" 200 None</msg>
+<msg timestamp="20180806 11:42:19.000" level="INFO">Get Request using : alias=portal, uri=/ONAPPORTAL/portalApi/healthCheck, headers={u'Accept': u'application/json', u'Content-Type': u'application/json', u'X-TransactionId': u'robot-ete-e43c9579-fc67-46f6-9056-6bc073157960', u'X-FromAppId': u'robot-ete'} </msg>
+<msg timestamp="20180806 11:42:19.000" level="TRACE">Return: &lt;Response [200]&gt;</msg>
+<msg timestamp="20180806 11:42:19.000" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20180806 11:42:19.000" starttime="20180806 11:42:18.813"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>Received response from portal ${resp.text}</arg>
+</arguments>
+<msg timestamp="20180806 11:42:19.002" level="TRACE">Arguments: [ 'Received response from portal {"statusCode":200,"body":"[{\\"healthCheckComponent\\":\\"BE\\",\\"healthCheckStatus\\":\\"UP\\",\\"version\\":\\"\\",\\"description\\":\\"OK\\",\\"hostName\\":\\"65111bf67c9e\\",\\"ipAddress\\":\\"172.18.0.7\\",\\"dbClusterStatus\\":\\"\\",\\"dbPermissions\\":\\"\\"},{\\"healthCheckComponent\\":\\"FE\\",\\"healthCheckStatus\\":\\"UP\\",\\"version\\":\\"\\",\\"description\\":\\"OK\\",\\"hostName\\":\\"\\",\\"ipAddress\\":\\"\\",\\"dbClusterStatus\\":\\"\\",\\"dbPermissions\\":\\"\\"},{\\"healthCheckComponent\\":\\"DB\\",\\"healthCheckStatus\\":\\"UP\\",\\"version\\":\\"\\",\\"description\\":\\"OK\\",\\"hostName\\":\\"\\",\\"ipAddress\\":\\"\\",\\"dbClusterStatus\\":\\"OK\\",\\"dbPermissions\\":\\"OK\\"},{\\"healthCheckComponent\\":\\"UEB\\",\\"healthCheckStatus\\":\\"UP\\",\\"version\\":\\"\\",\\"description\\":\\"OK\\",\\"hostName\\":\\"\\",\\"ipAddress\\":\\"\\",\\"dbClusterStatus\\":\\"\\",\\"dbPermissions\\":\\"\\"}]"}' ]</msg>
+<msg timestamp="20180806 11:42:19.002" level="DEBUG">Test timeout 1 minute active. 59.804 seconds left.</msg>
+<msg timestamp="20180806 11:42:19.002" level="INFO">Received response from portal {"statusCode":200,"body":"[{\"healthCheckComponent\":\"BE\",\"healthCheckStatus\":\"UP\",\"version\":\"\",\"description\":\"OK\",\"hostName\":\"65111bf67c9e\",\"ipAddress\":\"172.18.0.7\",\"dbClusterStatus\":\"\",\"dbPermissions\":\"\"},{\"healthCheckComponent\":\"FE\",\"healthCheckStatus\":\"UP\",\"version\":\"\",\"description\":\"OK\",\"hostName\":\"\",\"ipAddress\":\"\",\"dbClusterStatus\":\"\",\"dbPermissions\":\"\"},{\"healthCheckComponent\":\"DB\",\"healthCheckStatus\":\"UP\",\"version\":\"\",\"description\":\"OK\",\"hostName\":\"\",\"ipAddress\":\"\",\"dbClusterStatus\":\"OK\",\"dbPermissions\":\"OK\"},{\"healthCheckComponent\":\"UEB\",\"healthCheckStatus\":\"UP\",\"version\":\"\",\"description\":\"OK\",\"hostName\":\"\",\"ipAddress\":\"\",\"dbClusterStatus\":\"\",\"dbPermissions\":\"\"}]"}</msg>
+<msg timestamp="20180806 11:42:19.003" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20180806 11:42:19.003" starttime="20180806 11:42:19.001"></status>
+</kw>
+<msg timestamp="20180806 11:42:19.003" level="TRACE">Return: &lt;Response [200]&gt;</msg>
+<msg timestamp="20180806 11:42:19.003" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20180806 11:42:19.003" starttime="20180806 11:42:18.808"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${resp.status_code}</arg>
+<arg>200</arg>
+</arguments>
+<msg timestamp="20180806 11:42:19.004" level="TRACE">Arguments: [ 200 | '200' ]</msg>
+<msg timestamp="20180806 11:42:19.005" level="DEBUG">Test timeout 1 minute active. 59.802 seconds left.</msg>
+<msg timestamp="20180806 11:42:19.005" level="INFO">Argument types are:
+&lt;type 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<msg timestamp="20180806 11:42:19.005" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20180806 11:42:19.005" starttime="20180806 11:42:19.004"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${resp.json()['statusCode']}</arg>
+<arg>200</arg>
+</arguments>
+<msg timestamp="20180806 11:42:19.007" level="TRACE">Arguments: [ 200 | '200' ]</msg>
+<msg timestamp="20180806 11:42:19.007" level="DEBUG">Test timeout 1 minute active. 59.799 seconds left.</msg>
+<msg timestamp="20180806 11:42:19.008" level="INFO">Argument types are:
+&lt;type 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<msg timestamp="20180806 11:42:19.008" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20180806 11:42:19.008" starttime="20180806 11:42:19.006"></status>
+</kw>
+<msg timestamp="20180806 11:42:19.008" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20180806 11:42:19.008" starttime="20180806 11:42:18.807"></status>
+</kw>
+<tags>
+<tag>core</tag>
+<tag>health</tag>
+</tags>
+<timeout value="1 minute"></timeout>
+<status status="PASS" endtime="20180806 11:42:19.009" critical="yes" starttime="20180806 11:42:18.806"></status>
+</test>
+<test id="s1-s1-s1-s1-t19" name="Basic SDC Health Check">
+<kw name="Run ASDC Health Check" library="asdc_interface">
+<doc>Runs a ASDC health check</doc>
+<msg timestamp="20180806 11:42:19.012" level="TRACE">Arguments: [  ]</msg>
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>asdc</arg>
+<arg>${ASDC_FE_ENDPOINT}</arg>
+</arguments>
+<assign>
+<var>${session}</var>
+</assign>
+<msg timestamp="20180806 11:42:19.014" level="TRACE">Arguments: [ 'asdc' | 'http://10.0.3.1:8181' ]</msg>
+<msg timestamp="20180806 11:42:19.014" level="DEBUG">Test timeout 1 minute active. 59.997 seconds left.</msg>
+<msg timestamp="20180806 11:42:19.014" level="INFO">Creating Session using : alias=asdc, url=http://10.0.3.1:8181, headers={},                     cookies=None, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<msg timestamp="20180806 11:42:19.014" level="DEBUG">Creating session: asdc</msg>
+<msg timestamp="20180806 11:42:19.014" level="DEBUG">Argument types are:
+&lt;type 'int'&gt;</msg>
+<msg timestamp="20180806 11:42:19.014" level="TRACE">Return: &lt;requests.sessions.Session object at 0x7fddb0548a90&gt;</msg>
+<msg timestamp="20180806 11:42:19.014" level="INFO">${session} = &lt;requests.sessions.Session object at 0x7fddb0548a90&gt;</msg>
+<status status="PASS" endtime="20180806 11:42:19.015" starttime="20180806 11:42:19.013"></status>
+</kw>
+<kw name="Generate UUID" library="UUID">
+<doc>generate a uuid</doc>
+<assign>
+<var>${uuid}</var>
+</assign>
+<msg timestamp="20180806 11:42:19.015" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20180806 11:42:19.015" level="DEBUG">Test timeout 1 minute active. 59.995 seconds left.</msg>
+<msg timestamp="20180806 11:42:19.015" level="TRACE">Return: UUID('f50acf41-e968-4537-a26d-9b313e1c6b9e')</msg>
+<msg timestamp="20180806 11:42:19.015" level="INFO">${uuid} = f50acf41-e968-4537-a26d-9b313e1c6b9e</msg>
+<status status="PASS" endtime="20180806 11:42:19.015" starttime="20180806 11:42:19.015"></status>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>Accept=application/json</arg>
+<arg>Content-Type=application/json</arg>
+<arg>X-TransactionId=${GLOBAL_APPLICATION_ID}-${uuid}</arg>
+<arg>X-FromAppId=${GLOBAL_APPLICATION_ID}</arg>
+</arguments>
+<assign>
+<var>${headers}</var>
+</assign>
+<msg timestamp="20180806 11:42:19.016" level="TRACE">Arguments: [ 'Accept=application/json' | 'Content-Type=application/json' | 'X-TransactionId=${GLOBAL_APPLICATION_ID}-${uuid}' | 'X-FromAppId=${GLOBAL_APPLICATION_ID}' ]</msg>
+<msg timestamp="20180806 11:42:19.017" level="TRACE">Return: {'Accept': 'application/json', 'Content-Type': 'application/json', 'X-FromAppId': 'robot-ete', 'X-TransactionId': 'robot-ete-f50acf41-e968-4537-a26d-9b313e1c6b9e'}</msg>
+<msg timestamp="20180806 11:42:19.017" level="INFO">${headers} = {u'Accept': u'application/json', u'Content-Type': u'application/json', u'X-TransactionId': u'robot-ete-f50acf41-e968-4537-a26d-9b313e1c6b9e', u'X-FromAppId': u'robot-ete'}</msg>
+<status status="PASS" endtime="20180806 11:42:19.017" starttime="20180806 11:42:19.016"></status>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the</doc>
+<arguments>
+<arg>asdc</arg>
+<arg>${ASDC_HEALTH_CHECK_PATH}</arg>
+<arg>headers=${headers}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20180806 11:42:19.017" level="TRACE">Arguments: [ 'asdc' | '/sdc1/rest/healthCheck' | headers={'Accept': 'application/json', 'Content-Type': 'application/json', 'X-FromAppId': 'robot-ete', 'X-TransactionId': 'robot-ete-f50acf41-e968-4537-a26d-9b313e1c6b9e'} ]</msg>
+<msg timestamp="20180806 11:42:19.018" level="DEBUG">Test timeout 1 minute active. 59.993 seconds left.</msg>
+<msg timestamp="20180806 11:42:19.019" level="DEBUG">Starting new HTTP connection (1): 10.0.3.1</msg>
+<msg timestamp="20180806 11:43:19.011" level="FAIL">Test timeout 1 minute exceeded.</msg>
+<status status="FAIL" endtime="20180806 11:43:19.012" starttime="20180806 11:42:19.017"></status>
+</kw>
+<status status="FAIL" endtime="20180806 11:43:19.012" starttime="20180806 11:42:19.012"></status>
+</kw>
+<tags>
+<tag>core</tag>
+<tag>health</tag>
+</tags>
+<timeout value="1 minute"></timeout>
+<status status="FAIL" endtime="20180806 11:43:19.012" critical="yes" starttime="20180806 11:42:19.010">Test timeout 1 minute exceeded.</status>
+</test>
+<test id="s1-s1-s1-s1-t20" name="Basic SDNC Health Check">
+<kw name="Run SDNGC Health Check" library="sdngc_interface">
+<doc>Runs an SDNGC healthcheck</doc>
+<msg timestamp="20180806 11:43:19.016" level="TRACE">Arguments: [  ]</msg>
+<kw name="Run SDNGC Post Request" library="sdngc_interface">
+<doc>Runs an SDNGC post request</doc>
+<arguments>
+<arg>${SDNGC_INDEX PATH}${SDNCGC_HEALTHCHECK_OPERATION_PATH}</arg>
+<arg>${None}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20180806 11:43:19.018" level="TRACE">Arguments: [ ${data_path}='/restconf/operations/SLI-API:healthcheck' | ${data}=None ]</msg>
+<kw name="Create List" library="BuiltIn">
+<doc>Returns a list containing given items.</doc>
+<arguments>
+<arg>${GLOBAL_SDNGC_USERNAME}</arg>
+<arg>${GLOBAL_SDNGC_PASSWORD}</arg>
+</arguments>
+<assign>
+<var>${auth}</var>
+</assign>
+<msg timestamp="20180806 11:43:19.019" level="TRACE">Arguments: [ b'admin' | b'Kp8bJ4SXszM0WXlhak3eHlcse2gAw84vaoGGmJvUy2U' ]</msg>
+<msg timestamp="20180806 11:43:19.020" level="DEBUG">Test timeout 1 minute active. 59.995 seconds left.</msg>
+<msg timestamp="20180806 11:43:19.020" level="TRACE">Return: [b'admin', b'Kp8bJ4SXszM0WXlhak3eHlcse2gAw84vaoGGmJvUy2U']</msg>
+<msg timestamp="20180806 11:43:19.020" level="INFO">${auth} = ['admin', 'Kp8bJ4SXszM0WXlhak3eHlcse2gAw84vaoGGmJvUy2U']</msg>
+<status status="PASS" endtime="20180806 11:43:19.020" starttime="20180806 11:43:19.019"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>Creating session ${SDNGC_REST_ENDPOINT}</arg>
+</arguments>
+<msg timestamp="20180806 11:43:19.021" level="TRACE">Arguments: [ 'Creating session http://192.168.61.24:8282' ]</msg>
+<msg timestamp="20180806 11:43:19.022" level="DEBUG">Test timeout 1 minute active. 59.993 seconds left.</msg>
+<msg timestamp="20180806 11:43:19.022" level="INFO">Creating session http://192.168.61.24:8282</msg>
+<msg timestamp="20180806 11:43:19.022" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20180806 11:43:19.022" starttime="20180806 11:43:19.021"></status>
+</kw>
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>sdngc</arg>
+<arg>${SDNGC_REST_ENDPOINT}</arg>
+<arg>auth=${auth}</arg>
+</arguments>
+<assign>
+<var>${session}</var>
+</assign>
+<msg timestamp="20180806 11:43:19.023" level="TRACE">Arguments: [ 'sdngc' | 'http://192.168.61.24:8282' | auth=[b'admin', b'Kp8bJ4SXszM0WXlhak3eHlcse2gAw84vaoGGmJvUy2U'] ]</msg>
+<msg timestamp="20180806 11:43:19.023" level="DEBUG">Test timeout 1 minute active. 59.991 seconds left.</msg>
+<msg timestamp="20180806 11:43:19.024" level="INFO">Creating Session using : alias=sdngc, url=http://192.168.61.24:8282, headers={},                     cookies=None, auth=&lt;requests.auth.HTTPBasicAuth object at 0x7fddb0567c90&gt;, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<msg timestamp="20180806 11:43:19.024" level="DEBUG">Creating session: sdngc</msg>
+<msg timestamp="20180806 11:43:19.024" level="DEBUG">Argument types are:
+&lt;type 'int'&gt;</msg>
+<msg timestamp="20180806 11:43:19.024" level="TRACE">Return: &lt;requests.sessions.Session object at 0x7fddb0567250&gt;</msg>
+<msg timestamp="20180806 11:43:19.025" level="INFO">${session} = &lt;requests.sessions.Session object at 0x7fddb0567250&gt;</msg>
+<status status="PASS" endtime="20180806 11:43:19.025" starttime="20180806 11:43:19.023"></status>
+</kw>
+<kw name="Generate UUID" library="UUID">
+<doc>generate a uuid</doc>
+<assign>
+<var>${uuid}</var>
+</assign>
+<msg timestamp="20180806 11:43:19.026" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20180806 11:43:19.026" level="DEBUG">Test timeout 1 minute active. 59.988 seconds left.</msg>
+<msg timestamp="20180806 11:43:19.026" level="TRACE">Return: UUID('a7720580-4352-4ea4-9c14-97ab80968e6c')</msg>
+<msg timestamp="20180806 11:43:19.027" level="INFO">${uuid} = a7720580-4352-4ea4-9c14-97ab80968e6c</msg>
+<status status="PASS" endtime="20180806 11:43:19.027" starttime="20180806 11:43:19.025"></status>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>Accept=application/json</arg>
+<arg>Content-Type=application/json</arg>
+<arg>X-TransactionId=${GLOBAL_APPLICATION_ID}-${uuid}</arg>
+<arg>X-FromAppId=${GLOBAL_APPLICATION_ID}</arg>
+</arguments>
+<assign>
+<var>${headers}</var>
+</assign>
+<msg timestamp="20180806 11:43:19.028" level="TRACE">Arguments: [ 'Accept=application/json' | 'Content-Type=application/json' | 'X-TransactionId=${GLOBAL_APPLICATION_ID}-${uuid}' | 'X-FromAppId=${GLOBAL_APPLICATION_ID}' ]</msg>
+<msg timestamp="20180806 11:43:19.029" level="TRACE">Return: {'Accept': 'application/json', 'Content-Type': 'application/json', 'X-FromAppId': 'robot-ete', 'X-TransactionId': 'robot-ete-a7720580-4352-4ea4-9c14-97ab80968e6c'}</msg>
+<msg timestamp="20180806 11:43:19.030" level="INFO">${headers} = {u'Accept': u'application/json', u'Content-Type': u'application/json', u'X-TransactionId': u'robot-ete-a7720580-4352-4ea4-9c14-97ab80968e6c', u'X-FromAppId': u'robot-ete'}</msg>
+<status status="PASS" endtime="20180806 11:43:19.030" starttime="20180806 11:43:19.028"></status>
+</kw>
+<kw name="Post Request" library="RequestsLibrary">
+<doc>Send a POST request on the session object found using the</doc>
+<arguments>
+<arg>sdngc</arg>
+<arg>${data_path}</arg>
+<arg>data=${data}</arg>
+<arg>headers=${headers}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20180806 11:43:19.032" level="TRACE">Arguments: [ 'sdngc' | '/restconf/operations/SLI-API:healthcheck' | data=None | headers={'Accept': 'application/json', 'Content-Type': 'application/json', 'X-FromAppId': 'robot-ete', 'X-TransactionId': 'robot-ete-a7720580-4352-4ea4-9c14-97ab80968e6c'} ]</msg>
+<msg timestamp="20180806 11:43:19.032" level="DEBUG">Test timeout 1 minute active. 59.982 seconds left.</msg>
+<msg timestamp="20180806 11:43:19.035" level="DEBUG">Starting new HTTP connection (1): 192.168.61.24</msg>
+<msg timestamp="20180806 11:43:19.081" level="DEBUG">http://192.168.61.24:8282 "POST /restconf/operations/SLI-API:healthcheck HTTP/1.1" 200 None</msg>
+<msg timestamp="20180806 11:43:19.083" level="DEBUG">post response: {"output":{"ack-final-indicator":"Y","response-code":"200","response-message":"SDN-C is healthy"}}</msg>
+<msg timestamp="20180806 11:43:19.084" level="INFO">Post Request using : alias=sdngc, uri=/restconf/operations/SLI-API:healthcheck, data=None,                     headers={u'Accept': u'application/json', u'Content-Type': u'application/json', u'X-TransactionId': u'robot-ete-a7720580-4352-4ea4-9c14-97ab80968e6c', u'X-FromAppId': u'robot-ete'}, files=None, allow_redirects=True </msg>
+<msg timestamp="20180806 11:43:19.084" level="TRACE">Return: &lt;Response [200]&gt;</msg>
+<msg timestamp="20180806 11:43:19.084" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20180806 11:43:19.084" starttime="20180806 11:43:19.031"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>Received response from sdngc ${resp.text}</arg>
+</arguments>
+<msg timestamp="20180806 11:43:19.086" level="TRACE">Arguments: [ 'Received response from sdngc {"output":{"ack-final-indicator":"Y","response-code":"200","response-message":"SDN-C is healthy"}}' ]</msg>
+<msg timestamp="20180806 11:43:19.086" level="DEBUG">Test timeout 1 minute active. 59.928 seconds left.</msg>
+<msg timestamp="20180806 11:43:19.087" level="INFO">Received response from sdngc {"output":{"ack-final-indicator":"Y","response-code":"200","response-message":"SDN-C is healthy"}}</msg>
+<msg timestamp="20180806 11:43:19.087" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20180806 11:43:19.087" starttime="20180806 11:43:19.085"></status>
+</kw>
+<msg timestamp="20180806 11:43:19.087" level="TRACE">Return: &lt;Response [200]&gt;</msg>
+<msg timestamp="20180806 11:43:19.088" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20180806 11:43:19.088" starttime="20180806 11:43:19.017"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${resp.status_code}</arg>
+<arg>200</arg>
+</arguments>
+<msg timestamp="20180806 11:43:19.089" level="TRACE">Arguments: [ 200 | '200' ]</msg>
+<msg timestamp="20180806 11:43:19.089" level="DEBUG">Test timeout 1 minute active. 59.925 seconds left.</msg>
+<msg timestamp="20180806 11:43:19.089" level="INFO">Argument types are:
+&lt;type 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<msg timestamp="20180806 11:43:19.090" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20180806 11:43:19.090" starttime="20180806 11:43:19.088"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${resp.json()['output']['response-code']}</arg>
+<arg>200</arg>
+</arguments>
+<msg timestamp="20180806 11:43:19.091" level="TRACE">Arguments: [ '200' | '200' ]</msg>
+<msg timestamp="20180806 11:43:19.091" level="DEBUG">Test timeout 1 minute active. 59.923 seconds left.</msg>
+<msg timestamp="20180806 11:43:19.091" level="DEBUG">Argument types are:
+&lt;type 'unicode'&gt;
+&lt;type 'unicode'&gt;</msg>
+<msg timestamp="20180806 11:43:19.092" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20180806 11:43:19.092" starttime="20180806 11:43:19.090"></status>
+</kw>
+<msg timestamp="20180806 11:43:19.092" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20180806 11:43:19.092" starttime="20180806 11:43:19.016"></status>
+</kw>
+<tags>
+<tag>core</tag>
+<tag>health</tag>
+</tags>
+<timeout value="1 minute"></timeout>
+<status status="PASS" endtime="20180806 11:43:19.093" critical="yes" starttime="20180806 11:43:19.014"></status>
+</test>
+<test id="s1-s1-s1-s1-t21" name="Basic SO Health Check">
+<kw name="Run MSO Health Check" library="mso_interface">
+<doc>Runs an MSO global health check</doc>
+<msg timestamp="20180806 11:43:19.096" level="TRACE">Arguments: [  ]</msg>
+<kw name="Create List" library="BuiltIn">
+<doc>Returns a list containing given items.</doc>
+<arguments>
+<arg>${GLOBAL_MSO_USERNAME}</arg>
+<arg>${GLOBAL_MSO_PASSWORD}</arg>
+</arguments>
+<assign>
+<var>${auth}</var>
+</assign>
+<msg timestamp="20180806 11:43:19.098" level="TRACE">Arguments: [ b'InfraPortalClient' | b'password1$' ]</msg>
+<msg timestamp="20180806 11:43:19.098" level="DEBUG">Test timeout 1 minute active. 59.996 seconds left.</msg>
+<msg timestamp="20180806 11:43:19.098" level="TRACE">Return: [b'InfraPortalClient', b'password1$']</msg>
+<msg timestamp="20180806 11:43:19.098" level="INFO">${auth} = ['InfraPortalClient', 'password1$']</msg>
+<status status="PASS" endtime="20180806 11:43:19.098" starttime="20180806 11:43:19.097"></status>
+</kw>
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>mso</arg>
+<arg>${MSO_ENDPOINT}</arg>
+</arguments>
+<assign>
+<var>${session}</var>
+</assign>
+<msg timestamp="20180806 11:43:19.099" level="TRACE">Arguments: [ 'mso' | 'http://192.168.61.25:8080' ]</msg>
+<msg timestamp="20180806 11:43:19.099" level="DEBUG">Test timeout 1 minute active. 59.995 seconds left.</msg>
+<msg timestamp="20180806 11:43:19.100" level="INFO">Creating Session using : alias=mso, url=http://192.168.61.25:8080, headers={},                     cookies=None, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<msg timestamp="20180806 11:43:19.100" level="DEBUG">Creating session: mso</msg>
+<msg timestamp="20180806 11:43:19.100" level="DEBUG">Argument types are:
+&lt;type 'int'&gt;</msg>
+<msg timestamp="20180806 11:43:19.100" level="TRACE">Return: &lt;requests.sessions.Session object at 0x7fddafd0e550&gt;</msg>
+<msg timestamp="20180806 11:43:19.100" level="INFO">${session} = &lt;requests.sessions.Session object at 0x7fddafd0e550&gt;</msg>
+<status status="PASS" endtime="20180806 11:43:19.100" starttime="20180806 11:43:19.099"></status>
+</kw>
+<kw name="Generate UUID" library="UUID">
+<doc>generate a uuid</doc>
+<assign>
+<var>${uuid}</var>
+</assign>
+<msg timestamp="20180806 11:43:19.101" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20180806 11:43:19.101" level="DEBUG">Test timeout 1 minute active. 59.993 seconds left.</msg>
+<msg timestamp="20180806 11:43:19.101" level="TRACE">Return: UUID('42c1d7d7-f1b5-490f-bef9-9c021b066b42')</msg>
+<msg timestamp="20180806 11:43:19.101" level="INFO">${uuid} = 42c1d7d7-f1b5-490f-bef9-9c021b066b42</msg>
+<status status="PASS" endtime="20180806 11:43:19.101" starttime="20180806 11:43:19.101"></status>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>Accept=text/html</arg>
+<arg>Content-Type=text/html</arg>
+<arg>X-TransactionId=${GLOBAL_APPLICATION_ID}-${uuid}</arg>
+<arg>X-FromAppId=${GLOBAL_APPLICATION_ID}</arg>
+</arguments>
+<assign>
+<var>${headers}</var>
+</assign>
+<msg timestamp="20180806 11:43:19.102" level="TRACE">Arguments: [ 'Accept=text/html' | 'Content-Type=text/html' | 'X-TransactionId=${GLOBAL_APPLICATION_ID}-${uuid}' | 'X-FromAppId=${GLOBAL_APPLICATION_ID}' ]</msg>
+<msg timestamp="20180806 11:43:19.102" level="TRACE">Return: {'Accept': 'text/html', 'Content-Type': 'text/html', 'X-FromAppId': 'robot-ete', 'X-TransactionId': 'robot-ete-42c1d7d7-f1b5-490f-bef9-9c021b066b42'}</msg>
+<msg timestamp="20180806 11:43:19.103" level="INFO">${headers} = {u'Accept': u'text/html', u'Content-Type': u'text/html', u'X-TransactionId': u'robot-ete-42c1d7d7-f1b5-490f-bef9-9c021b066b42', u'X-FromAppId': u'robot-ete'}</msg>
+<status status="PASS" endtime="20180806 11:43:19.103" starttime="20180806 11:43:19.102"></status>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the</doc>
+<arguments>
+<arg>mso</arg>
+<arg>${MSO_HEALTH_CHECK_PATH}</arg>
+<arg>headers=${headers}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20180806 11:43:19.103" level="TRACE">Arguments: [ 'mso' | '/ecomp/mso/infra/globalhealthcheck' | headers={'Accept': 'text/html', 'Content-Type': 'text/html', 'X-FromAppId': 'robot-ete', 'X-TransactionId': 'robot-ete-42c1d7d7-f1b5-490f-bef9-9c021b066b42'} ]</msg>
+<msg timestamp="20180806 11:43:19.104" level="DEBUG">Test timeout 1 minute active. 59.991 seconds left.</msg>
+<msg timestamp="20180806 11:43:19.105" level="DEBUG">Starting new HTTP connection (1): 192.168.61.25</msg>
+<msg timestamp="20180806 11:43:19.246" level="DEBUG">http://192.168.61.25:8080 "GET /ecomp/mso/infra/globalhealthcheck HTTP/1.1" 200 125</msg>
+<msg timestamp="20180806 11:43:19.247" level="INFO">Get Request using : alias=mso, uri=/ecomp/mso/infra/globalhealthcheck, headers={u'Accept': u'text/html', u'Content-Type': u'text/html', u'X-TransactionId': u'robot-ete-42c1d7d7-f1b5-490f-bef9-9c021b066b42', u'X-FromAppId': u'robot-ete'} </msg>
+<msg timestamp="20180806 11:43:19.248" level="TRACE">Return: &lt;Response [200]&gt;</msg>
+<msg timestamp="20180806 11:43:19.248" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20180806 11:43:19.248" starttime="20180806 11:43:19.103"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${resp.status_code}</arg>
+<arg>200</arg>
+</arguments>
+<msg timestamp="20180806 11:43:19.249" level="TRACE">Arguments: [ 200 | '200' ]</msg>
+<msg timestamp="20180806 11:43:19.250" level="DEBUG">Test timeout 1 minute active. 59.844 seconds left.</msg>
+<msg timestamp="20180806 11:43:19.250" level="INFO">Argument types are:
+&lt;type 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<msg timestamp="20180806 11:43:19.250" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20180806 11:43:19.251" starttime="20180806 11:43:19.249"></status>
+</kw>
+<msg timestamp="20180806 11:43:19.251" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20180806 11:43:19.251" starttime="20180806 11:43:19.096"></status>
+</kw>
+<tags>
+<tag>core</tag>
+<tag>health</tag>
+</tags>
+<timeout value="1 minute"></timeout>
+<status status="PASS" endtime="20180806 11:43:19.251" critical="yes" starttime="20180806 11:43:19.094"></status>
+</test>
+<test id="s1-s1-s1-s1-t22" name="Basic UseCaseUI API Health Check">
+<kw name="Run MSB Get Request" library="msb_interface">
+<doc>Runs MSB Get request</doc>
+<arguments>
+<arg>/iui/usecaseui/</arg>
+</arguments>
+<msg timestamp="20180806 11:43:19.255" level="TRACE">Arguments: [ ${data_path}='/iui/usecaseui/' ]</msg>
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>msb</arg>
+<arg>${MSB_ENDPOINT}</arg>
+</arguments>
+<assign>
+<var>${session}</var>
+</assign>
+<msg timestamp="20180806 11:43:19.255" level="TRACE">Arguments: [ 'msb' | 'http://10.0.14.1:80' ]</msg>
+<msg timestamp="20180806 11:43:19.256" level="DEBUG">Test timeout 1 minute active. 59.997 seconds left.</msg>
+<msg timestamp="20180806 11:43:19.256" level="INFO">Creating Session using : alias=msb, url=http://10.0.14.1:80, headers={},                     cookies=None, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<msg timestamp="20180806 11:43:19.256" level="DEBUG">Creating session: msb</msg>
+<msg timestamp="20180806 11:43:19.256" level="DEBUG">Argument types are:
+&lt;type 'int'&gt;</msg>
+<msg timestamp="20180806 11:43:19.257" level="TRACE">Return: &lt;requests.sessions.Session object at 0x7fddb056b610&gt;</msg>
+<msg timestamp="20180806 11:43:19.257" level="INFO">${session} = &lt;requests.sessions.Session object at 0x7fddb056b610&gt;</msg>
+<status status="PASS" endtime="20180806 11:43:19.257" starttime="20180806 11:43:19.255"></status>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the</doc>
+<arguments>
+<arg>msb</arg>
+<arg>${data_path}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20180806 11:43:19.258" level="TRACE">Arguments: [ 'msb' | '/iui/usecaseui/' ]</msg>
+<msg timestamp="20180806 11:43:19.258" level="DEBUG">Test timeout 1 minute active. 59.995 seconds left.</msg>
+<msg timestamp="20180806 11:43:19.260" level="DEBUG">Starting new HTTP connection (1): 10.0.14.1</msg>
+<msg timestamp="20180806 11:44:19.254" level="FAIL">Test timeout 1 minute exceeded.</msg>
+<status status="FAIL" endtime="20180806 11:44:19.254" starttime="20180806 11:43:19.257"></status>
+</kw>
+<status status="FAIL" endtime="20180806 11:44:19.255" starttime="20180806 11:43:19.254"></status>
+</kw>
+<tags>
+<tag>api</tag>
+<tag>health</tag>
+</tags>
+<timeout value="1 minute"></timeout>
+<status status="FAIL" endtime="20180806 11:44:19.256" critical="yes" starttime="20180806 11:43:19.252">Test timeout 1 minute exceeded.</status>
+</test>
+<test id="s1-s1-s1-s1-t23" name="Basic VFC catalog API Health Check">
+<kw name="Run MSB Get Request" library="msb_interface">
+<doc>Runs MSB Get request</doc>
+<arguments>
+<arg>/api/catalog/v1/swagger.json</arg>
+</arguments>
+<msg timestamp="20180806 11:44:19.261" level="TRACE">Arguments: [ ${data_path}='/api/catalog/v1/swagger.json' ]</msg>
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>msb</arg>
+<arg>${MSB_ENDPOINT}</arg>
+</arguments>
+<assign>
+<var>${session}</var>
+</assign>
+<msg timestamp="20180806 11:44:19.262" level="TRACE">Arguments: [ 'msb' | 'http://10.0.14.1:80' ]</msg>
+<msg timestamp="20180806 11:44:19.262" level="DEBUG">Test timeout 1 minute active. 59.996 seconds left.</msg>
+<msg timestamp="20180806 11:44:19.262" level="INFO">Creating Session using : alias=msb, url=http://10.0.14.1:80, headers={},                     cookies=None, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<msg timestamp="20180806 11:44:19.262" level="DEBUG">Creating session: msb</msg>
+<msg timestamp="20180806 11:44:19.263" level="DEBUG">Argument types are:
+&lt;type 'int'&gt;</msg>
+<msg timestamp="20180806 11:44:19.263" level="TRACE">Return: &lt;requests.sessions.Session object at 0x7fddb0515950&gt;</msg>
+<msg timestamp="20180806 11:44:19.263" level="INFO">${session} = &lt;requests.sessions.Session object at 0x7fddb0515950&gt;</msg>
+<status status="PASS" endtime="20180806 11:44:19.263" starttime="20180806 11:44:19.261"></status>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the</doc>
+<arguments>
+<arg>msb</arg>
+<arg>${data_path}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20180806 11:44:19.264" level="TRACE">Arguments: [ 'msb' | '/api/catalog/v1/swagger.json' ]</msg>
+<msg timestamp="20180806 11:44:19.264" level="DEBUG">Test timeout 1 minute active. 59.994 seconds left.</msg>
+<msg timestamp="20180806 11:44:19.265" level="DEBUG">Starting new HTTP connection (1): 10.0.14.1</msg>
+<msg timestamp="20180806 11:45:19.259" level="FAIL">Test timeout 1 minute exceeded.</msg>
+<status status="FAIL" endtime="20180806 11:45:19.259" starttime="20180806 11:44:19.263"></status>
+</kw>
+<status status="FAIL" endtime="20180806 11:45:19.259" starttime="20180806 11:44:19.260"></status>
+</kw>
+<tags>
+<tag>api</tag>
+<tag>health</tag>
+</tags>
+<timeout value="1 minute"></timeout>
+<status status="FAIL" endtime="20180806 11:45:19.260" critical="yes" starttime="20180806 11:44:19.258">Test timeout 1 minute exceeded.</status>
+</test>
+<test id="s1-s1-s1-s1-t24" name="Basic VFC emsdriver API Health Check">
+<kw name="Run MSB Get Request" library="msb_interface">
+<doc>Runs MSB Get request</doc>
+<arguments>
+<arg>/api/emsdriver/v1/swagger.json</arg>
+</arguments>
+<msg timestamp="20180806 11:45:19.265" level="TRACE">Arguments: [ ${data_path}='/api/emsdriver/v1/swagger.json' ]</msg>
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>msb</arg>
+<arg>${MSB_ENDPOINT}</arg>
+</arguments>
+<assign>
+<var>${session}</var>
+</assign>
+<msg timestamp="20180806 11:45:19.266" level="TRACE">Arguments: [ 'msb' | 'http://10.0.14.1:80' ]</msg>
+<msg timestamp="20180806 11:45:19.266" level="DEBUG">Test timeout 1 minute active. 59.995 seconds left.</msg>
+<msg timestamp="20180806 11:45:19.267" level="INFO">Creating Session using : alias=msb, url=http://10.0.14.1:80, headers={},                     cookies=None, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<msg timestamp="20180806 11:45:19.267" level="DEBUG">Creating session: msb</msg>
+<msg timestamp="20180806 11:45:19.267" level="DEBUG">Argument types are:
+&lt;type 'int'&gt;</msg>
+<msg timestamp="20180806 11:45:19.268" level="TRACE">Return: &lt;requests.sessions.Session object at 0x7fddb0459890&gt;</msg>
+<msg timestamp="20180806 11:45:19.268" level="INFO">${session} = &lt;requests.sessions.Session object at 0x7fddb0459890&gt;</msg>
+<status status="PASS" endtime="20180806 11:45:19.268" starttime="20180806 11:45:19.266"></status>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the</doc>
+<arguments>
+<arg>msb</arg>
+<arg>${data_path}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20180806 11:45:19.269" level="TRACE">Arguments: [ 'msb' | '/api/emsdriver/v1/swagger.json' ]</msg>
+<msg timestamp="20180806 11:45:19.270" level="DEBUG">Test timeout 1 minute active. 59.992 seconds left.</msg>
+<msg timestamp="20180806 11:45:19.271" level="DEBUG">Starting new HTTP connection (1): 10.0.14.1</msg>
+<msg timestamp="20180806 11:46:19.262" level="FAIL">Test timeout 1 minute exceeded.</msg>
+<status status="FAIL" endtime="20180806 11:46:19.263" starttime="20180806 11:45:19.269"></status>
+</kw>
+<status status="FAIL" endtime="20180806 11:46:19.263" starttime="20180806 11:45:19.264"></status>
+</kw>
+<tags>
+<tag>3rdparty</tag>
+<tag>health</tag>
+</tags>
+<timeout value="1 minute"></timeout>
+<status status="FAIL" endtime="20180806 11:46:19.263" critical="yes" starttime="20180806 11:45:19.261">Test timeout 1 minute exceeded.</status>
+</test>
+<test id="s1-s1-s1-s1-t25" name="Basic VFC gvnfmdriver API Health Check">
+<kw name="Run MSB Get Request" library="msb_interface">
+<doc>Runs MSB Get request</doc>
+<arguments>
+<arg>/api/gvnfmdriver/v1/swagger.json</arg>
+</arguments>
+<msg timestamp="20180806 11:46:19.267" level="TRACE">Arguments: [ ${data_path}='/api/gvnfmdriver/v1/swagger.json' ]</msg>
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>msb</arg>
+<arg>${MSB_ENDPOINT}</arg>
+</arguments>
+<assign>
+<var>${session}</var>
+</assign>
+<msg timestamp="20180806 11:46:19.268" level="TRACE">Arguments: [ 'msb' | 'http://10.0.14.1:80' ]</msg>
+<msg timestamp="20180806 11:46:19.268" level="DEBUG">Test timeout 1 minute active. 59.996 seconds left.</msg>
+<msg timestamp="20180806 11:46:19.269" level="INFO">Creating Session using : alias=msb, url=http://10.0.14.1:80, headers={},                     cookies=None, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<msg timestamp="20180806 11:46:19.269" level="DEBUG">Creating session: msb</msg>
+<msg timestamp="20180806 11:46:19.269" level="DEBUG">Argument types are:
+&lt;type 'int'&gt;</msg>
+<msg timestamp="20180806 11:46:19.269" level="TRACE">Return: &lt;requests.sessions.Session object at 0x7fddb0526d50&gt;</msg>
+<msg timestamp="20180806 11:46:19.270" level="INFO">${session} = &lt;requests.sessions.Session object at 0x7fddb0526d50&gt;</msg>
+<status status="PASS" endtime="20180806 11:46:19.270" starttime="20180806 11:46:19.268"></status>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the</doc>
+<arguments>
+<arg>msb</arg>
+<arg>${data_path}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20180806 11:46:19.270" level="TRACE">Arguments: [ 'msb' | '/api/gvnfmdriver/v1/swagger.json' ]</msg>
+<msg timestamp="20180806 11:46:19.271" level="DEBUG">Test timeout 1 minute active. 59.994 seconds left.</msg>
+<msg timestamp="20180806 11:46:19.272" level="DEBUG">Starting new HTTP connection (1): 10.0.14.1</msg>
+<msg timestamp="20180806 11:47:19.266" level="FAIL">Test timeout 1 minute exceeded.</msg>
+<status status="FAIL" endtime="20180806 11:47:19.266" starttime="20180806 11:46:19.270"></status>
+</kw>
+<status status="FAIL" endtime="20180806 11:47:19.267" starttime="20180806 11:46:19.266"></status>
+</kw>
+<tags>
+<tag>3rdparty</tag>
+<tag>health</tag>
+</tags>
+<timeout value="1 minute"></timeout>
+<status status="FAIL" endtime="20180806 11:47:19.267" critical="yes" starttime="20180806 11:46:19.265">Test timeout 1 minute exceeded.</status>
+</test>
+<test id="s1-s1-s1-s1-t26" name="Basic VFC huaweivnfmdriver API Health Check">
+<kw name="Run MSB Get Request" library="msb_interface">
+<doc>Runs MSB Get request</doc>
+<arguments>
+<arg>/api/huaweivnfmdriver/v1/swagger.json</arg>
+</arguments>
+<msg timestamp="20180806 11:47:19.272" level="TRACE">Arguments: [ ${data_path}='/api/huaweivnfmdriver/v1/swagger.json' ]</msg>
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>msb</arg>
+<arg>${MSB_ENDPOINT}</arg>
+</arguments>
+<assign>
+<var>${session}</var>
+</assign>
+<msg timestamp="20180806 11:47:19.273" level="TRACE">Arguments: [ 'msb' | 'http://10.0.14.1:80' ]</msg>
+<msg timestamp="20180806 11:47:19.273" level="DEBUG">Test timeout 1 minute active. 59.996 seconds left.</msg>
+<msg timestamp="20180806 11:47:19.273" level="INFO">Creating Session using : alias=msb, url=http://10.0.14.1:80, headers={},                     cookies=None, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<msg timestamp="20180806 11:47:19.274" level="DEBUG">Creating session: msb</msg>
+<msg timestamp="20180806 11:47:19.274" level="DEBUG">Argument types are:
+&lt;type 'int'&gt;</msg>
+<msg timestamp="20180806 11:47:19.275" level="TRACE">Return: &lt;requests.sessions.Session object at 0x7fddb04b62d0&gt;</msg>
+<msg timestamp="20180806 11:47:19.275" level="INFO">${session} = &lt;requests.sessions.Session object at 0x7fddb04b62d0&gt;</msg>
+<status status="PASS" endtime="20180806 11:47:19.275" starttime="20180806 11:47:19.273"></status>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the</doc>
+<arguments>
+<arg>msb</arg>
+<arg>${data_path}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20180806 11:47:19.276" level="TRACE">Arguments: [ 'msb' | '/api/huaweivnfmdriver/v1/swagger.json' ]</msg>
+<msg timestamp="20180806 11:47:19.276" level="DEBUG">Test timeout 1 minute active. 59.994 seconds left.</msg>
+<msg timestamp="20180806 11:47:19.279" level="DEBUG">Starting new HTTP connection (1): 10.0.14.1</msg>
+<msg timestamp="20180806 11:48:19.270" level="FAIL">Test timeout 1 minute exceeded.</msg>
+<status status="FAIL" endtime="20180806 11:48:19.270" starttime="20180806 11:47:19.276"></status>
+</kw>
+<status status="FAIL" endtime="20180806 11:48:19.271" starttime="20180806 11:47:19.272"></status>
+</kw>
+<tags>
+<tag>3rdparty</tag>
+<tag>health</tag>
+</tags>
+<timeout value="1 minute"></timeout>
+<status status="FAIL" endtime="20180806 11:48:19.271" critical="yes" starttime="20180806 11:47:19.269">Test timeout 1 minute exceeded.</status>
+</test>
+<test id="s1-s1-s1-s1-t27" name="Basic VFC jujuvnfmdriver API Health Check">
+<kw name="Run MSB Get Request" library="msb_interface">
+<doc>Runs MSB Get request</doc>
+<arguments>
+<arg>/api/jujuvnfmdriver/v1/swagger.json</arg>
+</arguments>
+<msg timestamp="20180806 11:48:19.276" level="TRACE">Arguments: [ ${data_path}='/api/jujuvnfmdriver/v1/swagger.json' ]</msg>
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>msb</arg>
+<arg>${MSB_ENDPOINT}</arg>
+</arguments>
+<assign>
+<var>${session}</var>
+</assign>
+<msg timestamp="20180806 11:48:19.277" level="TRACE">Arguments: [ 'msb' | 'http://10.0.14.1:80' ]</msg>
+<msg timestamp="20180806 11:48:19.277" level="DEBUG">Test timeout 1 minute active. 59.996 seconds left.</msg>
+<msg timestamp="20180806 11:48:19.278" level="INFO">Creating Session using : alias=msb, url=http://10.0.14.1:80, headers={},                     cookies=None, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<msg timestamp="20180806 11:48:19.278" level="DEBUG">Creating session: msb</msg>
+<msg timestamp="20180806 11:48:19.278" level="DEBUG">Argument types are:
+&lt;type 'int'&gt;</msg>
+<msg timestamp="20180806 11:48:19.278" level="TRACE">Return: &lt;requests.sessions.Session object at 0x7fddb052e190&gt;</msg>
+<msg timestamp="20180806 11:48:19.279" level="INFO">${session} = &lt;requests.sessions.Session object at 0x7fddb052e190&gt;</msg>
+<status status="PASS" endtime="20180806 11:48:19.279" starttime="20180806 11:48:19.277"></status>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the</doc>
+<arguments>
+<arg>msb</arg>
+<arg>${data_path}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20180806 11:48:19.279" level="TRACE">Arguments: [ 'msb' | '/api/jujuvnfmdriver/v1/swagger.json' ]</msg>
+<msg timestamp="20180806 11:48:19.279" level="DEBUG">Test timeout 1 minute active. 59.994 seconds left.</msg>
+<msg timestamp="20180806 11:48:19.281" level="DEBUG">Starting new HTTP connection (1): 10.0.14.1</msg>
+<msg timestamp="20180806 11:49:19.274" level="FAIL">Test timeout 1 minute exceeded.</msg>
+<status status="FAIL" endtime="20180806 11:49:19.274" starttime="20180806 11:48:19.279"></status>
+</kw>
+<status status="FAIL" endtime="20180806 11:49:19.275" starttime="20180806 11:48:19.275"></status>
+</kw>
+<tags>
+<tag>3rdparty</tag>
+<tag>health</tag>
+</tags>
+<timeout value="1 minute"></timeout>
+<status status="FAIL" endtime="20180806 11:49:19.275" critical="yes" starttime="20180806 11:48:19.273">Test timeout 1 minute exceeded.</status>
+</test>
+<test id="s1-s1-s1-s1-t28" name="Basic VFC multivimproxy API Health Check">
+<kw name="Run MSB Get Request" library="msb_interface">
+<doc>Runs MSB Get request</doc>
+<arguments>
+<arg>/api/multivimproxy/v1/swagger.json</arg>
+</arguments>
+<msg timestamp="20180806 11:49:19.280" level="TRACE">Arguments: [ ${data_path}='/api/multivimproxy/v1/swagger.json' ]</msg>
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>msb</arg>
+<arg>${MSB_ENDPOINT}</arg>
+</arguments>
+<assign>
+<var>${session}</var>
+</assign>
+<msg timestamp="20180806 11:49:19.282" level="TRACE">Arguments: [ 'msb' | 'http://10.0.14.1:80' ]</msg>
+<msg timestamp="20180806 11:49:19.282" level="DEBUG">Test timeout 1 minute active. 59.996 seconds left.</msg>
+<msg timestamp="20180806 11:49:19.282" level="INFO">Creating Session using : alias=msb, url=http://10.0.14.1:80, headers={},                     cookies=None, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<msg timestamp="20180806 11:49:19.282" level="DEBUG">Creating session: msb</msg>
+<msg timestamp="20180806 11:49:19.283" level="DEBUG">Argument types are:
+&lt;type 'int'&gt;</msg>
+<msg timestamp="20180806 11:49:19.283" level="TRACE">Return: &lt;requests.sessions.Session object at 0x7fddb056b5d0&gt;</msg>
+<msg timestamp="20180806 11:49:19.283" level="INFO">${session} = &lt;requests.sessions.Session object at 0x7fddb056b5d0&gt;</msg>
+<status status="PASS" endtime="20180806 11:49:19.283" starttime="20180806 11:49:19.281"></status>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the</doc>
+<arguments>
+<arg>msb</arg>
+<arg>${data_path}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20180806 11:49:19.284" level="TRACE">Arguments: [ 'msb' | '/api/multivimproxy/v1/swagger.json' ]</msg>
+<msg timestamp="20180806 11:49:19.285" level="DEBUG">Test timeout 1 minute active. 59.993 seconds left.</msg>
+<msg timestamp="20180806 11:49:19.286" level="DEBUG">Starting new HTTP connection (1): 10.0.14.1</msg>
+<msg timestamp="20180806 11:50:19.278" level="FAIL">Test timeout 1 minute exceeded.</msg>
+<status status="FAIL" endtime="20180806 11:50:19.279" starttime="20180806 11:49:19.284"></status>
+</kw>
+<status status="FAIL" endtime="20180806 11:50:19.280" starttime="20180806 11:49:19.280"></status>
+</kw>
+<tags>
+<tag>3rdparty</tag>
+<tag>health</tag>
+</tags>
+<timeout value="1 minute"></timeout>
+<status status="FAIL" endtime="20180806 11:50:19.280" critical="yes" starttime="20180806 11:49:19.277">Test timeout 1 minute exceeded.</status>
+</test>
+<test id="s1-s1-s1-s1-t29" name="Basic VFC nokiavnfmdriver API Health Check">
+<kw name="Run MSB Get Request" library="msb_interface">
+<doc>Runs MSB Get request</doc>
+<arguments>
+<arg>/api/nokiavnfmdriver/v1/swagger.json</arg>
+</arguments>
+<msg timestamp="20180806 11:50:19.284" level="TRACE">Arguments: [ ${data_path}='/api/nokiavnfmdriver/v1/swagger.json' ]</msg>
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>msb</arg>
+<arg>${MSB_ENDPOINT}</arg>
+</arguments>
+<assign>
+<var>${session}</var>
+</assign>
+<msg timestamp="20180806 11:50:19.286" level="TRACE">Arguments: [ 'msb' | 'http://10.0.14.1:80' ]</msg>
+<msg timestamp="20180806 11:50:19.286" level="DEBUG">Test timeout 1 minute active. 59.996 seconds left.</msg>
+<msg timestamp="20180806 11:50:19.286" level="INFO">Creating Session using : alias=msb, url=http://10.0.14.1:80, headers={},                     cookies=None, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<msg timestamp="20180806 11:50:19.286" level="DEBUG">Creating session: msb</msg>
+<msg timestamp="20180806 11:50:19.287" level="DEBUG">Argument types are:
+&lt;type 'int'&gt;</msg>
+<msg timestamp="20180806 11:50:19.287" level="TRACE">Return: &lt;requests.sessions.Session object at 0x7fddafcec110&gt;</msg>
+<msg timestamp="20180806 11:50:19.287" level="INFO">${session} = &lt;requests.sessions.Session object at 0x7fddafcec110&gt;</msg>
+<status status="PASS" endtime="20180806 11:50:19.287" starttime="20180806 11:50:19.285"></status>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the</doc>
+<arguments>
+<arg>msb</arg>
+<arg>${data_path}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20180806 11:50:19.288" level="TRACE">Arguments: [ 'msb' | '/api/nokiavnfmdriver/v1/swagger.json' ]</msg>
+<msg timestamp="20180806 11:50:19.289" level="DEBUG">Test timeout 1 minute active. 59.994 seconds left.</msg>
+<msg timestamp="20180806 11:50:19.290" level="DEBUG">Starting new HTTP connection (1): 10.0.14.1</msg>
+<msg timestamp="20180806 11:51:19.284" level="FAIL">Test timeout 1 minute exceeded.</msg>
+<status status="FAIL" endtime="20180806 11:51:19.284" starttime="20180806 11:50:19.288"></status>
+</kw>
+<status status="FAIL" endtime="20180806 11:51:19.285" starttime="20180806 11:50:19.284"></status>
+</kw>
+<tags>
+<tag>3rdparty</tag>
+<tag>health</tag>
+</tags>
+<timeout value="1 minute"></timeout>
+<status status="FAIL" endtime="20180806 11:51:19.286" critical="yes" starttime="20180806 11:50:19.282">Test timeout 1 minute exceeded.</status>
+</test>
+<test id="s1-s1-s1-s1-t30" name="Basic VFC nokiav2driver API Health Check">
+<kw name="Run MSB Get Request" library="msb_interface">
+<doc>Runs MSB Get request</doc>
+<arguments>
+<arg>/api/NokiaSVNFM/v1/swagger.json</arg>
+</arguments>
+<msg timestamp="20180806 11:51:19.291" level="TRACE">Arguments: [ ${data_path}='/api/NokiaSVNFM/v1/swagger.json' ]</msg>
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>msb</arg>
+<arg>${MSB_ENDPOINT}</arg>
+</arguments>
+<assign>
+<var>${session}</var>
+</assign>
+<msg timestamp="20180806 11:51:19.292" level="TRACE">Arguments: [ 'msb' | 'http://10.0.14.1:80' ]</msg>
+<msg timestamp="20180806 11:51:19.292" level="DEBUG">Test timeout 1 minute active. 59.995 seconds left.</msg>
+<msg timestamp="20180806 11:51:19.293" level="INFO">Creating Session using : alias=msb, url=http://10.0.14.1:80, headers={},                     cookies=None, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<msg timestamp="20180806 11:51:19.293" level="DEBUG">Creating session: msb</msg>
+<msg timestamp="20180806 11:51:19.293" level="DEBUG">Argument types are:
+&lt;type 'int'&gt;</msg>
+<msg timestamp="20180806 11:51:19.294" level="TRACE">Return: &lt;requests.sessions.Session object at 0x7fddafd0e650&gt;</msg>
+<msg timestamp="20180806 11:51:19.294" level="INFO">${session} = &lt;requests.sessions.Session object at 0x7fddafd0e650&gt;</msg>
+<status status="PASS" endtime="20180806 11:51:19.294" starttime="20180806 11:51:19.292"></status>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the</doc>
+<arguments>
+<arg>msb</arg>
+<arg>${data_path}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20180806 11:51:19.295" level="TRACE">Arguments: [ 'msb' | '/api/NokiaSVNFM/v1/swagger.json' ]</msg>
+<msg timestamp="20180806 11:51:19.295" level="DEBUG">Test timeout 1 minute active. 59.992 seconds left.</msg>
+<msg timestamp="20180806 11:51:19.297" level="DEBUG">Starting new HTTP connection (1): 10.0.14.1</msg>
+<msg timestamp="20180806 11:52:19.288" level="FAIL">Test timeout 1 minute exceeded.</msg>
+<status status="FAIL" endtime="20180806 11:52:19.288" starttime="20180806 11:51:19.295"></status>
+</kw>
+<status status="FAIL" endtime="20180806 11:52:19.288" starttime="20180806 11:51:19.290"></status>
+</kw>
+<tags>
+<tag>3rdparty</tag>
+<tag>health</tag>
+</tags>
+<timeout value="1 minute"></timeout>
+<status status="FAIL" endtime="20180806 11:52:19.289" critical="yes" starttime="20180806 11:51:19.287">Test timeout 1 minute exceeded.</status>
+</test>
+<test id="s1-s1-s1-s1-t31" name="Basic VFC nslcm API Health Check">
+<kw name="Run MSB Get Request" library="msb_interface">
+<doc>Runs MSB Get request</doc>
+<arguments>
+<arg>/api/nslcm/v1/swagger.json</arg>
+</arguments>
+<msg timestamp="20180806 11:52:19.291" level="TRACE">Arguments: [ ${data_path}='/api/nslcm/v1/swagger.json' ]</msg>
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>msb</arg>
+<arg>${MSB_ENDPOINT}</arg>
+</arguments>
+<assign>
+<var>${session}</var>
+</assign>
+<msg timestamp="20180806 11:52:19.292" level="TRACE">Arguments: [ 'msb' | 'http://10.0.14.1:80' ]</msg>
+<msg timestamp="20180806 11:52:19.292" level="DEBUG">Test timeout 1 minute active. 59.998 seconds left.</msg>
+<msg timestamp="20180806 11:52:19.292" level="INFO">Creating Session using : alias=msb, url=http://10.0.14.1:80, headers={},                     cookies=None, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<msg timestamp="20180806 11:52:19.292" level="DEBUG">Creating session: msb</msg>
+<msg timestamp="20180806 11:52:19.292" level="DEBUG">Argument types are:
+&lt;type 'int'&gt;</msg>
+<msg timestamp="20180806 11:52:19.293" level="TRACE">Return: &lt;requests.sessions.Session object at 0x7fddafcec5d0&gt;</msg>
+<msg timestamp="20180806 11:52:19.293" level="INFO">${session} = &lt;requests.sessions.Session object at 0x7fddafcec5d0&gt;</msg>
+<status status="PASS" endtime="20180806 11:52:19.293" starttime="20180806 11:52:19.291"></status>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the</doc>
+<arguments>
+<arg>msb</arg>
+<arg>${data_path}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20180806 11:52:19.293" level="TRACE">Arguments: [ 'msb' | '/api/nslcm/v1/swagger.json' ]</msg>
+<msg timestamp="20180806 11:52:19.293" level="DEBUG">Test timeout 1 minute active. 59.996 seconds left.</msg>
+<msg timestamp="20180806 11:52:19.295" level="DEBUG">Starting new HTTP connection (1): 10.0.14.1</msg>
+<msg timestamp="20180806 11:53:19.290" level="FAIL">Test timeout 1 minute exceeded.</msg>
+<status status="FAIL" endtime="20180806 11:53:19.290" starttime="20180806 11:52:19.293"></status>
+</kw>
+<status status="FAIL" endtime="20180806 11:53:19.291" starttime="20180806 11:52:19.291"></status>
+</kw>
+<tags>
+<tag>api</tag>
+<tag>health</tag>
+</tags>
+<timeout value="1 minute"></timeout>
+<status status="FAIL" endtime="20180806 11:53:19.292" critical="yes" starttime="20180806 11:52:19.290">Test timeout 1 minute exceeded.</status>
+</test>
+<test id="s1-s1-s1-s1-t32" name="Basic VFC resmgr API Health Check">
+<kw name="Run MSB Get Request" library="msb_interface">
+<doc>Runs MSB Get request</doc>
+<arguments>
+<arg>/api/resmgr/v1/swagger.json</arg>
+</arguments>
+<msg timestamp="20180806 11:53:19.296" level="TRACE">Arguments: [ ${data_path}='/api/resmgr/v1/swagger.json' ]</msg>
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>msb</arg>
+<arg>${MSB_ENDPOINT}</arg>
+</arguments>
+<assign>
+<var>${session}</var>
+</assign>
+<msg timestamp="20180806 11:53:19.297" level="TRACE">Arguments: [ 'msb' | 'http://10.0.14.1:80' ]</msg>
+<msg timestamp="20180806 11:53:19.297" level="DEBUG">Test timeout 1 minute active. 59.996 seconds left.</msg>
+<msg timestamp="20180806 11:53:19.297" level="INFO">Creating Session using : alias=msb, url=http://10.0.14.1:80, headers={},                     cookies=None, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<msg timestamp="20180806 11:53:19.298" level="DEBUG">Creating session: msb</msg>
+<msg timestamp="20180806 11:53:19.298" level="DEBUG">Argument types are:
+&lt;type 'int'&gt;</msg>
+<msg timestamp="20180806 11:53:19.298" level="TRACE">Return: &lt;requests.sessions.Session object at 0x7fddafcf6a90&gt;</msg>
+<msg timestamp="20180806 11:53:19.299" level="INFO">${session} = &lt;requests.sessions.Session object at 0x7fddafcf6a90&gt;</msg>
+<status status="PASS" endtime="20180806 11:53:19.299" starttime="20180806 11:53:19.297"></status>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the</doc>
+<arguments>
+<arg>msb</arg>
+<arg>${data_path}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20180806 11:53:19.300" level="TRACE">Arguments: [ 'msb' | '/api/resmgr/v1/swagger.json' ]</msg>
+<msg timestamp="20180806 11:53:19.300" level="DEBUG">Test timeout 1 minute active. 59.994 seconds left.</msg>
+<msg timestamp="20180806 11:53:19.301" level="DEBUG">Starting new HTTP connection (1): 10.0.14.1</msg>
+<msg timestamp="20180806 11:54:19.295" level="FAIL">Test timeout 1 minute exceeded.</msg>
+<status status="FAIL" endtime="20180806 11:54:19.295" starttime="20180806 11:53:19.299"></status>
+</kw>
+<status status="FAIL" endtime="20180806 11:54:19.295" starttime="20180806 11:53:19.295"></status>
+</kw>
+<tags>
+<tag>api</tag>
+<tag>health</tag>
+</tags>
+<timeout value="1 minute"></timeout>
+<status status="FAIL" endtime="20180806 11:54:19.296" critical="yes" starttime="20180806 11:53:19.293">Test timeout 1 minute exceeded.</status>
+</test>
+<test id="s1-s1-s1-s1-t33" name="Basic VFC vnflcm API Health Check">
+<kw name="Run MSB Get Request" library="msb_interface">
+<doc>Runs MSB Get request</doc>
+<arguments>
+<arg>/api/vnflcm/v1/swagger.json</arg>
+</arguments>
+<msg timestamp="20180806 11:54:19.301" level="TRACE">Arguments: [ ${data_path}='/api/vnflcm/v1/swagger.json' ]</msg>
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>msb</arg>
+<arg>${MSB_ENDPOINT}</arg>
+</arguments>
+<assign>
+<var>${session}</var>
+</assign>
+<msg timestamp="20180806 11:54:19.302" level="TRACE">Arguments: [ 'msb' | 'http://10.0.14.1:80' ]</msg>
+<msg timestamp="20180806 11:54:19.303" level="DEBUG">Test timeout 1 minute active. 59.995 seconds left.</msg>
+<msg timestamp="20180806 11:54:19.303" level="INFO">Creating Session using : alias=msb, url=http://10.0.14.1:80, headers={},                     cookies=None, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<msg timestamp="20180806 11:54:19.303" level="DEBUG">Creating session: msb</msg>
+<msg timestamp="20180806 11:54:19.304" level="DEBUG">Argument types are:
+&lt;type 'int'&gt;</msg>
+<msg timestamp="20180806 11:54:19.305" level="TRACE">Return: &lt;requests.sessions.Session object at 0x7fddafc84b50&gt;</msg>
+<msg timestamp="20180806 11:54:19.305" level="INFO">${session} = &lt;requests.sessions.Session object at 0x7fddafc84b50&gt;</msg>
+<status status="PASS" endtime="20180806 11:54:19.305" starttime="20180806 11:54:19.302"></status>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the</doc>
+<arguments>
+<arg>msb</arg>
+<arg>${data_path}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20180806 11:54:19.306" level="TRACE">Arguments: [ 'msb' | '/api/vnflcm/v1/swagger.json' ]</msg>
+<msg timestamp="20180806 11:54:19.306" level="DEBUG">Test timeout 1 minute active. 59.992 seconds left.</msg>
+<msg timestamp="20180806 11:54:19.308" level="DEBUG">Starting new HTTP connection (1): 10.0.14.1</msg>
+<msg timestamp="20180806 11:55:19.299" level="FAIL">Test timeout 1 minute exceeded.</msg>
+<status status="FAIL" endtime="20180806 11:55:19.299" starttime="20180806 11:54:19.306"></status>
+</kw>
+<status status="FAIL" endtime="20180806 11:55:19.300" starttime="20180806 11:54:19.300"></status>
+</kw>
+<tags>
+<tag>api</tag>
+<tag>health</tag>
+</tags>
+<timeout value="1 minute"></timeout>
+<status status="FAIL" endtime="20180806 11:55:19.300" critical="yes" starttime="20180806 11:54:19.298">Test timeout 1 minute exceeded.</status>
+</test>
+<test id="s1-s1-s1-s1-t34" name="Basic VFC vnfmgr API Health Check">
+<kw name="Run MSB Get Request" library="msb_interface">
+<doc>Runs MSB Get request</doc>
+<arguments>
+<arg>/api/vnfmgr/v1/swagger.json</arg>
+</arguments>
+<msg timestamp="20180806 11:55:19.305" level="TRACE">Arguments: [ ${data_path}='/api/vnfmgr/v1/swagger.json' ]</msg>
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>msb</arg>
+<arg>${MSB_ENDPOINT}</arg>
+</arguments>
+<assign>
+<var>${session}</var>
+</assign>
+<msg timestamp="20180806 11:55:19.307" level="TRACE">Arguments: [ 'msb' | 'http://10.0.14.1:80' ]</msg>
+<msg timestamp="20180806 11:55:19.307" level="DEBUG">Test timeout 1 minute active. 59.996 seconds left.</msg>
+<msg timestamp="20180806 11:55:19.307" level="INFO">Creating Session using : alias=msb, url=http://10.0.14.1:80, headers={},                     cookies=None, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<msg timestamp="20180806 11:55:19.307" level="DEBUG">Creating session: msb</msg>
+<msg timestamp="20180806 11:55:19.308" level="DEBUG">Argument types are:
+&lt;type 'int'&gt;</msg>
+<msg timestamp="20180806 11:55:19.308" level="TRACE">Return: &lt;requests.sessions.Session object at 0x7fddafc848d0&gt;</msg>
+<msg timestamp="20180806 11:55:19.308" level="INFO">${session} = &lt;requests.sessions.Session object at 0x7fddafc848d0&gt;</msg>
+<status status="PASS" endtime="20180806 11:55:19.309" starttime="20180806 11:55:19.306"></status>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the</doc>
+<arguments>
+<arg>msb</arg>
+<arg>${data_path}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20180806 11:55:19.310" level="TRACE">Arguments: [ 'msb' | '/api/vnfmgr/v1/swagger.json' ]</msg>
+<msg timestamp="20180806 11:55:19.310" level="DEBUG">Test timeout 1 minute active. 59.992 seconds left.</msg>
+<msg timestamp="20180806 11:55:19.312" level="DEBUG">Starting new HTTP connection (1): 10.0.14.1</msg>
+<msg timestamp="20180806 11:56:19.303" level="FAIL">Test timeout 1 minute exceeded.</msg>
+<status status="FAIL" endtime="20180806 11:56:19.303" starttime="20180806 11:55:19.309"></status>
+</kw>
+<status status="FAIL" endtime="20180806 11:56:19.304" starttime="20180806 11:55:19.305"></status>
+</kw>
+<tags>
+<tag>api</tag>
+<tag>health</tag>
+</tags>
+<timeout value="1 minute"></timeout>
+<status status="FAIL" endtime="20180806 11:56:19.304" critical="yes" starttime="20180806 11:55:19.302">Test timeout 1 minute exceeded.</status>
+</test>
+<test id="s1-s1-s1-s1-t35" name="Basic VFC vnfres API Health Check">
+<kw name="Run MSB Get Request" library="msb_interface">
+<doc>Runs MSB Get request</doc>
+<arguments>
+<arg>/api/vnfres/v1/swagger.json</arg>
+</arguments>
+<msg timestamp="20180806 11:56:19.308" level="TRACE">Arguments: [ ${data_path}='/api/vnfres/v1/swagger.json' ]</msg>
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>msb</arg>
+<arg>${MSB_ENDPOINT}</arg>
+</arguments>
+<assign>
+<var>${session}</var>
+</assign>
+<msg timestamp="20180806 11:56:19.310" level="TRACE">Arguments: [ 'msb' | 'http://10.0.14.1:80' ]</msg>
+<msg timestamp="20180806 11:56:19.310" level="DEBUG">Test timeout 1 minute active. 59.996 seconds left.</msg>
+<msg timestamp="20180806 11:56:19.310" level="INFO">Creating Session using : alias=msb, url=http://10.0.14.1:80, headers={},                     cookies=None, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<msg timestamp="20180806 11:56:19.310" level="DEBUG">Creating session: msb</msg>
+<msg timestamp="20180806 11:56:19.311" level="DEBUG">Argument types are:
+&lt;type 'int'&gt;</msg>
+<msg timestamp="20180806 11:56:19.311" level="TRACE">Return: &lt;requests.sessions.Session object at 0x7fddafcdec90&gt;</msg>
+<msg timestamp="20180806 11:56:19.312" level="INFO">${session} = &lt;requests.sessions.Session object at 0x7fddafcdec90&gt;</msg>
+<status status="PASS" endtime="20180806 11:56:19.312" starttime="20180806 11:56:19.309"></status>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the</doc>
+<arguments>
+<arg>msb</arg>
+<arg>${data_path}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20180806 11:56:19.313" level="TRACE">Arguments: [ 'msb' | '/api/vnfres/v1/swagger.json' ]</msg>
+<msg timestamp="20180806 11:56:19.313" level="DEBUG">Test timeout 1 minute active. 59.993 seconds left.</msg>
+<msg timestamp="20180806 11:56:19.315" level="DEBUG">Starting new HTTP connection (1): 10.0.14.1</msg>
+<msg timestamp="20180806 11:57:19.307" level="FAIL">Test timeout 1 minute exceeded.</msg>
+<status status="FAIL" endtime="20180806 11:57:19.307" starttime="20180806 11:56:19.312"></status>
+</kw>
+<status status="FAIL" endtime="20180806 11:57:19.308" starttime="20180806 11:56:19.308"></status>
+</kw>
+<tags>
+<tag>api</tag>
+<tag>health</tag>
+</tags>
+<timeout value="1 minute"></timeout>
+<status status="FAIL" endtime="20180806 11:57:19.308" critical="yes" starttime="20180806 11:56:19.306">Test timeout 1 minute exceeded.</status>
+</test>
+<test id="s1-s1-s1-s1-t36" name="Basic VFC workflow API Health Check">
+<kw name="Run MSB Get Request" library="msb_interface">
+<doc>Runs MSB Get request</doc>
+<arguments>
+<arg>/api/workflow/v1/swagger.json</arg>
+</arguments>
+<msg timestamp="20180806 11:57:19.313" level="TRACE">Arguments: [ ${data_path}='/api/workflow/v1/swagger.json' ]</msg>
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>msb</arg>
+<arg>${MSB_ENDPOINT}</arg>
+</arguments>
+<assign>
+<var>${session}</var>
+</assign>
+<msg timestamp="20180806 11:57:19.315" level="TRACE">Arguments: [ 'msb' | 'http://10.0.14.1:80' ]</msg>
+<msg timestamp="20180806 11:57:19.315" level="DEBUG">Test timeout 1 minute active. 59.995 seconds left.</msg>
+<msg timestamp="20180806 11:57:19.315" level="INFO">Creating Session using : alias=msb, url=http://10.0.14.1:80, headers={},                     cookies=None, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<msg timestamp="20180806 11:57:19.316" level="DEBUG">Creating session: msb</msg>
+<msg timestamp="20180806 11:57:19.316" level="DEBUG">Argument types are:
+&lt;type 'int'&gt;</msg>
+<msg timestamp="20180806 11:57:19.317" level="TRACE">Return: &lt;requests.sessions.Session object at 0x7fddafc9a090&gt;</msg>
+<msg timestamp="20180806 11:57:19.317" level="INFO">${session} = &lt;requests.sessions.Session object at 0x7fddafc9a090&gt;</msg>
+<status status="PASS" endtime="20180806 11:57:19.317" starttime="20180806 11:57:19.314"></status>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the</doc>
+<arguments>
+<arg>msb</arg>
+<arg>${data_path}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20180806 11:57:19.318" level="TRACE">Arguments: [ 'msb' | '/api/workflow/v1/swagger.json' ]</msg>
+<msg timestamp="20180806 11:57:19.318" level="DEBUG">Test timeout 1 minute active. 59.992 seconds left.</msg>
+<msg timestamp="20180806 11:57:19.319" level="DEBUG">Starting new HTTP connection (1): 10.0.14.1</msg>
+<msg timestamp="20180806 11:58:19.312" level="FAIL">Test timeout 1 minute exceeded.</msg>
+<status status="FAIL" endtime="20180806 11:58:19.312" starttime="20180806 11:57:19.318"></status>
+</kw>
+<status status="FAIL" endtime="20180806 11:58:19.313" starttime="20180806 11:57:19.312"></status>
+</kw>
+<tags>
+<tag>api</tag>
+<tag>health</tag>
+</tags>
+<timeout value="1 minute"></timeout>
+<status status="FAIL" endtime="20180806 11:58:19.313" critical="yes" starttime="20180806 11:57:19.310">Test timeout 1 minute exceeded.</status>
+</test>
+<test id="s1-s1-s1-s1-t37" name="Basic VFC ztesdncdriver API Health Check">
+<kw name="Run MSB Get Request" library="msb_interface">
+<doc>Runs MSB Get request</doc>
+<arguments>
+<arg>/api/ztesdncdriver/v1/swagger.json</arg>
+</arguments>
+<msg timestamp="20180806 11:58:19.318" level="TRACE">Arguments: [ ${data_path}='/api/ztesdncdriver/v1/swagger.json' ]</msg>
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>msb</arg>
+<arg>${MSB_ENDPOINT}</arg>
+</arguments>
+<assign>
+<var>${session}</var>
+</assign>
+<msg timestamp="20180806 11:58:19.320" level="TRACE">Arguments: [ 'msb' | 'http://10.0.14.1:80' ]</msg>
+<msg timestamp="20180806 11:58:19.320" level="DEBUG">Test timeout 1 minute active. 59.995 seconds left.</msg>
+<msg timestamp="20180806 11:58:19.320" level="INFO">Creating Session using : alias=msb, url=http://10.0.14.1:80, headers={},                     cookies=None, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<msg timestamp="20180806 11:58:19.320" level="DEBUG">Creating session: msb</msg>
+<msg timestamp="20180806 11:58:19.321" level="DEBUG">Argument types are:
+&lt;type 'int'&gt;</msg>
+<msg timestamp="20180806 11:58:19.321" level="TRACE">Return: &lt;requests.sessions.Session object at 0x7fddafc8f050&gt;</msg>
+<msg timestamp="20180806 11:58:19.321" level="INFO">${session} = &lt;requests.sessions.Session object at 0x7fddafc8f050&gt;</msg>
+<status status="PASS" endtime="20180806 11:58:19.322" starttime="20180806 11:58:19.319"></status>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the</doc>
+<arguments>
+<arg>msb</arg>
+<arg>${data_path}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20180806 11:58:19.322" level="TRACE">Arguments: [ 'msb' | '/api/ztesdncdriver/v1/swagger.json' ]</msg>
+<msg timestamp="20180806 11:58:19.322" level="DEBUG">Test timeout 1 minute active. 59.993 seconds left.</msg>
+<msg timestamp="20180806 11:58:19.323" level="DEBUG">Starting new HTTP connection (1): 10.0.14.1</msg>
+<msg timestamp="20180806 11:59:19.316" level="FAIL">Test timeout 1 minute exceeded.</msg>
+<status status="FAIL" endtime="20180806 11:59:19.316" starttime="20180806 11:58:19.322"></status>
+</kw>
+<status status="FAIL" endtime="20180806 11:59:19.317" starttime="20180806 11:58:19.317"></status>
+</kw>
+<tags>
+<tag>3rdparty</tag>
+<tag>health</tag>
+</tags>
+<timeout value="1 minute"></timeout>
+<status status="FAIL" endtime="20180806 11:59:19.317" critical="yes" starttime="20180806 11:58:19.315">Test timeout 1 minute exceeded.</status>
+</test>
+<test id="s1-s1-s1-s1-t38" name="Basic VFC ztevnfmdriver API Health Check">
+<kw name="Run MSB Get Request" library="msb_interface">
+<doc>Runs MSB Get request</doc>
+<arguments>
+<arg>/api/ztevnfmdriver/v1/swagger.json</arg>
+</arguments>
+<msg timestamp="20180806 11:59:19.322" level="TRACE">Arguments: [ ${data_path}='/api/ztevnfmdriver/v1/swagger.json' ]</msg>
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>msb</arg>
+<arg>${MSB_ENDPOINT}</arg>
+</arguments>
+<assign>
+<var>${session}</var>
+</assign>
+<msg timestamp="20180806 11:59:19.323" level="TRACE">Arguments: [ 'msb' | 'http://10.0.14.1:80' ]</msg>
+<msg timestamp="20180806 11:59:19.324" level="DEBUG">Test timeout 1 minute active. 59.996 seconds left.</msg>
+<msg timestamp="20180806 11:59:19.324" level="INFO">Creating Session using : alias=msb, url=http://10.0.14.1:80, headers={},                     cookies=None, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<msg timestamp="20180806 11:59:19.324" level="DEBUG">Creating session: msb</msg>
+<msg timestamp="20180806 11:59:19.325" level="DEBUG">Argument types are:
+&lt;type 'int'&gt;</msg>
+<msg timestamp="20180806 11:59:19.325" level="TRACE">Return: &lt;requests.sessions.Session object at 0x7fddb0535610&gt;</msg>
+<msg timestamp="20180806 11:59:19.325" level="INFO">${session} = &lt;requests.sessions.Session object at 0x7fddb0535610&gt;</msg>
+<status status="PASS" endtime="20180806 11:59:19.325" starttime="20180806 11:59:19.323"></status>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the</doc>
+<arguments>
+<arg>msb</arg>
+<arg>${data_path}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20180806 11:59:19.327" level="TRACE">Arguments: [ 'msb' | '/api/ztevnfmdriver/v1/swagger.json' ]</msg>
+<msg timestamp="20180806 11:59:19.327" level="DEBUG">Test timeout 1 minute active. 59.992 seconds left.</msg>
+<msg timestamp="20180806 11:59:19.329" level="DEBUG">Starting new HTTP connection (1): 10.0.14.1</msg>
+<msg timestamp="20180806 12:00:19.320" level="FAIL">Test timeout 1 minute exceeded.</msg>
+<status status="FAIL" endtime="20180806 12:00:19.320" starttime="20180806 11:59:19.326"></status>
+</kw>
+<status status="FAIL" endtime="20180806 12:00:19.320" starttime="20180806 11:59:19.321"></status>
+</kw>
+<tags>
+<tag>3rdparty</tag>
+<tag>health</tag>
+</tags>
+<timeout value="1 minute"></timeout>
+<status status="FAIL" endtime="20180806 12:00:19.321" critical="yes" starttime="20180806 11:59:19.319">Test timeout 1 minute exceeded.</status>
+</test>
+<test id="s1-s1-s1-s1-t39" name="Basic VID Health Check">
+<kw name="Run VID Health Check" library="vid_interface">
+<doc>Logs in to VID GUI</doc>
+<msg timestamp="20180806 12:00:19.324" level="TRACE">Arguments: [  ]</msg>
+<kw name="Run VID Get Request" library="vid_interface">
+<doc>Runs an VID get request</doc>
+<arguments>
+<arg>${VID_HEALTHCHECK_PATH}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20180806 12:00:19.325" level="TRACE">Arguments: [ ${data_path}='/vid/healthCheck' ]</msg>
+<kw name="Create List" library="BuiltIn">
+<doc>Returns a list containing given items.</doc>
+<arguments>
+<arg>${GLOBAL_VID_HEALTH_USERNAME}</arg>
+<arg>${GLOBAL_VID_HEALTH_PASSWORD}</arg>
+</arguments>
+<assign>
+<var>${auth}</var>
+</assign>
+<msg timestamp="20180806 12:00:19.326" level="TRACE">Arguments: [ b'Default' | b'AppPassword!1' ]</msg>
+<msg timestamp="20180806 12:00:19.327" level="DEBUG">Test timeout 1 minute active. 59.996 seconds left.</msg>
+<msg timestamp="20180806 12:00:19.327" level="TRACE">Return: [b'Default', b'AppPassword!1']</msg>
+<msg timestamp="20180806 12:00:19.327" level="INFO">${auth} = ['Default', 'AppPassword!1']</msg>
+<status status="PASS" endtime="20180806 12:00:19.327" starttime="20180806 12:00:19.326"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>Creating session ${VID_ENDPOINT}</arg>
+</arguments>
+<msg timestamp="20180806 12:00:19.328" level="TRACE">Arguments: [ 'Creating session http://192.168.61.32:8080' ]</msg>
+<msg timestamp="20180806 12:00:19.329" level="DEBUG">Test timeout 1 minute active. 59.994 seconds left.</msg>
+<msg timestamp="20180806 12:00:19.329" level="INFO">Creating session http://192.168.61.32:8080</msg>
+<msg timestamp="20180806 12:00:19.329" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20180806 12:00:19.329" starttime="20180806 12:00:19.328"></status>
+</kw>
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>vid</arg>
+<arg>${VID_ENDPOINT}</arg>
+<arg>auth=${auth}</arg>
+</arguments>
+<assign>
+<var>${session}</var>
+</assign>
+<msg timestamp="20180806 12:00:19.331" level="TRACE">Arguments: [ 'vid' | 'http://192.168.61.32:8080' | auth=[b'Default', b'AppPassword!1'] ]</msg>
+<msg timestamp="20180806 12:00:19.331" level="DEBUG">Test timeout 1 minute active. 59.992 seconds left.</msg>
+<msg timestamp="20180806 12:00:19.331" level="INFO">Creating Session using : alias=vid, url=http://192.168.61.32:8080, headers={},                     cookies=None, auth=&lt;requests.auth.HTTPBasicAuth object at 0x7fddafcb6e90&gt;, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<msg timestamp="20180806 12:00:19.331" level="DEBUG">Creating session: vid</msg>
+<msg timestamp="20180806 12:00:19.332" level="DEBUG">Argument types are:
+&lt;type 'int'&gt;</msg>
+<msg timestamp="20180806 12:00:19.332" level="TRACE">Return: &lt;requests.sessions.Session object at 0x7fddafcb6590&gt;</msg>
+<msg timestamp="20180806 12:00:19.332" level="INFO">${session} = &lt;requests.sessions.Session object at 0x7fddafcb6590&gt;</msg>
+<status status="PASS" endtime="20180806 12:00:19.332" starttime="20180806 12:00:19.330"></status>
+</kw>
+<kw name="Generate UUID" library="UUID">
+<doc>generate a uuid</doc>
+<assign>
+<var>${uuid}</var>
+</assign>
+<msg timestamp="20180806 12:00:19.333" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20180806 12:00:19.334" level="DEBUG">Test timeout 1 minute active. 59.989 seconds left.</msg>
+<msg timestamp="20180806 12:00:19.334" level="TRACE">Return: UUID('b18849e2-b5de-41a6-84b8-8a0ba43c1383')</msg>
+<msg timestamp="20180806 12:00:19.334" level="INFO">${uuid} = b18849e2-b5de-41a6-84b8-8a0ba43c1383</msg>
+<status status="PASS" endtime="20180806 12:00:19.334" starttime="20180806 12:00:19.333"></status>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>username=${GLOBAL_VID_HEALTH_USERNAME}</arg>
+<arg>password=${GLOBAL_VID_HEALTH_PASSWORD}</arg>
+<arg>Accept=application/json</arg>
+<arg>Content-Type=application/json</arg>
+<arg>X-TransactionId=${GLOBAL_APPLICATION_ID}-${uuid}</arg>
+<arg>X-FromAppId=${GLOBAL_APPLICATION_ID}</arg>
+</arguments>
+<assign>
+<var>${headers}</var>
+</assign>
+<msg timestamp="20180806 12:00:19.335" level="TRACE">Arguments: [ 'username=${GLOBAL_VID_HEALTH_USERNAME}' | 'password=${GLOBAL_VID_HEALTH_PASSWORD}' | 'Accept=application/json' | 'Content-Type=application/json' | 'X-TransactionId=${GLOBAL_APPLICATION_ID}-${uuid}' | 'X-FromAppId=${GLOBAL_APPLICATION_ID}' ]</msg>
+<msg timestamp="20180806 12:00:19.336" level="TRACE">Return: {'Accept': 'application/json', 'Content-Type': 'application/json', 'X-FromAppId': 'robot-ete', 'X-TransactionId': 'robot-ete-b18849e2-b5de-41a6-84b8-8a0ba43c1383', 'password': b'AppPassword!1', 'username': b'Default'}</msg>
+<msg timestamp="20180806 12:00:19.336" level="INFO">${headers} = {u'username': 'Default', u'password': 'AppPassword!1', u'Accept': u'application/json', u'Content-Type': u'application/json', u'X-TransactionId': u'robot-ete-b18849e2-b5de-41a6-84b8-8a0ba43c1383', u'X-...</msg>
+<status status="PASS" endtime="20180806 12:00:19.336" starttime="20180806 12:00:19.335"></status>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the</doc>
+<arguments>
+<arg>vid</arg>
+<arg>${data_path}</arg>
+<arg>headers=${headers}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20180806 12:00:19.336" level="TRACE">Arguments: [ 'vid' | '/vid/healthCheck' | headers={'Accept': 'application/json', 'Content-Type': 'application/json', 'X-FromAppId': 'robot-ete', 'X-TransactionId': 'robot-ete-b18849e2-b5de-41a6-84b8-8a0ba43c1383', 'password': b'AppPassword!1', 'username': b'Default'} ]</msg>
+<msg timestamp="20180806 12:00:19.337" level="DEBUG">Test timeout 1 minute active. 59.986 seconds left.</msg>
+<msg timestamp="20180806 12:00:19.338" level="DEBUG">Starting new HTTP connection (1): 192.168.61.32</msg>
+<msg timestamp="20180806 12:00:19.383" level="DEBUG">http://192.168.61.32:8080 "GET /vid/healthCheck HTTP/1.1" 200 None</msg>
+<msg timestamp="20180806 12:00:19.383" level="INFO">Get Request using : alias=vid, uri=/vid/healthCheck, headers={u'username': 'Default', u'password': 'AppPassword!1', u'Accept': u'application/json', u'Content-Type': u'application/json', u'X-TransactionId': u'robot-ete-b18849e2-b5de-41a6-84b8-8a0ba43c1383', u'X-FromAppId': u'robot-ete'} </msg>
+<msg timestamp="20180806 12:00:19.383" level="TRACE">Return: &lt;Response [200]&gt;</msg>
+<msg timestamp="20180806 12:00:19.384" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20180806 12:00:19.384" starttime="20180806 12:00:19.336"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>Received response from vid ${resp.text}</arg>
+</arguments>
+<msg timestamp="20180806 12:00:19.384" level="TRACE">Arguments: [ 'Received response from vid {"statusCode":200,"message":"health check succeeded","date":null}' ]</msg>
+<msg timestamp="20180806 12:00:19.384" level="DEBUG">Test timeout 1 minute active. 59.938 seconds left.</msg>
+<msg timestamp="20180806 12:00:19.384" level="INFO">Received response from vid {"statusCode":200,"message":"health check succeeded","date":null}</msg>
+<msg timestamp="20180806 12:00:19.385" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20180806 12:00:19.385" starttime="20180806 12:00:19.384"></status>
+</kw>
+<msg timestamp="20180806 12:00:19.385" level="TRACE">Return: &lt;Response [200]&gt;</msg>
+<msg timestamp="20180806 12:00:19.385" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20180806 12:00:19.385" starttime="20180806 12:00:19.325"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${resp.status_code}</arg>
+<arg>200</arg>
+</arguments>
+<msg timestamp="20180806 12:00:19.386" level="TRACE">Arguments: [ 200 | '200' ]</msg>
+<msg timestamp="20180806 12:00:19.386" level="DEBUG">Test timeout 1 minute active. 59.937 seconds left.</msg>
+<msg timestamp="20180806 12:00:19.386" level="INFO">Argument types are:
+&lt;type 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<msg timestamp="20180806 12:00:19.386" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20180806 12:00:19.387" starttime="20180806 12:00:19.385"></status>
+</kw>
+<kw name="Should Be String" library="String">
+<doc>Fails if the given ``item`` is not a string.</doc>
+<arguments>
+<arg>${resp.json()['message']}</arg>
+</arguments>
+<msg timestamp="20180806 12:00:19.388" level="TRACE">Arguments: [ 'health check succeeded' ]</msg>
+<msg timestamp="20180806 12:00:19.388" level="DEBUG">Test timeout 1 minute active. 59.935 seconds left.</msg>
+<msg timestamp="20180806 12:00:19.388" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20180806 12:00:19.388" starttime="20180806 12:00:19.387"></status>
+</kw>
+<msg timestamp="20180806 12:00:19.389" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20180806 12:00:19.389" starttime="20180806 12:00:19.324"></status>
+</kw>
+<tags>
+<tag>core</tag>
+<tag>health</tag>
+</tags>
+<timeout value="1 minute"></timeout>
+<status status="PASS" endtime="20180806 12:00:19.389" critical="yes" starttime="20180806 12:00:19.322"></status>
+</test>
+<test id="s1-s1-s1-s1-t40" name="Basic VNFSDK Health Check">
+<kw name="Run VNFSDK Health Check" library="vnfsdk_interface">
+<doc>Runs VNFSDK Health check</doc>
+<msg timestamp="20180806 12:00:19.393" level="TRACE">Arguments: [  ]</msg>
+<kw name="Run VNFSDK Get Request" library="vnfsdk_interface">
+<doc>Runs VNFSDK Get request</doc>
+<arguments>
+<arg>${VNFSDK_HEALTH_CHECK_PATH}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20180806 12:00:19.394" level="TRACE">Arguments: [ ${data_path}='/onapapi/vnfsdk-marketplace/v1/PackageResource/healthcheck' ]</msg>
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>vnfsdk</arg>
+<arg>${VNFSDK_ENDPOINT}</arg>
+</arguments>
+<assign>
+<var>${session}</var>
+</assign>
+<msg timestamp="20180806 12:00:19.396" level="TRACE">Arguments: [ 'vnfsdk' | 'http://10.0.14.1:8702' ]</msg>
+<msg timestamp="20180806 12:00:19.396" level="DEBUG">Test timeout 1 minute active. 59.995 seconds left.</msg>
+<msg timestamp="20180806 12:00:19.396" level="INFO">Creating Session using : alias=vnfsdk, url=http://10.0.14.1:8702, headers={},                     cookies=None, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<msg timestamp="20180806 12:00:19.396" level="DEBUG">Creating session: vnfsdk</msg>
+<msg timestamp="20180806 12:00:19.397" level="DEBUG">Argument types are:
+&lt;type 'int'&gt;</msg>
+<msg timestamp="20180806 12:00:19.397" level="TRACE">Return: &lt;requests.sessions.Session object at 0x7fddafc8f310&gt;</msg>
+<msg timestamp="20180806 12:00:19.397" level="INFO">${session} = &lt;requests.sessions.Session object at 0x7fddafc8f310&gt;</msg>
+<status status="PASS" endtime="20180806 12:00:19.397" starttime="20180806 12:00:19.395"></status>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the</doc>
+<arguments>
+<arg>vnfsdk</arg>
+<arg>${data_path}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20180806 12:00:19.398" level="TRACE">Arguments: [ 'vnfsdk' | '/onapapi/vnfsdk-marketplace/v1/PackageResource/healthcheck' ]</msg>
+<msg timestamp="20180806 12:00:19.398" level="DEBUG">Test timeout 1 minute active. 59.993 seconds left.</msg>
+<msg timestamp="20180806 12:00:19.399" level="DEBUG">Starting new HTTP connection (1): 10.0.14.1</msg>
+<msg timestamp="20180806 12:01:19.392" level="FAIL">Test timeout 1 minute exceeded.</msg>
+<status status="FAIL" endtime="20180806 12:01:19.392" starttime="20180806 12:00:19.398"></status>
+</kw>
+<status status="FAIL" endtime="20180806 12:01:19.392" starttime="20180806 12:00:19.394"></status>
+</kw>
+<status status="FAIL" endtime="20180806 12:01:19.393" starttime="20180806 12:00:19.392"></status>
+</kw>
+<tags>
+<tag>core</tag>
+<tag>health</tag>
+</tags>
+<timeout value="1 minute"></timeout>
+<status status="FAIL" endtime="20180806 12:01:19.393" critical="yes" starttime="20180806 12:00:19.390">Test timeout 1 minute exceeded.</status>
+</test>
+<doc>Testing ecomp components are available via calls.
+
+Testing ecomp components are available via calls.</doc>
+<status status="FAIL" endtime="20180806 12:01:19.405" starttime="20180806 11:34:12.139"></status>
+</suite>
+<status status="FAIL" endtime="20180806 12:01:19.442" starttime="20180806 11:34:12.137"></status>
+</suite>
+<status status="FAIL" endtime="20180806 12:01:19.464" starttime="20180806 11:34:12.134"></status>
+</suite>
+<status status="FAIL" endtime="20180806 12:01:19.486" starttime="20180806 11:34:12.077"></status>
+</suite>
+<statistics>
+<total>
+<stat fail="28" pass="12">Critical Tests</stat>
+<stat fail="28" pass="12">All Tests</stat>
+</total>
+<tag>
+<stat fail="9" pass="0">3rdparty</stat>
+<stat fail="8" pass="1">api</stat>
+<stat fail="6" pass="11">core</stat>
+<stat fail="1" pass="0">dcae</stat>
+<stat fail="0" pass="1">externalapi</stat>
+<stat fail="28" pass="12">health</stat>
+<stat fail="4" pass="0">multicloud</stat>
+</tag>
+<suite>
+<stat fail="28" id="s1" name="OpenECOMP ETE" pass="12">OpenECOMP ETE</stat>
+<stat fail="28" id="s1-s1" name="Robot" pass="12">OpenECOMP ETE.Robot</stat>
+<stat fail="28" id="s1-s1-s1" name="Testsuites" pass="12">OpenECOMP ETE.Robot.Testsuites</stat>
+<stat fail="28" id="s1-s1-s1-s1" name="Health-Check" pass="12">OpenECOMP ETE.Robot.Testsuites.Health-Check</stat>
+</suite>
+</statistics>
+<errors>
+<msg timestamp="20180806 11:37:14.713" level="WARN">Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x7fddafd4dd10&gt;: Failed to establish a new connection: [Errno 111] Connection refused',)': /healthcheck</msg>
+<msg timestamp="20180806 11:37:14.918" level="WARN">Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x7fddafd4df50&gt;: Failed to establish a new connection: [Errno 111] Connection refused',)': /healthcheck</msg>
+<msg timestamp="20180806 11:37:15.323" level="WARN">Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x7fddafd5e1d0&gt;: Failed to establish a new connection: [Errno 111] Connection refused',)': /healthcheck</msg>
+</errors>
+</robot>

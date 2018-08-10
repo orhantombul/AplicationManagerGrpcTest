@@ -2,7 +2,7 @@ package com.example.grpc.client;
 
 import tr.com.argela.containermanager.Common.ApplicationManager;
 import tr.com.argela.containermanager.Controller.ApplicationControllerUtil;
-import tr.com.argela.containermanager.Edge.GRPCStateNotifier;
+import tr.com.argela.containermanager.Notifier.GRPCStateNotifier;
 
 public class TestClass {
 

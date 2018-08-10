@@ -1,15 +1,26 @@
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import tr.com.argela.containermanager.Common.ApplicationManager;
 import tr.com.argela.containermanager.Controller.ApplicationControllerUtil;
+import tr.com.argela.containermanager.Model.Container;
+import tr.com.argela.containermanager.Model.Docker;
+import tr.com.argela.containermanager.Model.DockerInfo;
 
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
-import java.util.Map;
+import java.io.InputStreamReader;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.*;
+
+import static org.junit.Assert.assertEquals;
 
 public class TestGrpc {
     ApplicationManager applicationManager;
-
+    String BasicString = "Basic";
+    String healthCheckString = "Health Check";
 
     @Before
     public void setup() {
@@ -31,8 +42,8 @@ public class TestGrpc {
     @Test
     public void testAppManager(){
         addMockData();
-        Assert.assertEquals(3,applicationManager.getContainers().size());
-        Assert.assertEquals(applicationManager.getContainer("192.168.1.2").getDockerlist().size(),3);
+        assertEquals(3,applicationManager.getContainers().size());
+        assertEquals(applicationManager.getContainer("192.168.1.2").getDockerlist().size(),3);
     }
 
     private void addMockData() {
@@ -65,14 +76,123 @@ public class TestGrpc {
     @Test
     public void parseContainer(){
         Map<String,Map<String,String>> containerMap=
-                ApplicationControllerUtil.parseContainerTest("src/test/resources/container_ip.txt","=");
-        containerMap.forEach((s, stringStringMap) -> {System.out.println(s);
-            stringStringMap.forEach((s1, s2) -> System.out.println(s1 +" : " +s2));
-        }
-        );
+                ApplicationControllerUtil.parseContainer("src/test/resources/container_ip.txt","=");
+        StringBuilder stringBuilder = new StringBuilder();
+        containerMap.forEach((s, stringStringMap) -> stringStringMap.forEach((s1, s2) -> {
+            s1 = ApplicationControllerUtil.buildKeyNameForEteshare(s1);
+            s2 = ApplicationControllerUtil.buildValueNameForEteshare(s2);
+            stringBuilder.append(s1);
+            stringBuilder.append(" = ");
+            stringBuilder.append(s2);
+            stringBuilder.append("\n");
+        }));
+
+        System.out.println(stringBuilder.toString());
+
+    }
+
+
+    @Test
+    public void testUnderscore(){
+         final String str = "GLOBAL_INJECTED_AAI1_IP_ADDR";
+         String[] parsedStr = str.split("_");
+
+        System.out.println(parsedStr[2]);
     }
     @Test
-    public void updateContainerDockerIp(){}
+    public void testFileReader() throws IOException {
+       // ApplicationControllerUtil.fileReader("src/test/resources/container_ip.txt");
+    }
 
 
+    @Test
+    public void givenUsingJava7_whenWritingToFile_thenCorrect()
+            throws IOException {
+        String readFilename = "src/test/resources/container_ip.txt";
+        Path readfilepath = Paths.get(readFilename);
+        List<String> lines = Files.readAllLines(readfilepath);
+        if(lines==null)return;
+
+        String writeFilename ="src/test/resources/deneme.txt";
+        Path writePath = Paths.get(writeFilename);
+        /*for (String line : lines){
+            String str = line.toUpperCase();
+            Files.write(writePath, Collections.singleton(str));
+        }
+        */
+        Files.write(writePath, lines);
+
+        String read = Files.readAllLines(writePath).get(0);
+
+    }
+    @Test
+    public void readProcess(){
+        applicationManager= ApplicationManager.getApplicationManager();
+        try {
+            String line;
+            Process p = Runtime.getRuntime().exec
+                    ("src/test/resources/ete_c.sh health");
+
+            BufferedReader input =
+                    new BufferedReader
+                            (new InputStreamReader(p.getInputStream()));
+            Container container = new Container();
+            container.setIp("192.168.10.11");
+            List<Docker > dockerList = new ArrayList<>();
+            container.setDockerlist(dockerList);
+            while ((line = input.readLine()) != null) {
+                AbstractMap.SimpleEntry<String ,String> dockerSimpleEntry =
+                        ApplicationControllerUtil.parseProceccessedLine(line);
+                Docker docker= new Docker();
+                DockerInfo dockerInfo = new DockerInfo();
+                docker.setName(dockerSimpleEntry.getKey());
+                dockerInfo.setStatus(dockerSimpleEntry.getValue());
+                docker.setInfo(dockerInfo);
+                System.out.println(dockerSimpleEntry.getKey());
+
+                if(dockerSimpleEntry.getKey() !=null) {
+                    docker.setName(dockerSimpleEntry.getKey());
+                    if(dockerSimpleEntry.getValue() !=null) {
+                        dockerInfo.setStatus(dockerSimpleEntry.getValue());
+                        dockerInfo.setIp("192.168.1.1");
+                        dockerList.add(docker);
+                        applicationManager.addDockerByContainerIp("192.168.10.11", docker);
+                    }
+                }
+            }
+
+            input.close();
+        }
+        catch (Exception err) {
+            err.printStackTrace();
+        }
+    }
+
+    @Test
+    public void reallyTest(){
+        Map<String,Map<String,String>> containerMap=
+                ApplicationControllerUtil.parseContainer("src/main/resources/container_ip.txt","=");
+
+        containerMap.forEach((s, dockerMap) -> {
+                    StringBuilder stringBuilder = new StringBuilder();
+
+                    dockerMap.forEach((s1, s2) -> {
+                        s1 = ApplicationControllerUtil.buildKeyNameForEteshare(s1);
+                        s2 = ApplicationControllerUtil.buildValueNameForEteshare(s2);
+                        stringBuilder.append(s1);
+                        stringBuilder.append(" = ");
+                        stringBuilder.append(s2);
+                        stringBuilder.append("\n");
+                    });
+                    //TODO:write to file (env file)
+
+            String writeFilename ="src/test/resources/deneme.txt";
+            Path writePath = Paths.get(writeFilename);
+            try {
+                Files.write(writePath, Collections.singleton(stringBuilder.toString()));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+    }
 }

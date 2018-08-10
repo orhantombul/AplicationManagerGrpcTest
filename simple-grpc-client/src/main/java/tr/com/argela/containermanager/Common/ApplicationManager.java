@@ -1,7 +1,9 @@
 package tr.com.argela.containermanager.Common;
 
+import tr.com.argela.containermanager.Controller.ApplicationControllerUtil;
 import tr.com.argela.containermanager.Model.Container;
 import tr.com.argela.containermanager.Model.Docker;
+import tr.com.argela.containermanager.Notifier.MailService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,6 +61,14 @@ public class ApplicationManager extends Observable {
         return container;
     }
 
+    public void notifyViaMail(String containerIp,Docker docker)
+    {
+        String body = "Machine is  "+ containerIp + ApplicationControllerUtil.NEW_LINE + "Module is "+ docker;
+        String subject = "MODULE IS DOWN";
+        MailService.sendFromGMail("testdeneme2338@gmail.com","Aa123456.",new String[]{"testdeneme2338@gmail.com"},subject,body);
+        System.out.println("mail sent");
+    }
+
     /**
      * add container ip according to given ip and docker
      * @param ip of container
@@ -74,10 +84,12 @@ public class ApplicationManager extends Observable {
             container = createDockerWithContainerIp(ip);
         }
         List<Docker> docker_list = container.getDockerlist();
-        for(Docker docker1 : docker_list) {
-            if (docker1.equals(docker)){
+        for(Docker oldDocker : docker_list) {
+            if (oldDocker.equals(docker)){
              return;
             }
+            else if( docker.getInfo().getIp().equals(oldDocker.getInfo().getIp()) && docker.getInfo().getStatus().equals("FAIL") && oldDocker.getInfo().getStatus().equals("PASS"))
+                notifyViaMail(ip,oldDocker);
         }
         docker_list.add(docker);
         notifyGRPC();
