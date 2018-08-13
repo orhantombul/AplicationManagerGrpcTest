@@ -5,6 +5,7 @@ import tr.com.argela.containermanager.Controller.ApplicationControllerUtil;
 import tr.com.argela.containermanager.Model.Container;
 import tr.com.argela.containermanager.Model.Docker;
 import tr.com.argela.containermanager.Model.DockerInfo;
+import tr.com.argela.containermanager.Notifier.GRPCStateNotifier;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -16,19 +17,21 @@ import java.nio.file.Paths;
 import java.util.*;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
 
 public class TestGrpc {
     ApplicationManager applicationManager;
     String BasicString = "Basic";
     String healthCheckString = "Health Check";
+    //Config config =new Config();
 
     @Before
     public void setup() {
         applicationManager = ApplicationManager.getApplicationManager();
-        //GRPCStateNotifier grpcStateNotifier = GRPCStateNotifier.getGrpcStateNotifier();
-        //when(grpcStateNotifier.update(any(),any()),)
-        //GRPCStateNotifier.getGrpcStateNotifier();
-        //grpcStateNotifier.startObserving(applicationManager);
+        GRPCStateNotifier grpcStateNotifier = GRPCStateNotifier.getGrpcStateNotifier();
+        GRPCStateNotifier.getGrpcStateNotifier();
+        grpcStateNotifier.startObserving(applicationManager);
 
     }
 
@@ -41,15 +44,74 @@ public class TestGrpc {
 
     @Test
     public void testAppManager(){
-        addMockData();
-        assertEquals(3,applicationManager.getContainers().size());
-        assertEquals(applicationManager.getContainer("192.168.1.2").getDockerlist().size(),3);
-    }
 
-    private void addMockData() {
+       // ApplicationControllerUtil.firstMailAddr =config.getProperty("firstMailAddr");
+        ApplicationControllerUtil.addDockerToAppManager("192.168.1.2","Docker11","192.168.28.61","PASS");
+        ApplicationControllerUtil.addDockerToAppManager("192.168.1.2","Docker71","192.168.28.61","PASS");
+        ApplicationControllerUtil.addDockerToAppManager("192.168.1.2","Docker72","192.168.28.61","PASS");
+        ApplicationControllerUtil.addDockerToAppManager("192.168.1.2","Docker73","192.168.28.61","PASS");
+        ApplicationControllerUtil.addDockerToAppManager("192.168.1.2","Docker74","192.168.28.61","PASS");
+        ApplicationControllerUtil.addDockerToAppManager("192.168.1.2","Docker75","192.168.28.61","PASS");
+        ApplicationControllerUtil.addDockerToAppManager("192.168.1.2","Docker73","192.168.28.61","PASS");
+        ApplicationControllerUtil.addDockerToAppManager("192.168.1.2","Docker76","192.168.28.61","PASS");
+        ApplicationControllerUtil.addDockerToAppManager("192.168.1.2","Docker77","192.168.28.61","PASS");
+        ApplicationControllerUtil.addDockerToAppManager("192.168.1.2","Docker78","192.168.28.61","PASS");
+        ApplicationControllerUtil.addDockerToAppManager("192.168.1.2","Docker79","192.168.28.61","PASS");
+        ApplicationControllerUtil.addDockerToAppManager("192.168.1.2","Docker80","192.168.28.61","PASS");
+        ApplicationControllerUtil.addDockerToAppManager("192.168.1.2","Docker81","192.168.28.61","PASS");
         ApplicationControllerUtil.addDockerToAppManager("192.168.1.2","Docker1","192.168.28.55","PASS");
+        ApplicationControllerUtil.addDockerToAppManager("192.168.1.2","Docker7","192.168.28.55","FAIL");
+        ApplicationControllerUtil.addDockerToAppManager("192.168.1.2","Docker8","192.168.28.55","PASS");
+        ApplicationControllerUtil.addDockerToAppManager("192.168.1.2","Docker9","192.168.28.55","PASS");
+        ApplicationControllerUtil.addDockerToAppManager("192.168.1.2","Docker10","192.168.28.55","PASS");
+        ApplicationControllerUtil.addDockerToAppManager("192.168.1.2","Docker11","192.168.28.55","FAIL");
+        ApplicationControllerUtil.addDockerToAppManager("192.168.1.2","Docker12","192.168.28.55","PASS");
+        ApplicationControllerUtil.addDockerToAppManager("192.168.1.2","Docker13","192.168.28.55","PASS");
+        ApplicationControllerUtil.addDockerToAppManager("192.168.1.2","Docker14","192.168.28.55","PASS");
+        ApplicationControllerUtil.addDockerToAppManager("192.168.1.2","Docker15","192.168.28.55","PASS");
+        ApplicationControllerUtil.addDockerToAppManager("192.168.1.2","Docker16","192.168.28.55","PASS");
+        ApplicationControllerUtil.addDockerToAppManager("192.168.1.2","Docker17","192.168.28.55","PASS");
+        ApplicationControllerUtil.addDockerToAppManager("192.168.1.2","Docker18","192.168.28.55","PASS");
+        ApplicationControllerUtil.addDockerToAppManager("192.168.1.2","Docker19","192.168.28.55","PASS");
+        ApplicationControllerUtil.addDockerToAppManager("192.168.1.2","Docker20","192.168.28.55","PASS");
+        ApplicationControllerUtil.addDockerToAppManager("192.168.1.2","Docker21","192.168.28.55","PASS");
+        ApplicationControllerUtil.addDockerToAppManager("192.168.1.2","Docker22","192.168.28.55","PASS");
+        ApplicationControllerUtil.addDockerToAppManager("192.168.1.2","Docker23","192.168.28.55","PASS");
+
+
 // 1.container 2. docker
         ApplicationControllerUtil.addDockerToAppManager("192.168.1.1","Docker2","192.168.28.56","PASS");
+        ApplicationControllerUtil.addDockerToAppManager("192.168.1.1","Docker11","192.168.28.61","PASS");
+        ApplicationControllerUtil.addDockerToAppManager("192.168.1.1","Docker71","192.168.28.61","PASS");
+        ApplicationControllerUtil.addDockerToAppManager("192.168.1.1","Docker72","192.168.28.61","PASS");
+        ApplicationControllerUtil.addDockerToAppManager("192.168.1.1","Docker73","192.168.28.61","PASS");
+        ApplicationControllerUtil.addDockerToAppManager("192.168.1.1","Docker74","192.168.28.61","PASS");
+        ApplicationControllerUtil.addDockerToAppManager("192.168.1.1","Docker75","192.168.28.61","PASS");
+        ApplicationControllerUtil.addDockerToAppManager("192.168.1.1","Docker73","192.168.28.61","PASS");
+        ApplicationControllerUtil.addDockerToAppManager("192.168.1.1","Docker76","192.168.28.61","PASS");
+        ApplicationControllerUtil.addDockerToAppManager("192.168.1.1","Docker77","192.168.28.61","PASS");
+        ApplicationControllerUtil.addDockerToAppManager("192.168.1.1","Docker78","192.168.28.61","PASS");
+        ApplicationControllerUtil.addDockerToAppManager("192.168.1.1","Docker79","192.168.28.61","PASS");
+        ApplicationControllerUtil.addDockerToAppManager("192.168.1.1","Docker80","192.168.28.61","PASS");
+        ApplicationControllerUtil.addDockerToAppManager("192.168.1.1","Docker81","192.168.28.61","PASS");
+        ApplicationControllerUtil.addDockerToAppManager("192.168.1.1","Docker1","192.168.28.55","PASS");
+        ApplicationControllerUtil.addDockerToAppManager("192.168.1.1","Docker7","192.168.28.55","FAIL");
+        ApplicationControllerUtil.addDockerToAppManager("192.168.1.1","Docker8","192.168.28.55","PASS");
+        ApplicationControllerUtil.addDockerToAppManager("192.168.1.1","Docker9","192.168.28.55","PASS");
+        ApplicationControllerUtil.addDockerToAppManager("192.168.1.1","Docker10","192.168.28.55","PASS");
+        ApplicationControllerUtil.addDockerToAppManager("192.168.1.1","Docker11","192.168.28.55","FAIL");
+        ApplicationControllerUtil.addDockerToAppManager("192.168.1.1","Docker12","192.168.28.55","PASS");
+        ApplicationControllerUtil.addDockerToAppManager("192.168.1.1","Docker13","192.168.28.55","PASS");
+        ApplicationControllerUtil.addDockerToAppManager("192.168.1.1","Docker14","192.168.28.55","PASS");
+        ApplicationControllerUtil.addDockerToAppManager("192.168.1.1","Docker15","192.168.28.55","PASS");
+        ApplicationControllerUtil.addDockerToAppManager("192.168.1.1","Docker16","192.168.28.55","PASS");
+        ApplicationControllerUtil.addDockerToAppManager("192.168.1.1","Docker17","192.168.28.55","PASS");
+        ApplicationControllerUtil.addDockerToAppManager("192.168.1.1","Docker18","192.168.28.55","PASS");
+        ApplicationControllerUtil.addDockerToAppManager("192.168.1.1","Docker19","192.168.28.55","PASS");
+        ApplicationControllerUtil.addDockerToAppManager("192.168.1.1","Docker20","192.168.28.55","PASS");
+        ApplicationControllerUtil.addDockerToAppManager("192.168.1.1","Docker21","192.168.28.55","PASS");
+        ApplicationControllerUtil.addDockerToAppManager("192.168.1.1","Docker22","192.168.28.55","PASS");
+        ApplicationControllerUtil.addDockerToAppManager("192.168.1.1","Docker23","192.168.28.55","PASS");
 // 2.container 1.docker
         ApplicationControllerUtil.addDockerToAppManager("192.168.1.2","Docker3","192.168.28.57","FAIL");
 // 2.container 2.docker
@@ -59,7 +121,20 @@ public class TestGrpc {
 // 3.container 2.docker
         ApplicationControllerUtil.addDockerToAppManager("192.168.1.3","Docker6","192.168.28.60","FAIL");
 // 3.container 3.docker
-        ApplicationControllerUtil.addDockerToAppManager("192.168.1.3","Docker7","192.168.28.61","PASS");
+        ApplicationControllerUtil.addDockerToAppManager("192.168.1.3","Docker11","192.168.28.61","PASS");
+        ApplicationControllerUtil.addDockerToAppManager("192.168.1.3","Docker71","192.168.28.61","PASS");
+        ApplicationControllerUtil.addDockerToAppManager("192.168.1.3","Docker72","192.168.28.61","PASS");
+        ApplicationControllerUtil.addDockerToAppManager("192.168.1.3","Docker73","192.168.28.61","PASS");
+        ApplicationControllerUtil.addDockerToAppManager("192.168.1.3","Docker74","192.168.28.61","PASS");
+        ApplicationControllerUtil.addDockerToAppManager("192.168.1.3","Docker75","192.168.28.61","PASS");
+        ApplicationControllerUtil.addDockerToAppManager("192.168.1.3","Docker73","192.168.28.61","PASS");
+        ApplicationControllerUtil.addDockerToAppManager("192.168.1.3","Docker76","192.168.28.61","PASS");
+        ApplicationControllerUtil.addDockerToAppManager("192.168.1.3","Docker77","192.168.28.61","PASS");
+        ApplicationControllerUtil.addDockerToAppManager("192.168.1.3","Docker78","192.168.28.61","PASS");
+        ApplicationControllerUtil.addDockerToAppManager("192.168.1.3","Docker79","192.168.28.61","PASS");
+        ApplicationControllerUtil.addDockerToAppManager("192.168.1.3","Docker80","192.168.28.61","PASS");
+        ApplicationControllerUtil.addDockerToAppManager("192.168.1.3","Docker81","192.168.28.61","PASS");
+
         //    System.out.println(applicationManager.getContainers());
     }
 

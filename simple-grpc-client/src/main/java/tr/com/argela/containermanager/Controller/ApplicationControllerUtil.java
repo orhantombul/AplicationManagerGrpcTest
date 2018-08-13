@@ -25,7 +25,10 @@ public class ApplicationControllerUtil {
     public static final String ROBOT_IP_ADDRESS = "simple-grpc-client/src/main/resources/eteshare/config/vm_properties.py";
     public static final String NEW_LINE = "\n";
     public static final String ROBOT_SCRIPT_FILE_ADDRESS = "simple-grpc-client/src/main/resources/ete.sh health";
-
+    public static String server_ip_addr ="localhost";
+    public static Integer server_port_addr =5016;
+    public static String firstMailAddr = "testdeneme2338@gmail.com";
+    public static String secondMailAddr = "asddas@gmail.com";
     private ApplicationControllerUtil() {
     }
 
@@ -109,7 +112,6 @@ public class ApplicationControllerUtil {
         List<String> lines = null;
         try {
             lines = Files.readAllLines(path);
-
             if (lines == null) {
                 return null;
             }

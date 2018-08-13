@@ -11,6 +11,9 @@ import tr.com.argela.grpcserver.SendServiceGrpc;
 
 import java.util.*;
 
+import static tr.com.argela.containermanager.Controller.ApplicationControllerUtil.server_ip_addr;
+import static tr.com.argela.containermanager.Controller.ApplicationControllerUtil.server_port_addr;
+
 public class GRPCStateNotifier implements Observer {
     ContainerListRequest containerListRequest;
     static GRPCStateNotifier grpcStateNotifier;
@@ -35,7 +38,8 @@ public class GRPCStateNotifier implements Observer {
 
     @Override
     public void update(Observable observable, Object o) {
-        ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", 6002).usePlaintext(true)
+
+        ManagedChannel channel = ManagedChannelBuilder.forAddress(server_ip_addr, server_port_addr).usePlaintext(true)
                 .build();
 
         SendServiceGrpc.SendServiceBlockingStub sendServiceBlockingStub = SendServiceGrpc.newBlockingStub(channel);

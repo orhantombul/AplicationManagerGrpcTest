@@ -61,7 +61,6 @@ public class Main {
         };
         ScheduledExecutorService executorService = Executors.newScheduledThreadPool(1);
         executorService.scheduleAtFixedRate(runnable,1,240,TimeUnit.SECONDS);
-
     }
 
     private static BufferedReader processScriptAndGenerateBufferedReader(){
@@ -89,7 +88,6 @@ public class Main {
         if(docker !=  null)
             applicationManager.addDockerByContainerIp(container_ip, docker);
     }
-
 
 }
 

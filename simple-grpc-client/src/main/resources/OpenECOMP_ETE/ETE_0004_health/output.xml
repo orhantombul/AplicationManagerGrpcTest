@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generated="20180810 21:49:02.772" generator="Robot 3.0.4 (Python 2.7.12 on linux2)">
-<suite source="/home/argela/AplicationManagerGrpc/simple-grpc-client/src/main/resources/OpenECOMP_ETE" id="s1" name="OpenECOMP ETE">
-<suite source="/home/argela/AplicationManagerGrpc/simple-grpc-client/src/main/resources/OpenECOMP_ETE/robot" id="s1-s1" name="Robot">
-<suite source="/home/argela/AplicationManagerGrpc/simple-grpc-client/src/main/resources/OpenECOMP_ETE/robot/testsuites" id="s1-s1-s1" name="Testsuites">
-<suite source="/home/argela/AplicationManagerGrpc/simple-grpc-client/src/main/resources/OpenECOMP_ETE/robot/testsuites/health-check.robot" id="s1-s1-s1-s1" name="Health-Check">
+<robot generated="20180811 12:14:16.786" generator="Robot 3.0.4 (Python 2.7.15rc1 on linux2)">
+<suite source="/home/orhan/ApplicationManagerGrpcTest/simple-grpc-client/src/main/resources/OpenECOMP_ETE" id="s1" name="OpenECOMP ETE">
+<suite source="/home/orhan/ApplicationManagerGrpcTest/simple-grpc-client/src/main/resources/OpenECOMP_ETE/robot" id="s1-s1" name="Robot">
+<suite source="/home/orhan/ApplicationManagerGrpcTest/simple-grpc-client/src/main/resources/OpenECOMP_ETE/robot/testsuites" id="s1-s1-s1" name="Testsuites">
+<suite source="/home/orhan/ApplicationManagerGrpcTest/simple-grpc-client/src/main/resources/OpenECOMP_ETE/robot/testsuites/health-check.robot" id="s1-s1-s1-s1" name="Health-Check">
 <test id="s1-s1-s1-s1-t1" name="Basic A&amp;AI Health Check">
 <kw name="Run A&amp;AI Health Check" library="aai_interface">
 <doc>Runs an A&amp;AI health check</doc>
-<msg timestamp="20180810 21:49:03.391" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20180811 12:14:16.944" level="TRACE">Arguments: [  ]</msg>
 <kw name="Run A&amp;AI Get Request" library="aai_interface">
 <doc>Runs an A&amp;AI get request</doc>
 <arguments>
@@ -16,138 +16,26 @@
 <assign>
 <var>${resp}</var>
 </assign>
-<msg timestamp="20180810 21:49:03.392" level="TRACE">Arguments: [ ${data_path}='/aai/util/echo?action=long' ]</msg>
-<kw name="Disable Warnings" library="HTTPUtils">
-<doc>Disable the cert warnings when creating sessions for A&amp;AI API Calls</doc>
-<msg timestamp="20180810 21:49:03.393" level="TRACE">Arguments: [  ]</msg>
-<msg timestamp="20180810 21:49:03.393" level="DEBUG">Test timeout 2 seconds active. 1.997 seconds left.</msg>
-<msg timestamp="20180810 21:49:03.393" level="TRACE">Return: None</msg>
-<status status="PASS" endtime="20180810 21:49:03.393" starttime="20180810 21:49:03.393"></status>
+<msg timestamp="20180811 12:14:16.944" level="TRACE">Arguments: [ ${data_path}='/aai/util/echo?action=long' ]</msg>
+<kw name="Disable Warnings">
+<msg timestamp="20180811 12:14:16.949" level="FAIL">No keyword with name 'Disable Warnings' found.</msg>
+<status status="FAIL" endtime="20180811 12:14:16.949" starttime="20180811 12:14:16.949"></status>
 </kw>
-<kw name="Create List" library="BuiltIn">
-<doc>Returns a list containing given items.</doc>
-<arguments>
-<arg>${GLOBAL_AAI_USERNAME}</arg>
-<arg>${GLOBAL_AAI_PASSWORD}</arg>
-</arguments>
-<assign>
-<var>${auth}</var>
-</assign>
-<msg timestamp="20180810 21:49:03.394" level="TRACE">Arguments: [ b'AAI' | b'AAI' ]</msg>
-<msg timestamp="20180810 21:49:03.394" level="DEBUG">Test timeout 2 seconds active. 1.995 seconds left.</msg>
-<msg timestamp="20180810 21:49:03.394" level="TRACE">Return: [b'AAI', b'AAI']</msg>
-<msg timestamp="20180810 21:49:03.395" level="INFO">${auth} = ['AAI', 'AAI']</msg>
-<status status="PASS" endtime="20180810 21:49:03.395" starttime="20180810 21:49:03.394"></status>
+<status status="FAIL" endtime="20180811 12:14:16.949" starttime="20180811 12:14:16.944"></status>
 </kw>
-<kw name="Create Session" library="RequestsLibrary">
-<doc>Create Session: create a HTTP session to a server</doc>
-<arguments>
-<arg>aai</arg>
-<arg>${AAI_FRONTEND_ENDPOINT}</arg>
-<arg>auth=${auth}</arg>
-</arguments>
-<assign>
-<var>${session}</var>
-</assign>
-<msg timestamp="20180810 21:49:03.395" level="TRACE">Arguments: [ 'aai' | 'https://192.168.61.18:8443' | auth=[b'AAI', b'AAI'] ]</msg>
-<msg timestamp="20180810 21:49:03.396" level="DEBUG">Test timeout 2 seconds active. 1.994 seconds left.</msg>
-<msg timestamp="20180810 21:49:03.396" level="INFO">Creating Session using : alias=aai, url=https://192.168.61.18:8443, headers={},                     cookies=None, auth=&lt;requests.auth.HTTPBasicAuth object at 0x7fe781f64590&gt;, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
-<msg timestamp="20180810 21:49:03.396" level="DEBUG">Creating session: aai</msg>
-<msg timestamp="20180810 21:49:03.396" level="DEBUG">Argument types are:
-&lt;type 'int'&gt;</msg>
-<msg timestamp="20180810 21:49:03.398" level="TRACE">Return: &lt;requests.sessions.Session object at 0x7fe781fec2d0&gt;</msg>
-<msg timestamp="20180810 21:49:03.398" level="INFO">${session} = &lt;requests.sessions.Session object at 0x7fe781fec2d0&gt;</msg>
-<status status="PASS" endtime="20180810 21:49:03.398" starttime="20180810 21:49:03.395"></status>
-</kw>
-<kw name="Generate UUID" library="UUID">
-<doc>generate a uuid</doc>
-<assign>
-<var>${uuid}</var>
-</assign>
-<msg timestamp="20180810 21:49:03.399" level="TRACE">Arguments: [  ]</msg>
-<msg timestamp="20180810 21:49:03.399" level="DEBUG">Test timeout 2 seconds active. 1.991 seconds left.</msg>
-<msg timestamp="20180810 21:49:03.399" level="TRACE">Return: UUID('a66a63df-2ac8-4ed9-aa2e-ce7d85d0e949')</msg>
-<msg timestamp="20180810 21:49:03.399" level="INFO">${uuid} = a66a63df-2ac8-4ed9-aa2e-ce7d85d0e949</msg>
-<status status="PASS" endtime="20180810 21:49:03.399" starttime="20180810 21:49:03.399"></status>
-</kw>
-<kw name="Create Dictionary" library="BuiltIn">
-<doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<arguments>
-<arg>Accept=application/json</arg>
-<arg>Content-Type=application/json</arg>
-<arg>X-TransactionId=${GLOBAL_APPLICATION_ID}-${uuid}</arg>
-<arg>X-FromAppId=${GLOBAL_APPLICATION_ID}</arg>
-</arguments>
-<assign>
-<var>${headers}</var>
-</assign>
-<msg timestamp="20180810 21:49:03.400" level="TRACE">Arguments: [ 'Accept=application/json' | 'Content-Type=application/json' | 'X-TransactionId=${GLOBAL_APPLICATION_ID}-${uuid}' | 'X-FromAppId=${GLOBAL_APPLICATION_ID}' ]</msg>
-<msg timestamp="20180810 21:49:03.402" level="TRACE">Return: {'Accept': 'application/json', 'Content-Type': 'application/json', 'X-FromAppId': 'robot-ete', 'X-TransactionId': 'robot-ete-a66a63df-2ac8-4ed9-aa2e-ce7d85d0e949'}</msg>
-<msg timestamp="20180810 21:49:03.402" level="INFO">${headers} = {u'Accept': u'application/json', u'Content-Type': u'application/json', u'X-TransactionId': u'robot-ete-a66a63df-2ac8-4ed9-aa2e-ce7d85d0e949', u'X-FromAppId': u'robot-ete'}</msg>
-<status status="PASS" endtime="20180810 21:49:03.402" starttime="20180810 21:49:03.400"></status>
-</kw>
-<kw name="Get Request" library="RequestsLibrary">
-<doc>Send a GET request on the session object found using the</doc>
-<arguments>
-<arg>aai</arg>
-<arg>${data_path}</arg>
-<arg>headers=${headers}</arg>
-</arguments>
-<assign>
-<var>${resp}</var>
-</assign>
-<msg timestamp="20180810 21:49:03.403" level="TRACE">Arguments: [ 'aai' | '/aai/util/echo?action=long' | headers={'Accept': 'application/json', 'Content-Type': 'application/json', 'X-FromAppId': 'robot-ete', 'X-TransactionId': 'robot-ete-a66a63df-2ac8-4ed9-aa2e-ce7d85d0e949'} ]</msg>
-<msg timestamp="20180810 21:49:03.403" level="DEBUG">Test timeout 2 seconds active. 1.987 seconds left.</msg>
-<msg timestamp="20180810 21:49:03.404" level="DEBUG">Starting new HTTPS connection (1): 192.168.61.18</msg>
-<msg timestamp="20180810 21:49:03.428" level="DEBUG">https://192.168.61.18:8443 "GET /aai/util/echo?action=long HTTP/1.1" 200 252</msg>
-<msg timestamp="20180810 21:49:03.429" level="INFO">Get Request using : alias=aai, uri=/aai/util/echo?action=long, headers={u'Accept': u'application/json', u'Content-Type': u'application/json', u'X-TransactionId': u'robot-ete-a66a63df-2ac8-4ed9-aa2e-ce7d85d0e949', u'X-FromAppId': u'robot-ete'} </msg>
-<msg timestamp="20180810 21:49:03.429" level="TRACE">Return: &lt;Response [200]&gt;</msg>
-<msg timestamp="20180810 21:49:03.429" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
-<status status="PASS" endtime="20180810 21:49:03.429" starttime="20180810 21:49:03.403"></status>
-</kw>
-<kw name="Log" library="BuiltIn">
-<doc>Logs the given message with the given level.</doc>
-<arguments>
-<arg>Received response from aai ${resp.text}</arg>
-</arguments>
-<msg timestamp="20180810 21:49:03.431" level="TRACE">Arguments: [ 'Received response from aai {"responseMessages":{"responseMessage":[{"messageId":"INF0001","text":"Success X-FromAppId=%1 X-TransactionId=%2 (msg=%3) (rc=%4)","variables":{"variable":["robot-ete","24cacc50-8555-4820-b675-78c504bcf3ea","Successful health check:OK","0.0.0002"]}}]}}' ]</msg>
-<msg timestamp="20180810 21:49:03.431" level="DEBUG">Test timeout 2 seconds active. 1.959 seconds left.</msg>
-<msg timestamp="20180810 21:49:03.431" level="INFO">Received response from aai {"responseMessages":{"responseMessage":[{"messageId":"INF0001","text":"Success X-FromAppId=%1 X-TransactionId=%2 (msg=%3) (rc=%4)","variables":{"variable":["robot-ete","24cacc50-8555-4820-b675-78c504bcf3ea","Successful health check:OK","0.0.0002"]}}]}}</msg>
-<msg timestamp="20180810 21:49:03.432" level="TRACE">Return: None</msg>
-<status status="PASS" endtime="20180810 21:49:03.432" starttime="20180810 21:49:03.430"></status>
-</kw>
-<msg timestamp="20180810 21:49:03.432" level="TRACE">Return: &lt;Response [200]&gt;</msg>
-<msg timestamp="20180810 21:49:03.432" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
-<status status="PASS" endtime="20180810 21:49:03.433" starttime="20180810 21:49:03.392"></status>
-</kw>
-<kw name="Should Be Equal As Strings" library="BuiltIn">
-<doc>Fails if objects are unequal after converting them to strings.</doc>
-<arguments>
-<arg>${resp.status_code}</arg>
-<arg>200</arg>
-</arguments>
-<msg timestamp="20180810 21:49:03.434" level="TRACE">Arguments: [ 200 | '200' ]</msg>
-<msg timestamp="20180810 21:49:03.434" level="DEBUG">Test timeout 2 seconds active. 1.956 seconds left.</msg>
-<msg timestamp="20180810 21:49:03.434" level="INFO">Argument types are:
-&lt;type 'int'&gt;
-&lt;type 'unicode'&gt;</msg>
-<msg timestamp="20180810 21:49:03.434" level="TRACE">Return: None</msg>
-<status status="PASS" endtime="20180810 21:49:03.435" starttime="20180810 21:49:03.433"></status>
-</kw>
-<msg timestamp="20180810 21:49:03.435" level="TRACE">Return: None</msg>
-<status status="PASS" endtime="20180810 21:49:03.435" starttime="20180810 21:49:03.391"></status>
+<status status="FAIL" endtime="20180811 12:14:16.949" starttime="20180811 12:14:16.944"></status>
 </kw>
 <tags>
 <tag>core</tag>
 <tag>health</tag>
 </tags>
 <timeout value="2 seconds"></timeout>
-<status status="PASS" endtime="20180810 21:49:03.435" critical="yes" starttime="20180810 21:49:03.389"></status>
+<status status="FAIL" endtime="20180811 12:14:16.950" critical="yes" starttime="20180811 12:14:16.943">No keyword with name 'Disable Warnings' found.</status>
 </test>
 <test id="s1-s1-s1-s1-t2" name="Basic AAF Health Check">
 <kw name="Run AAF Health Check" library="aaf_interface">
 <doc>Runs AAF Health check</doc>
-<msg timestamp="20180810 21:49:03.439" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20180811 12:14:16.951" level="TRACE">Arguments: [  ]</msg>
 <kw name="Run AAF Get Request" library="aaf_interface">
 <doc>Runs AAF Get request</doc>
 <arguments>
@@ -156,7 +44,7 @@
 <assign>
 <var>${resp}</var>
 </assign>
-<msg timestamp="20180810 21:49:03.441" level="TRACE">Arguments: [ ${data_path}='/authz/perms/user/demo@people.osaaf.org' ]</msg>
+<msg timestamp="20180811 12:14:16.951" level="TRACE">Arguments: [ ${data_path}='/authz/perms/user/demo@people.osaaf.org' ]</msg>
 <kw name="Create List" library="BuiltIn">
 <doc>Returns a list containing given items.</doc>
 <arguments>
@@ -166,106 +54,1986 @@
 <assign>
 <var>${auth}</var>
 </assign>
-<msg timestamp="20180810 21:49:03.443" level="TRACE">Arguments: [ b'demo@people.osaaf.org' | b'demo123456!' ]</msg>
-<msg timestamp="20180810 21:49:03.443" level="DEBUG">Test timeout 2 seconds active. 1.993 seconds left.</msg>
-<msg timestamp="20180810 21:49:03.444" level="TRACE">Return: [b'demo@people.osaaf.org', b'demo123456!']</msg>
-<msg timestamp="20180810 21:49:03.444" level="INFO">${auth} = ['demo@people.osaaf.org', 'demo123456!']</msg>
-<status status="PASS" endtime="20180810 21:49:03.444" starttime="20180810 21:49:03.442"></status>
+<msg timestamp="20180811 12:14:16.952" level="TRACE">Arguments: [ b'demo@people.osaaf.org' | b'demo123456!' ]</msg>
+<msg timestamp="20180811 12:14:16.952" level="DEBUG">Test timeout 2 seconds active. 1.998 seconds left.</msg>
+<msg timestamp="20180811 12:14:16.952" level="TRACE">Return: [b'demo@people.osaaf.org', b'demo123456!']</msg>
+<msg timestamp="20180811 12:14:16.952" level="INFO">${auth} = ['demo@people.osaaf.org', 'demo123456!']</msg>
+<status status="PASS" endtime="20180811 12:14:16.952" starttime="20180811 12:14:16.951"></status>
 </kw>
-<kw name="Create Session" library="RequestsLibrary">
-<doc>Create Session: create a HTTP session to a server</doc>
+<kw name="Create Session">
 <arguments>
 <arg>aaf</arg>
 <arg>${GLOBAL_AAF_SERVER}</arg>
 <arg>auth=${auth}</arg>
 </arguments>
 <assign>
-<var>${session}</var>
+<var>${session}=</var>
 </assign>
-<msg timestamp="20180810 21:49:03.445" level="TRACE">Arguments: [ 'aaf' | b'https://aaf.api.simpledemo.onap.org:8100' | auth=[b'demo@people.osaaf.org', b'demo123456!'] ]</msg>
-<msg timestamp="20180810 21:49:03.445" level="DEBUG">Test timeout 2 seconds active. 1.991 seconds left.</msg>
-<msg timestamp="20180810 21:49:03.446" level="INFO">Creating Session using : alias=aaf, url=https://aaf.api.simpledemo.onap.org:8100, headers={},                     cookies=None, auth=&lt;requests.auth.HTTPBasicAuth object at 0x7fe781e45750&gt;, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
-<msg timestamp="20180810 21:49:03.446" level="DEBUG">Creating session: aaf</msg>
-<msg timestamp="20180810 21:49:03.446" level="DEBUG">Argument types are:
-&lt;type 'int'&gt;</msg>
-<msg timestamp="20180810 21:49:03.446" level="TRACE">Return: &lt;requests.sessions.Session object at 0x7fe78388ca90&gt;</msg>
-<msg timestamp="20180810 21:49:03.447" level="INFO">${session} = &lt;requests.sessions.Session object at 0x7fe78388ca90&gt;</msg>
-<status status="PASS" endtime="20180810 21:49:03.447" starttime="20180810 21:49:03.445"></status>
+<msg timestamp="20180811 12:14:16.957" level="FAIL">No keyword with name 'Create Session' found.</msg>
+<status status="FAIL" endtime="20180811 12:14:16.957" starttime="20180811 12:14:16.956"></status>
 </kw>
-<kw name="Generate UUID" library="UUID">
-<doc>generate a uuid</doc>
-<assign>
-<var>${uuid}</var>
-</assign>
-<msg timestamp="20180810 21:49:03.448" level="TRACE">Arguments: [  ]</msg>
-<msg timestamp="20180810 21:49:03.448" level="DEBUG">Test timeout 2 seconds active. 1.989 seconds left.</msg>
-<msg timestamp="20180810 21:49:03.448" level="TRACE">Return: UUID('d486e97d-46e0-44ef-b435-e4c9c4c0c034')</msg>
-<msg timestamp="20180810 21:49:03.448" level="INFO">${uuid} = d486e97d-46e0-44ef-b435-e4c9c4c0c034</msg>
-<status status="PASS" endtime="20180810 21:49:03.449" starttime="20180810 21:49:03.447"></status>
+<status status="FAIL" endtime="20180811 12:14:16.957" starttime="20180811 12:14:16.951"></status>
 </kw>
-<kw name="Create Dictionary" library="BuiltIn">
-<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="FAIL" endtime="20180811 12:14:16.957" starttime="20180811 12:14:16.950"></status>
+</kw>
+<tags>
+<tag>core</tag>
+<tag>health</tag>
+</tags>
+<timeout value="2 seconds"></timeout>
+<status status="FAIL" endtime="20180811 12:14:16.957" critical="yes" starttime="20180811 12:14:16.950">No keyword with name 'Create Session' found.</status>
+</test>
+<test id="s1-s1-s1-s1-t3" name="Basic AAF SMS Health Check">
+<kw name="Run SMS Health Check" library="sms_interface">
+<doc>Runs SMS Health check</doc>
+<msg timestamp="20180811 12:14:16.958" level="TRACE">Arguments: [  ]</msg>
+<kw name="Run SMS Get Request" library="sms_interface">
+<doc>Runs SMS Get request</doc>
 <arguments>
-<arg>Accept=application/json</arg>
-<arg>Content-Type=application/json</arg>
-<arg>X-TransactionId=${GLOBAL_APPLICATION_ID}-${uuid}</arg>
-<arg>X-FromAppId=${GLOBAL_APPLICATION_ID}</arg>
-</arguments>
-<assign>
-<var>${headers}</var>
-</assign>
-<msg timestamp="20180810 21:49:03.450" level="TRACE">Arguments: [ 'Accept=application/json' | 'Content-Type=application/json' | 'X-TransactionId=${GLOBAL_APPLICATION_ID}-${uuid}' | 'X-FromAppId=${GLOBAL_APPLICATION_ID}' ]</msg>
-<msg timestamp="20180810 21:49:03.451" level="TRACE">Return: {'Accept': 'application/json', 'Content-Type': 'application/json', 'X-FromAppId': 'robot-ete', 'X-TransactionId': 'robot-ete-d486e97d-46e0-44ef-b435-e4c9c4c0c034'}</msg>
-<msg timestamp="20180810 21:49:03.451" level="INFO">${headers} = {u'Accept': u'application/json', u'Content-Type': u'application/json', u'X-TransactionId': u'robot-ete-d486e97d-46e0-44ef-b435-e4c9c4c0c034', u'X-FromAppId': u'robot-ete'}</msg>
-<status status="PASS" endtime="20180810 21:49:03.451" starttime="20180810 21:49:03.449"></status>
-</kw>
-<kw name="Get Request" library="RequestsLibrary">
-<doc>Send a GET request on the session object found using the</doc>
-<arguments>
-<arg>aaf</arg>
-<arg>${data_path}</arg>
-<arg>headers=${headers}</arg>
+<arg>${SMS_HEALTH_CHECK_PATH}</arg>
 </arguments>
 <assign>
 <var>${resp}</var>
 </assign>
-<msg timestamp="20180810 21:49:03.452" level="TRACE">Arguments: [ 'aaf' | '/authz/perms/user/demo@people.osaaf.org' | headers={'Accept': 'application/json', 'Content-Type': 'application/json', 'X-FromAppId': 'robot-ete', 'X-TransactionId': 'robot-ete-d486e97d-46e0-44ef-b435-e4c9c4c0c034'} ]</msg>
-<msg timestamp="20180810 21:49:03.452" level="DEBUG">Test timeout 2 seconds active. 1.985 seconds left.</msg>
-<msg timestamp="20180810 21:49:03.453" level="DEBUG">Starting new HTTPS connection (1): aaf.api.simpledemo.onap.org</msg>
-<msg timestamp="20180810 21:49:08.472" level="FAIL">IOError: [Errno 32] Broken pipe</msg>
-<msg timestamp="20180810 21:49:08.472" level="DEBUG">Traceback (most recent call last):
-  File "/home/argela/AplicationManagerGrpc/simple-grpc-client/src/main/resources/OpenECOMP_ETE/robot/library/RequestsLibrary/RequestsKeywords.py", line 338, in get_request
-    session, uri, params, headers, redir, timeout)
-  File "/home/argela/AplicationManagerGrpc/simple-grpc-client/src/main/resources/OpenECOMP_ETE/robot/library/RequestsLibrary/RequestsKeywords.py", line 842, in _get_request
-    cookies=self.cookies)
-  File "/home/argela/AplicationManagerGrpc/simple-grpc-client/src/main/resources/OpenECOMP_ETE/robot/library/requests/sessions.py", line 521, in get
-    return self.request('GET', url, **kwargs)
-  File "/home/argela/AplicationManagerGrpc/simple-grpc-client/src/main/resources/OpenECOMP_ETE/robot/library/requests/sessions.py", line 508, in request
-    resp = self.send(prep, **send_kwargs)
-  File "/home/argela/AplicationManagerGrpc/simple-grpc-client/src/main/resources/OpenECOMP_ETE/robot/library/requests/sessions.py", line 618, in send
-    r = adapter.send(request, **kwargs)
-  File "/home/argela/AplicationManagerGrpc/simple-grpc-client/src/main/resources/OpenECOMP_ETE/robot/library/requests/adapters.py", line 440, in send
-    timeout=timeout
-  File "/home/argela/AplicationManagerGrpc/simple-grpc-client/src/main/resources/OpenECOMP_ETE/robot/library/urllib3/connectionpool.py", line 601, in urlopen
-    chunked=chunked)
-  File "/home/argela/AplicationManagerGrpc/simple-grpc-client/src/main/resources/OpenECOMP_ETE/robot/library/urllib3/connectionpool.py", line 346, in _make_request
-    self._validate_conn(conn)
-  File "/home/argela/AplicationManagerGrpc/simple-grpc-client/src/main/resources/OpenECOMP_ETE/robot/library/urllib3/connectionpool.py", line 850, in _validate_conn
-    conn.connect()
-  File "/home/argela/AplicationManagerGrpc/simple-grpc-client/src/main/resources/OpenECOMP_ETE/robot/library/urllib3/connection.py", line 284, in connect
-    conn = self._new_conn()
-  File "/home/argela/AplicationManagerGrpc/simple-grpc-client/src/main/resources/OpenECOMP_ETE/robot/library/urllib3/connection.py", line 141, in _new_conn
-    (self.host, self.port), self.timeout, **extra_kw)
-  File "/home/argela/AplicationManagerGrpc/simple-grpc-client/src/main/resources/OpenECOMP_ETE/robot/library/urllib3/util/connection.py", line 60, in create_connection
-    for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
-  File "/usr/local/lib/python2.7/dist-packages/robot/running/signalhandler.py", line 42, in __call__
-    sys.__stderr__.write('Second signal will force exit.\n')</msg>
-<status status="FAIL" endtime="20180810 21:49:08.472" starttime="20180810 21:49:03.451"></status>
+<msg timestamp="20180811 12:14:16.959" level="TRACE">Arguments: [ ${data_path}='/v1/sms/healthcheck' ]</msg>
+<kw name="Create Session">
+<arguments>
+<arg>smssession</arg>
+<arg>${SMS_ENDPOINT}</arg>
+</arguments>
+<assign>
+<var>${session}=</var>
+</assign>
+<msg timestamp="20180811 12:14:16.964" level="FAIL">No keyword with name 'Create Session' found.</msg>
+<status status="FAIL" endtime="20180811 12:14:16.964" starttime="20180811 12:14:16.964"></status>
 </kw>
-<status status="FAIL" endtime="20180810 21:49:08.472" starttime="20180810 21:49:03.440"></status>
+<status status="FAIL" endtime="20180811 12:14:16.964" starttime="20180811 12:14:16.959"></status>
 </kw>
-<status status="FAIL" endtime="20180810 21:49:08.473" starttime="20180810 21:49:03.439"></status>
+<status status="FAIL" endtime="20180811 12:14:16.964" starttime="20180811 12:14:16.958"></status>
 </kw>
+<tags>
+<tag>core</tag>
+<tag>health</tag>
+</tags>
+<timeout value="2 seconds"></timeout>
+<status status="FAIL" endtime="20180811 12:14:16.964" critical="yes" starttime="20180811 12:14:16.958">No keyword with name 'Create Session' found.</status>
+</test>
+<test id="s1-s1-s1-s1-t4" name="Basic APPC Health Check">
+<kw name="Run APPC Health Check" library="appc_interface">
+<doc>Runs an APPC healthcheck</doc>
+<msg timestamp="20180811 12:14:16.965" level="TRACE">Arguments: [  ]</msg>
+<kw name="Run APPC Post Request" library="appc_interface">
+<doc>Runs an APPC post request</doc>
+<arguments>
+<arg>${APPC_INDEX PATH}${APPC_HEALTHCHECK_OPERATION_PATH}</arg>
+<arg>${None}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20180811 12:14:16.966" level="TRACE">Arguments: [ ${data_path}='/restconf/operations/SLI-API:healthcheck' | ${data}=None | ${content}='json' ]</msg>
+<kw name="Create List" library="BuiltIn">
+<doc>Returns a list containing given items.</doc>
+<arguments>
+<arg>${GLOBAL_APPC_USERNAME}</arg>
+<arg>${GLOBAL_APPC_PASSWORD}</arg>
+</arguments>
+<assign>
+<var>${auth}</var>
+</assign>
+<msg timestamp="20180811 12:14:16.967" level="TRACE">Arguments: [ b'admin' | b'admin' ]</msg>
+<msg timestamp="20180811 12:14:16.967" level="DEBUG">Test timeout 2 seconds active. 1.998 seconds left.</msg>
+<msg timestamp="20180811 12:14:16.967" level="TRACE">Return: [b'admin', b'admin']</msg>
+<msg timestamp="20180811 12:14:16.967" level="INFO">${auth} = ['admin', 'admin']</msg>
+<status status="PASS" endtime="20180811 12:14:16.967" starttime="20180811 12:14:16.966"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>Creating session ${APPC_ENDPOINT}</arg>
+</arguments>
+<msg timestamp="20180811 12:14:16.967" level="TRACE">Arguments: [ 'Creating session http://192.168.61.15:8282' ]</msg>
+<msg timestamp="20180811 12:14:16.968" level="DEBUG">Test timeout 2 seconds active. 1.997 seconds left.</msg>
+<msg timestamp="20180811 12:14:16.968" level="INFO">Creating session http://192.168.61.15:8282</msg>
+<msg timestamp="20180811 12:14:16.968" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20180811 12:14:16.968" starttime="20180811 12:14:16.967"></status>
+</kw>
+<kw name="Create Session">
+<arguments>
+<arg>appc</arg>
+<arg>${APPC_ENDPOINT}</arg>
+<arg>auth=${auth}</arg>
+</arguments>
+<assign>
+<var>${session}=</var>
+</assign>
+<msg timestamp="20180811 12:14:16.973" level="FAIL">No keyword with name 'Create Session' found.</msg>
+<status status="FAIL" endtime="20180811 12:14:16.973" starttime="20180811 12:14:16.973"></status>
+</kw>
+<status status="FAIL" endtime="20180811 12:14:16.973" starttime="20180811 12:14:16.966"></status>
+</kw>
+<status status="FAIL" endtime="20180811 12:14:16.973" starttime="20180811 12:14:16.965"></status>
+</kw>
+<tags>
+<tag>core</tag>
+<tag>health</tag>
+</tags>
+<timeout value="2 seconds"></timeout>
+<status status="FAIL" endtime="20180811 12:14:16.974" critical="yes" starttime="20180811 12:14:16.965">No keyword with name 'Create Session' found.</status>
+</test>
+<test id="s1-s1-s1-s1-t5" name="Basic CLI Health Check">
+<kw name="Run CLI Health Check" library="cli_interface">
+<doc>Runs CLI Health check</doc>
+<msg timestamp="20180811 12:14:16.975" level="TRACE">Arguments: [  ]</msg>
+<kw name="Run CLI Get Request" library="cli_interface">
+<doc>Runs CLI Get request</doc>
+<arguments>
+<arg>${CLI_HEALTH_CHECK_PATH}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20180811 12:14:16.976" level="TRACE">Arguments: [ ${data_path}='/' ]</msg>
+<kw name="Create Session">
+<arguments>
+<arg>cli</arg>
+<arg>${CLI_ENDPOINT}</arg>
+</arguments>
+<assign>
+<var>${session}=</var>
+</assign>
+<msg timestamp="20180811 12:14:16.980" level="FAIL">No keyword with name 'Create Session' found.</msg>
+<status status="FAIL" endtime="20180811 12:14:16.980" starttime="20180811 12:14:16.980"></status>
+</kw>
+<status status="FAIL" endtime="20180811 12:14:16.980" starttime="20180811 12:14:16.975"></status>
+</kw>
+<status status="FAIL" endtime="20180811 12:14:16.980" starttime="20180811 12:14:16.975"></status>
+</kw>
+<tags>
+<tag>core</tag>
+<tag>health</tag>
+</tags>
+<timeout value="2 seconds"></timeout>
+<status status="FAIL" endtime="20180811 12:14:16.981" critical="yes" starttime="20180811 12:14:16.974">No keyword with name 'Create Session' found.</status>
+</test>
+<test id="s1-s1-s1-s1-t6" name="Basic CLAMP Health Check">
+<kw name="Run CLAMP Health Check" library="clamp_interface">
+<doc>Runs CLAMP Health check</doc>
+<msg timestamp="20180811 12:14:16.982" level="TRACE">Arguments: [  ]</msg>
+<kw name="Run CLAMP Get Request" library="clamp_interface">
+<doc>Runs CLAMP Get request</doc>
+<arguments>
+<arg>${CLAMP_HEALTH_CHECK_PATH}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20180811 12:14:16.983" level="TRACE">Arguments: [ ${data_path}='/restservices/clds/v1/clds/healthcheck' ]</msg>
+<kw name="Create Session">
+<arguments>
+<arg>session</arg>
+<arg>${CLAMP_ENDPOINT}</arg>
+</arguments>
+<assign>
+<var>${session}=</var>
+</assign>
+<msg timestamp="20180811 12:14:16.990" level="FAIL">No keyword with name 'Create Session' found.</msg>
+<status status="FAIL" endtime="20180811 12:14:16.990" starttime="20180811 12:14:16.990"></status>
+</kw>
+<status status="FAIL" endtime="20180811 12:14:16.990" starttime="20180811 12:14:16.983"></status>
+</kw>
+<status status="FAIL" endtime="20180811 12:14:16.991" starttime="20180811 12:14:16.982"></status>
+</kw>
+<tags>
+<tag>core</tag>
+<tag>health</tag>
+</tags>
+<timeout value="2 seconds"></timeout>
+<status status="FAIL" endtime="20180811 12:14:16.991" critical="yes" starttime="20180811 12:14:16.981">No keyword with name 'Create Session' found.</status>
+</test>
+<test id="s1-s1-s1-s1-t7" name="Basic DCAE Health Check">
+<kw name="Run DCAE Health Check" library="dcae_interface">
+<doc>Runs a DCAE health check</doc>
+<msg timestamp="20180811 12:14:16.993" level="TRACE">Arguments: [  ]</msg>
+<kw name="Create List" library="BuiltIn">
+<doc>Returns a list containing given items.</doc>
+<arguments>
+<arg>${GLOBAL_DCAE_USERNAME}</arg>
+<arg>${GLOBAL_DCAE_PASSWORD}</arg>
+</arguments>
+<assign>
+<var>${auth}</var>
+</assign>
+<msg timestamp="20180811 12:14:16.993" level="TRACE">Arguments: [ b'console' | b'ZjJkYjllMjljMTI2M2Iz' ]</msg>
+<msg timestamp="20180811 12:14:16.994" level="DEBUG">Test timeout 2 seconds active. 1.998 seconds left.</msg>
+<msg timestamp="20180811 12:14:16.994" level="TRACE">Return: [b'console', b'ZjJkYjllMjljMTI2M2Iz']</msg>
+<msg timestamp="20180811 12:14:16.994" level="INFO">${auth} = ['console', 'ZjJkYjllMjljMTI2M2Iz']</msg>
+<status status="PASS" endtime="20180811 12:14:16.994" starttime="20180811 12:14:16.993"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>Creating session ${DCAE_HEALTH_ENDPOINT}</arg>
+</arguments>
+<msg timestamp="20180811 12:14:16.994" level="TRACE">Arguments: [ 'Creating session http://192.168.61.31:8000' ]</msg>
+<msg timestamp="20180811 12:14:16.994" level="DEBUG">Test timeout 2 seconds active. 1.997 seconds left.</msg>
+<msg timestamp="20180811 12:14:16.994" level="INFO">Creating session http://192.168.61.31:8000</msg>
+<msg timestamp="20180811 12:14:16.995" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20180811 12:14:16.995" starttime="20180811 12:14:16.994"></status>
+</kw>
+<kw name="Create Session">
+<arguments>
+<arg>dcae</arg>
+<arg>${DCAE_HEALTH_ENDPOINT}</arg>
+<arg>auth=${auth}</arg>
+</arguments>
+<assign>
+<var>${session}=</var>
+</assign>
+<msg timestamp="20180811 12:14:16.999" level="FAIL">No keyword with name 'Create Session' found.</msg>
+<status status="FAIL" endtime="20180811 12:14:16.999" starttime="20180811 12:14:16.999"></status>
+</kw>
+<status status="FAIL" endtime="20180811 12:14:17.000" starttime="20180811 12:14:16.992"></status>
+</kw>
+<tags>
+<tag>dcae</tag>
+<tag>health</tag>
+</tags>
+<timeout value="2 seconds"></timeout>
+<status status="FAIL" endtime="20180811 12:14:17.000" critical="yes" starttime="20180811 12:14:16.991">No keyword with name 'Create Session' found.</status>
+</test>
+<test id="s1-s1-s1-s1-t8" name="Basic DMAAP Message Router Health Check">
+<kw name="Run MR Health Check" library="mr_interface">
+<doc>Runs MR Health check</doc>
+<msg timestamp="20180811 12:14:17.002" level="TRACE">Arguments: [  ]</msg>
+<kw name="Run MR Get Request" library="mr_interface">
+<doc>Runs MR Get request</doc>
+<arguments>
+<arg>${MR_HEALTH_CHECK_PATH}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20180811 12:14:17.003" level="TRACE">Arguments: [ ${data_path}='/topics' ]</msg>
+<kw name="Create Session">
+<arguments>
+<arg>mr</arg>
+<arg>${MR_ENDPOINT}</arg>
+</arguments>
+<assign>
+<var>${session}=</var>
+</assign>
+<msg timestamp="20180811 12:14:17.011" level="FAIL">No keyword with name 'Create Session' found.</msg>
+<status status="FAIL" endtime="20180811 12:14:17.011" starttime="20180811 12:14:17.011"></status>
+</kw>
+<status status="FAIL" endtime="20180811 12:14:17.012" starttime="20180811 12:14:17.002"></status>
+</kw>
+<status status="FAIL" endtime="20180811 12:14:17.012" starttime="20180811 12:14:17.001"></status>
+</kw>
+<tags>
+<tag>core</tag>
+<tag>health</tag>
+</tags>
+<timeout value="2 seconds"></timeout>
+<status status="FAIL" endtime="20180811 12:14:17.012" critical="yes" starttime="20180811 12:14:17.000">No keyword with name 'Create Session' found.</status>
+</test>
+<test id="s1-s1-s1-s1-t9" name="Basic External API NBI Health Check">
+<kw name="Run NBI Health Check" library="nbi_interface">
+<doc>Runs NBI Health check</doc>
+<msg timestamp="20180811 12:14:17.014" level="TRACE">Arguments: [  ]</msg>
+<kw name="Run NBI Get Request" library="nbi_interface">
+<doc>Runs NBI Get request</doc>
+<arguments>
+<arg>${NBI_HEALTH_CHECK_PATH}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20180811 12:14:17.015" level="TRACE">Arguments: [ ${data_path}='/nbi/api/v1/status' ]</msg>
+<kw name="Create Session">
+<arguments>
+<arg>session</arg>
+<arg>${NBI_ENDPOINT}</arg>
+</arguments>
+<assign>
+<var>${session}=</var>
+</assign>
+<msg timestamp="20180811 12:14:17.022" level="FAIL">No keyword with name 'Create Session' found.</msg>
+<status status="FAIL" endtime="20180811 12:14:17.023" starttime="20180811 12:14:17.022"></status>
+</kw>
+<status status="FAIL" endtime="20180811 12:14:17.023" starttime="20180811 12:14:17.015"></status>
+</kw>
+<status status="FAIL" endtime="20180811 12:14:17.023" starttime="20180811 12:14:17.014"></status>
+</kw>
+<tags>
+<tag>api</tag>
+<tag>externalapi</tag>
+<tag>health</tag>
+</tags>
+<timeout value="2 seconds"></timeout>
+<status status="FAIL" endtime="20180811 12:14:17.024" critical="yes" starttime="20180811 12:14:17.013">No keyword with name 'Create Session' found.</status>
+</test>
+<test id="s1-s1-s1-s1-t10" name="Basic Microservice Bus Health Check">
+<kw name="Run MSB Health Check" library="msb_interface">
+<doc>Runs MSB Health check</doc>
+<msg timestamp="20180811 12:14:17.027" level="TRACE">Arguments: [  ]</msg>
+<kw name="Run MSB Get Request" library="msb_interface">
+<doc>Runs MSB Get request</doc>
+<arguments>
+<arg>${MSB_HEALTH_CHECK_PATH}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20180811 12:14:17.028" level="TRACE">Arguments: [ ${data_path}='/iui/microservices/default.html' ]</msg>
+<kw name="Create Session">
+<arguments>
+<arg>msb</arg>
+<arg>${MSB_ENDPOINT}</arg>
+</arguments>
+<assign>
+<var>${session}=</var>
+</assign>
+<msg timestamp="20180811 12:14:17.039" level="FAIL">No keyword with name 'Create Session' found.</msg>
+<status status="FAIL" endtime="20180811 12:14:17.039" starttime="20180811 12:14:17.038"></status>
+</kw>
+<status status="FAIL" endtime="20180811 12:14:17.039" starttime="20180811 12:14:17.027"></status>
+</kw>
+<status status="FAIL" endtime="20180811 12:14:17.039" starttime="20180811 12:14:17.026"></status>
+</kw>
+<tags>
+<tag>core</tag>
+<tag>health</tag>
+</tags>
+<timeout value="2 seconds"></timeout>
+<status status="FAIL" endtime="20180811 12:14:17.040" critical="yes" starttime="20180811 12:14:17.024">No keyword with name 'Create Session' found.</status>
+</test>
+<test id="s1-s1-s1-s1-t11" name="Basic Multicloud API Health Check">
+<kw name="Run MSB Get Request" library="msb_interface">
+<doc>Runs MSB Get request</doc>
+<arguments>
+<arg>/api/multicloud/v0/swagger.json</arg>
+</arguments>
+<msg timestamp="20180811 12:14:17.042" level="TRACE">Arguments: [ ${data_path}='/api/multicloud/v0/swagger.json' ]</msg>
+<kw name="Create Session">
+<arguments>
+<arg>msb</arg>
+<arg>${MSB_ENDPOINT}</arg>
+</arguments>
+<assign>
+<var>${session}=</var>
+</assign>
+<msg timestamp="20180811 12:14:17.051" level="FAIL">No keyword with name 'Create Session' found.</msg>
+<status status="FAIL" endtime="20180811 12:14:17.051" starttime="20180811 12:14:17.051"></status>
+</kw>
+<status status="FAIL" endtime="20180811 12:14:17.051" starttime="20180811 12:14:17.041"></status>
+</kw>
+<tags>
+<tag>health</tag>
+<tag>multicloud</tag>
+</tags>
+<timeout value="2 seconds"></timeout>
+<status status="FAIL" endtime="20180811 12:14:17.052" critical="yes" starttime="20180811 12:14:17.040">No keyword with name 'Create Session' found.</status>
+</test>
+<test id="s1-s1-s1-s1-t12" name="Basic Multicloud-ocata API Health Check">
+<kw name="Run MSB Get Request" library="msb_interface">
+<doc>Runs MSB Get request</doc>
+<arguments>
+<arg>/api/multicloud-ocata/v0/swagger.json</arg>
+</arguments>
+<msg timestamp="20180811 12:14:17.054" level="TRACE">Arguments: [ ${data_path}='/api/multicloud-ocata/v0/swagger.json' ]</msg>
+<kw name="Create Session">
+<arguments>
+<arg>msb</arg>
+<arg>${MSB_ENDPOINT}</arg>
+</arguments>
+<assign>
+<var>${session}=</var>
+</assign>
+<msg timestamp="20180811 12:14:17.061" level="FAIL">No keyword with name 'Create Session' found.</msg>
+<status status="FAIL" endtime="20180811 12:14:17.061" starttime="20180811 12:14:17.061"></status>
+</kw>
+<status status="FAIL" endtime="20180811 12:14:17.061" starttime="20180811 12:14:17.053"></status>
+</kw>
+<tags>
+<tag>health</tag>
+<tag>multicloud</tag>
+</tags>
+<timeout value="2 seconds"></timeout>
+<status status="FAIL" endtime="20180811 12:14:17.062" critical="yes" starttime="20180811 12:14:17.052">No keyword with name 'Create Session' found.</status>
+</test>
+<test id="s1-s1-s1-s1-t13" name="Basic Multicloud-titanium_cloud API Health Check">
+<kw name="Run MSB Get Request" library="msb_interface">
+<doc>Runs MSB Get request</doc>
+<arguments>
+<arg>/api/multicloud-titanium_cloud/v0/swagger.json</arg>
+</arguments>
+<msg timestamp="20180811 12:14:17.064" level="TRACE">Arguments: [ ${data_path}='/api/multicloud-titanium_cloud/v0/swagger.json' ]</msg>
+<kw name="Create Session">
+<arguments>
+<arg>msb</arg>
+<arg>${MSB_ENDPOINT}</arg>
+</arguments>
+<assign>
+<var>${session}=</var>
+</assign>
+<msg timestamp="20180811 12:14:17.072" level="FAIL">No keyword with name 'Create Session' found.</msg>
+<status status="FAIL" endtime="20180811 12:14:17.072" starttime="20180811 12:14:17.072"></status>
+</kw>
+<status status="FAIL" endtime="20180811 12:14:17.073" starttime="20180811 12:14:17.063"></status>
+</kw>
+<tags>
+<tag>health</tag>
+<tag>multicloud</tag>
+</tags>
+<timeout value="2 seconds"></timeout>
+<status status="FAIL" endtime="20180811 12:14:17.073" critical="yes" starttime="20180811 12:14:17.062">No keyword with name 'Create Session' found.</status>
+</test>
+<test id="s1-s1-s1-s1-t14" name="Basic Multicloud-vio API Health Check">
+<kw name="Run MSB Get Request" library="msb_interface">
+<doc>Runs MSB Get request</doc>
+<arguments>
+<arg>/api/multicloud-vio/v0/swagger.json</arg>
+</arguments>
+<msg timestamp="20180811 12:14:17.075" level="TRACE">Arguments: [ ${data_path}='/api/multicloud-vio/v0/swagger.json' ]</msg>
+<kw name="Create Session">
+<arguments>
+<arg>msb</arg>
+<arg>${MSB_ENDPOINT}</arg>
+</arguments>
+<assign>
+<var>${session}=</var>
+</assign>
+<msg timestamp="20180811 12:14:17.086" level="FAIL">No keyword with name 'Create Session' found.</msg>
+<status status="FAIL" endtime="20180811 12:14:17.086" starttime="20180811 12:14:17.085"></status>
+</kw>
+<status status="FAIL" endtime="20180811 12:14:17.086" starttime="20180811 12:14:17.075"></status>
+</kw>
+<tags>
+<tag>health</tag>
+<tag>multicloud</tag>
+</tags>
+<timeout value="2 seconds"></timeout>
+<status status="FAIL" endtime="20180811 12:14:17.086" critical="yes" starttime="20180811 12:14:17.074">No keyword with name 'Create Session' found.</status>
+</test>
+<test id="s1-s1-s1-s1-t15" name="Basic OOF-Homing Health Check">
+<kw name="Run OOF-Homing Health Check" library="oof_interface">
+<doc>Runs OOF-Homing Health check</doc>
+<msg timestamp="20180811 12:14:17.088" level="TRACE">Arguments: [  ]</msg>
+<kw name="Run OOF-Homing Get Request" library="oof_interface">
+<doc>Runs OOF-Homing Get request</doc>
+<arguments>
+<arg>${OOF_HOMING_HEALTH_CHECK_PATH}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20180811 12:14:17.089" level="TRACE">Arguments: [ ${data_path}='/v1/plans/healthcheck' ]</msg>
+<kw name="Create Session">
+<arguments>
+<arg>session</arg>
+<arg>${OOF_HOMING_ENDPOINT}</arg>
+</arguments>
+<assign>
+<var>${session}=</var>
+</assign>
+<msg timestamp="20180811 12:14:17.095" level="FAIL">No keyword with name 'Create Session' found.</msg>
+<status status="FAIL" endtime="20180811 12:14:17.096" starttime="20180811 12:14:17.095"></status>
+</kw>
+<status status="FAIL" endtime="20180811 12:14:17.096" starttime="20180811 12:14:17.088"></status>
+</kw>
+<status status="FAIL" endtime="20180811 12:14:17.096" starttime="20180811 12:14:17.088"></status>
+</kw>
+<tags>
+<tag>core</tag>
+<tag>health</tag>
+</tags>
+<timeout value="2 seconds"></timeout>
+<status status="FAIL" endtime="20180811 12:14:17.096" critical="yes" starttime="20180811 12:14:17.087">No keyword with name 'Create Session' found.</status>
+</test>
+<test id="s1-s1-s1-s1-t16" name="Basic OOF-SNIRO Health Check">
+<kw name="Run OOF-SNIRO Health Check" library="oof_interface">
+<doc>Runs OOF-SNIRO Health check</doc>
+<msg timestamp="20180811 12:14:17.098" level="TRACE">Arguments: [  ]</msg>
+<kw name="Run OOF-SNIRO Get Request" library="oof_interface">
+<doc>Runs OOF-SNIRO Get request</doc>
+<arguments>
+<arg>${OOF_SNIRO_HEALTH_CHECK_PATH}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20180811 12:14:17.099" level="TRACE">Arguments: [ ${data_path}='/api/oof/v1/healthcheck' ]</msg>
+<kw name="Create Session">
+<arguments>
+<arg>session</arg>
+<arg>${OOF_SNIRO_ENDPOINT}</arg>
+</arguments>
+<assign>
+<var>${session}=</var>
+</assign>
+<msg timestamp="20180811 12:14:17.108" level="FAIL">No keyword with name 'Create Session' found.</msg>
+<status status="FAIL" endtime="20180811 12:14:17.108" starttime="20180811 12:14:17.108"></status>
+</kw>
+<status status="FAIL" endtime="20180811 12:14:17.108" starttime="20180811 12:14:17.099"></status>
+</kw>
+<status status="FAIL" endtime="20180811 12:14:17.109" starttime="20180811 12:14:17.098"></status>
+</kw>
+<tags>
+<tag>core</tag>
+<tag>health</tag>
+</tags>
+<timeout value="2 seconds"></timeout>
+<status status="FAIL" endtime="20180811 12:14:17.109" critical="yes" starttime="20180811 12:14:17.097">No keyword with name 'Create Session' found.</status>
+</test>
+<test id="s1-s1-s1-s1-t17" name="Basic Policy Health Check">
+<kw name="Run Policy Health Check" library="policy_interface">
+<doc>Runs Policy Health check</doc>
+<msg timestamp="20180811 12:14:17.111" level="TRACE">Arguments: [  ]</msg>
+<kw name="Create List" library="BuiltIn">
+<doc>Returns a list containing given items.</doc>
+<arguments>
+<arg>${GLOBAL_POLICY_USERNAME}</arg>
+<arg>${GLOBAL_POLICY_PASSWORD}</arg>
+</arguments>
+<assign>
+<var>${auth}</var>
+</assign>
+<msg timestamp="20180811 12:14:17.112" level="TRACE">Arguments: [ b'healthcheck' | b'zb!XztG34' ]</msg>
+<msg timestamp="20180811 12:14:17.112" level="DEBUG">Test timeout 2 seconds active. 1.998 seconds left.</msg>
+<msg timestamp="20180811 12:14:17.112" level="TRACE">Return: [b'healthcheck', b'zb!XztG34']</msg>
+<msg timestamp="20180811 12:14:17.112" level="INFO">${auth} = ['healthcheck', 'zb!XztG34']</msg>
+<status status="PASS" endtime="20180811 12:14:17.112" starttime="20180811 12:14:17.111"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>Creating session ${POLICY_ENDPOINT}</arg>
+</arguments>
+<msg timestamp="20180811 12:14:17.113" level="TRACE">Arguments: [ 'Creating session http://192.168.61.14:8081' ]</msg>
+<msg timestamp="20180811 12:14:17.113" level="DEBUG">Test timeout 2 seconds active. 1.996 seconds left.</msg>
+<msg timestamp="20180811 12:14:17.113" level="INFO">Creating session http://192.168.61.14:8081</msg>
+<msg timestamp="20180811 12:14:17.113" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20180811 12:14:17.113" starttime="20180811 12:14:17.113"></status>
+</kw>
+<kw name="Create Session">
+<arguments>
+<arg>policy</arg>
+<arg>${POLICY_HEALTHCHECK_ENDPOINT}</arg>
+<arg>auth=${auth}</arg>
+</arguments>
+<assign>
+<var>${session}=</var>
+</assign>
+<msg timestamp="20180811 12:14:17.121" level="FAIL">No keyword with name 'Create Session' found.</msg>
+<status status="FAIL" endtime="20180811 12:14:17.121" starttime="20180811 12:14:17.121"></status>
+</kw>
+<status status="FAIL" endtime="20180811 12:14:17.121" starttime="20180811 12:14:17.110"></status>
+</kw>
+<tags>
+<tag>core</tag>
+<tag>health</tag>
+</tags>
+<timeout value="2 seconds"></timeout>
+<status status="FAIL" endtime="20180811 12:14:17.121" critical="yes" starttime="20180811 12:14:17.109">No keyword with name 'Create Session' found.</status>
+</test>
+<test id="s1-s1-s1-s1-t18" name="Basic Portal Health Check">
+<kw name="Run Portal Health Check" library="portal_interface">
+<doc>Runs Portal Health check</doc>
+<msg timestamp="20180811 12:14:17.122" level="TRACE">Arguments: [  ]</msg>
+<kw name="Run Portal Get Request" library="portal_interface">
+<doc>Runs Portal Get request</doc>
+<arguments>
+<arg>${PORTAL_HEALTH_CHECK_PATH}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20180811 12:14:17.123" level="TRACE">Arguments: [ ${data_path}='/ONAPPORTAL/portalApi/healthCheck' ]</msg>
+<kw name="Create Session">
+<arguments>
+<arg>portal</arg>
+<arg>${PORTAL_ENDPOINT}</arg>
+</arguments>
+<assign>
+<var>${session}=</var>
+</assign>
+<msg timestamp="20180811 12:14:17.128" level="FAIL">No keyword with name 'Create Session' found.</msg>
+<status status="FAIL" endtime="20180811 12:14:17.128" starttime="20180811 12:14:17.128"></status>
+</kw>
+<status status="FAIL" endtime="20180811 12:14:17.129" starttime="20180811 12:14:17.123"></status>
+</kw>
+<status status="FAIL" endtime="20180811 12:14:17.129" starttime="20180811 12:14:17.122"></status>
+</kw>
+<tags>
+<tag>core</tag>
+<tag>health</tag>
+</tags>
+<timeout value="2 seconds"></timeout>
+<status status="FAIL" endtime="20180811 12:14:17.129" critical="yes" starttime="20180811 12:14:17.122">No keyword with name 'Create Session' found.</status>
+</test>
+<test id="s1-s1-s1-s1-t19" name="Basic SDC Health Check">
+<kw name="Run ASDC Health Check" library="asdc_interface">
+<doc>Runs a ASDC health check</doc>
+<msg timestamp="20180811 12:14:17.130" level="TRACE">Arguments: [  ]</msg>
+<kw name="Create Session">
+<arguments>
+<arg>asdc</arg>
+<arg>${ASDC_FE_ENDPOINT}</arg>
+</arguments>
+<assign>
+<var>${session}=</var>
+</assign>
+<msg timestamp="20180811 12:14:17.137" level="FAIL">No keyword with name 'Create Session' found.</msg>
+<status status="FAIL" endtime="20180811 12:14:17.137" starttime="20180811 12:14:17.137"></status>
+</kw>
+<status status="FAIL" endtime="20180811 12:14:17.137" starttime="20180811 12:14:17.130"></status>
+</kw>
+<tags>
+<tag>core</tag>
+<tag>health</tag>
+</tags>
+<timeout value="2 seconds"></timeout>
+<status status="FAIL" endtime="20180811 12:14:17.138" critical="yes" starttime="20180811 12:14:17.129">No keyword with name 'Create Session' found.</status>
+</test>
+<test id="s1-s1-s1-s1-t20" name="Basic SDNC Health Check">
+<kw name="Run SDNGC Health Check" library="sdngc_interface">
+<doc>Runs an SDNGC healthcheck</doc>
+<msg timestamp="20180811 12:14:17.139" level="TRACE">Arguments: [  ]</msg>
+<kw name="Run SDNGC Post Request" library="sdngc_interface">
+<doc>Runs an SDNGC post request</doc>
+<arguments>
+<arg>${SDNGC_INDEX PATH}${SDNCGC_HEALTHCHECK_OPERATION_PATH}</arg>
+<arg>${None}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20180811 12:14:17.139" level="TRACE">Arguments: [ ${data_path}='/restconf/operations/SLI-API:healthcheck' | ${data}=None ]</msg>
+<kw name="Create List" library="BuiltIn">
+<doc>Returns a list containing given items.</doc>
+<arguments>
+<arg>${GLOBAL_SDNGC_USERNAME}</arg>
+<arg>${GLOBAL_SDNGC_PASSWORD}</arg>
+</arguments>
+<assign>
+<var>${auth}</var>
+</assign>
+<msg timestamp="20180811 12:14:17.140" level="TRACE">Arguments: [ b'admin' | b'Kp8bJ4SXszM0WXlhak3eHlcse2gAw84vaoGGmJvUy2U' ]</msg>
+<msg timestamp="20180811 12:14:17.140" level="DEBUG">Test timeout 2 seconds active. 1.998 seconds left.</msg>
+<msg timestamp="20180811 12:14:17.140" level="TRACE">Return: [b'admin', b'Kp8bJ4SXszM0WXlhak3eHlcse2gAw84vaoGGmJvUy2U']</msg>
+<msg timestamp="20180811 12:14:17.140" level="INFO">${auth} = ['admin', 'Kp8bJ4SXszM0WXlhak3eHlcse2gAw84vaoGGmJvUy2U']</msg>
+<status status="PASS" endtime="20180811 12:14:17.140" starttime="20180811 12:14:17.140"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>Creating session ${SDNGC_REST_ENDPOINT}</arg>
+</arguments>
+<msg timestamp="20180811 12:14:17.141" level="TRACE">Arguments: [ 'Creating session http://192.168.61.24:8282' ]</msg>
+<msg timestamp="20180811 12:14:17.141" level="DEBUG">Test timeout 2 seconds active. 1.997 seconds left.</msg>
+<msg timestamp="20180811 12:14:17.141" level="INFO">Creating session http://192.168.61.24:8282</msg>
+<msg timestamp="20180811 12:14:17.141" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20180811 12:14:17.141" starttime="20180811 12:14:17.141"></status>
+</kw>
+<kw name="Create Session">
+<arguments>
+<arg>sdngc</arg>
+<arg>${SDNGC_REST_ENDPOINT}</arg>
+<arg>auth=${auth}</arg>
+</arguments>
+<assign>
+<var>${session}=</var>
+</assign>
+<msg timestamp="20180811 12:14:17.146" level="FAIL">No keyword with name 'Create Session' found.</msg>
+<status status="FAIL" endtime="20180811 12:14:17.146" starttime="20180811 12:14:17.146"></status>
+</kw>
+<status status="FAIL" endtime="20180811 12:14:17.146" starttime="20180811 12:14:17.139"></status>
+</kw>
+<status status="FAIL" endtime="20180811 12:14:17.146" starttime="20180811 12:14:17.139"></status>
+</kw>
+<tags>
+<tag>core</tag>
+<tag>health</tag>
+</tags>
+<timeout value="2 seconds"></timeout>
+<status status="FAIL" endtime="20180811 12:14:17.146" critical="yes" starttime="20180811 12:14:17.138">No keyword with name 'Create Session' found.</status>
+</test>
+<test id="s1-s1-s1-s1-t21" name="Basic SO Health Check">
+<kw name="Run MSO Health Check" library="mso_interface">
+<doc>Runs an MSO global health check</doc>
+<msg timestamp="20180811 12:14:17.148" level="TRACE">Arguments: [  ]</msg>
+<kw name="Create List" library="BuiltIn">
+<doc>Returns a list containing given items.</doc>
+<arguments>
+<arg>${GLOBAL_MSO_USERNAME}</arg>
+<arg>${GLOBAL_MSO_PASSWORD}</arg>
+</arguments>
+<assign>
+<var>${auth}</var>
+</assign>
+<msg timestamp="20180811 12:14:17.149" level="TRACE">Arguments: [ b'InfraPortalClient' | b'password1$' ]</msg>
+<msg timestamp="20180811 12:14:17.150" level="DEBUG">Test timeout 2 seconds active. 1.997 seconds left.</msg>
+<msg timestamp="20180811 12:14:17.150" level="TRACE">Return: [b'InfraPortalClient', b'password1$']</msg>
+<msg timestamp="20180811 12:14:17.150" level="INFO">${auth} = ['InfraPortalClient', 'password1$']</msg>
+<status status="PASS" endtime="20180811 12:14:17.150" starttime="20180811 12:14:17.149"></status>
+</kw>
+<kw name="Create Session">
+<arguments>
+<arg>mso</arg>
+<arg>${MSO_ENDPOINT}</arg>
+</arguments>
+<assign>
+<var>${session}=</var>
+</assign>
+<msg timestamp="20180811 12:14:17.155" level="FAIL">No keyword with name 'Create Session' found.</msg>
+<status status="FAIL" endtime="20180811 12:14:17.155" starttime="20180811 12:14:17.155"></status>
+</kw>
+<status status="FAIL" endtime="20180811 12:14:17.156" starttime="20180811 12:14:17.148"></status>
+</kw>
+<tags>
+<tag>core</tag>
+<tag>health</tag>
+</tags>
+<timeout value="2 seconds"></timeout>
+<status status="FAIL" endtime="20180811 12:14:17.156" critical="yes" starttime="20180811 12:14:17.147">No keyword with name 'Create Session' found.</status>
+</test>
+<test id="s1-s1-s1-s1-t22" name="Basic UseCaseUI API Health Check">
+<kw name="Run MSB Get Request" library="msb_interface">
+<doc>Runs MSB Get request</doc>
+<arguments>
+<arg>/iui/usecaseui/</arg>
+</arguments>
+<msg timestamp="20180811 12:14:17.158" level="TRACE">Arguments: [ ${data_path}='/iui/usecaseui/' ]</msg>
+<kw name="Create Session">
+<arguments>
+<arg>msb</arg>
+<arg>${MSB_ENDPOINT}</arg>
+</arguments>
+<assign>
+<var>${session}=</var>
+</assign>
+<msg timestamp="20180811 12:14:17.167" level="FAIL">No keyword with name 'Create Session' found.</msg>
+<status status="FAIL" endtime="20180811 12:14:17.167" starttime="20180811 12:14:17.166"></status>
+</kw>
+<status status="FAIL" endtime="20180811 12:14:17.167" starttime="20180811 12:14:17.158"></status>
+</kw>
+<tags>
+<tag>api</tag>
+<tag>health</tag>
+</tags>
+<timeout value="2 seconds"></timeout>
+<status status="FAIL" endtime="20180811 12:14:17.167" critical="yes" starttime="20180811 12:14:17.156">No keyword with name 'Create Session' found.</status>
+</test>
+<test id="s1-s1-s1-s1-t23" name="Basic VFC catalog API Health Check">
+<kw name="Run MSB Get Request" library="msb_interface">
+<doc>Runs MSB Get request</doc>
+<arguments>
+<arg>/api/catalog/v1/swagger.json</arg>
+</arguments>
+<msg timestamp="20180811 12:14:17.169" level="TRACE">Arguments: [ ${data_path}='/api/catalog/v1/swagger.json' ]</msg>
+<kw name="Create Session">
+<arguments>
+<arg>msb</arg>
+<arg>${MSB_ENDPOINT}</arg>
+</arguments>
+<assign>
+<var>${session}=</var>
+</assign>
+<msg timestamp="20180811 12:14:17.176" level="FAIL">No keyword with name 'Create Session' found.</msg>
+<status status="FAIL" endtime="20180811 12:14:17.176" starttime="20180811 12:14:17.176"></status>
+</kw>
+<status status="FAIL" endtime="20180811 12:14:17.176" starttime="20180811 12:14:17.168"></status>
+</kw>
+<tags>
+<tag>api</tag>
+<tag>health</tag>
+</tags>
+<timeout value="2 seconds"></timeout>
+<status status="FAIL" endtime="20180811 12:14:17.177" critical="yes" starttime="20180811 12:14:17.168">No keyword with name 'Create Session' found.</status>
+</test>
+<test id="s1-s1-s1-s1-t24" name="Basic VFC emsdriver API Health Check">
+<kw name="Run MSB Get Request" library="msb_interface">
+<doc>Runs MSB Get request</doc>
+<arguments>
+<arg>/api/emsdriver/v1/swagger.json</arg>
+</arguments>
+<msg timestamp="20180811 12:14:17.178" level="TRACE">Arguments: [ ${data_path}='/api/emsdriver/v1/swagger.json' ]</msg>
+<kw name="Create Session">
+<arguments>
+<arg>msb</arg>
+<arg>${MSB_ENDPOINT}</arg>
+</arguments>
+<assign>
+<var>${session}=</var>
+</assign>
+<msg timestamp="20180811 12:14:17.186" level="FAIL">No keyword with name 'Create Session' found.</msg>
+<status status="FAIL" endtime="20180811 12:14:17.186" starttime="20180811 12:14:17.186"></status>
+</kw>
+<status status="FAIL" endtime="20180811 12:14:17.186" starttime="20180811 12:14:17.178"></status>
+</kw>
+<tags>
+<tag>3rdparty</tag>
+<tag>health</tag>
+</tags>
+<timeout value="2 seconds"></timeout>
+<status status="FAIL" endtime="20180811 12:14:17.187" critical="yes" starttime="20180811 12:14:17.177">No keyword with name 'Create Session' found.</status>
+</test>
+<test id="s1-s1-s1-s1-t25" name="Basic VFC gvnfmdriver API Health Check">
+<kw name="Run MSB Get Request" library="msb_interface">
+<doc>Runs MSB Get request</doc>
+<arguments>
+<arg>/api/gvnfmdriver/v1/swagger.json</arg>
+</arguments>
+<msg timestamp="20180811 12:14:17.188" level="TRACE">Arguments: [ ${data_path}='/api/gvnfmdriver/v1/swagger.json' ]</msg>
+<kw name="Create Session">
+<arguments>
+<arg>msb</arg>
+<arg>${MSB_ENDPOINT}</arg>
+</arguments>
+<assign>
+<var>${session}=</var>
+</assign>
+<msg timestamp="20180811 12:14:17.193" level="FAIL">No keyword with name 'Create Session' found.</msg>
+<status status="FAIL" endtime="20180811 12:14:17.193" starttime="20180811 12:14:17.193"></status>
+</kw>
+<status status="FAIL" endtime="20180811 12:14:17.193" starttime="20180811 12:14:17.188"></status>
+</kw>
+<tags>
+<tag>3rdparty</tag>
+<tag>health</tag>
+</tags>
+<timeout value="2 seconds"></timeout>
+<status status="FAIL" endtime="20180811 12:14:17.193" critical="yes" starttime="20180811 12:14:17.187">No keyword with name 'Create Session' found.</status>
+</test>
+<test id="s1-s1-s1-s1-t26" name="Basic VFC huaweivnfmdriver API Health Check">
+<kw name="Run MSB Get Request" library="msb_interface">
+<doc>Runs MSB Get request</doc>
+<arguments>
+<arg>/api/huaweivnfmdriver/v1/swagger.json</arg>
+</arguments>
+<msg timestamp="20180811 12:14:17.196" level="TRACE">Arguments: [ ${data_path}='/api/huaweivnfmdriver/v1/swagger.json' ]</msg>
+<kw name="Create Session">
+<arguments>
+<arg>msb</arg>
+<arg>${MSB_ENDPOINT}</arg>
+</arguments>
+<assign>
+<var>${session}=</var>
+</assign>
+<msg timestamp="20180811 12:14:17.204" level="FAIL">No keyword with name 'Create Session' found.</msg>
+<status status="FAIL" endtime="20180811 12:14:17.204" starttime="20180811 12:14:17.204"></status>
+</kw>
+<status status="FAIL" endtime="20180811 12:14:17.205" starttime="20180811 12:14:17.195"></status>
+</kw>
+<tags>
+<tag>3rdparty</tag>
+<tag>health</tag>
+</tags>
+<timeout value="2 seconds"></timeout>
+<status status="FAIL" endtime="20180811 12:14:17.205" critical="yes" starttime="20180811 12:14:17.194">No keyword with name 'Create Session' found.</status>
+</test>
+<test id="s1-s1-s1-s1-t27" name="Basic VFC jujuvnfmdriver API Health Check">
+<kw name="Run MSB Get Request" library="msb_interface">
+<doc>Runs MSB Get request</doc>
+<arguments>
+<arg>/api/jujuvnfmdriver/v1/swagger.json</arg>
+</arguments>
+<msg timestamp="20180811 12:14:17.206" level="TRACE">Arguments: [ ${data_path}='/api/jujuvnfmdriver/v1/swagger.json' ]</msg>
+<kw name="Create Session">
+<arguments>
+<arg>msb</arg>
+<arg>${MSB_ENDPOINT}</arg>
+</arguments>
+<assign>
+<var>${session}=</var>
+</assign>
+<msg timestamp="20180811 12:14:17.212" level="FAIL">No keyword with name 'Create Session' found.</msg>
+<status status="FAIL" endtime="20180811 12:14:17.212" starttime="20180811 12:14:17.211"></status>
+</kw>
+<status status="FAIL" endtime="20180811 12:14:17.212" starttime="20180811 12:14:17.206"></status>
+</kw>
+<tags>
+<tag>3rdparty</tag>
+<tag>health</tag>
+</tags>
+<timeout value="2 seconds"></timeout>
+<status status="FAIL" endtime="20180811 12:14:17.212" critical="yes" starttime="20180811 12:14:17.205">No keyword with name 'Create Session' found.</status>
+</test>
+<test id="s1-s1-s1-s1-t28" name="Basic VFC multivimproxy API Health Check">
+<kw name="Run MSB Get Request" library="msb_interface">
+<doc>Runs MSB Get request</doc>
+<arguments>
+<arg>/api/multivimproxy/v1/swagger.json</arg>
+</arguments>
+<msg timestamp="20180811 12:14:17.214" level="TRACE">Arguments: [ ${data_path}='/api/multivimproxy/v1/swagger.json' ]</msg>
+<kw name="Create Session">
+<arguments>
+<arg>msb</arg>
+<arg>${MSB_ENDPOINT}</arg>
+</arguments>
+<assign>
+<var>${session}=</var>
+</assign>
+<msg timestamp="20180811 12:14:17.219" level="FAIL">No keyword with name 'Create Session' found.</msg>
+<status status="FAIL" endtime="20180811 12:14:17.219" starttime="20180811 12:14:17.218"></status>
+</kw>
+<status status="FAIL" endtime="20180811 12:14:17.219" starttime="20180811 12:14:17.213"></status>
+</kw>
+<tags>
+<tag>3rdparty</tag>
+<tag>health</tag>
+</tags>
+<timeout value="2 seconds"></timeout>
+<status status="FAIL" endtime="20180811 12:14:17.219" critical="yes" starttime="20180811 12:14:17.212">No keyword with name 'Create Session' found.</status>
+</test>
+<test id="s1-s1-s1-s1-t29" name="Basic VFC nokiavnfmdriver API Health Check">
+<kw name="Run MSB Get Request" library="msb_interface">
+<doc>Runs MSB Get request</doc>
+<arguments>
+<arg>/api/nokiavnfmdriver/v1/swagger.json</arg>
+</arguments>
+<msg timestamp="20180811 12:14:17.220" level="TRACE">Arguments: [ ${data_path}='/api/nokiavnfmdriver/v1/swagger.json' ]</msg>
+<kw name="Create Session">
+<arguments>
+<arg>msb</arg>
+<arg>${MSB_ENDPOINT}</arg>
+</arguments>
+<assign>
+<var>${session}=</var>
+</assign>
+<msg timestamp="20180811 12:14:17.226" level="FAIL">No keyword with name 'Create Session' found.</msg>
+<status status="FAIL" endtime="20180811 12:14:17.226" starttime="20180811 12:14:17.225"></status>
+</kw>
+<status status="FAIL" endtime="20180811 12:14:17.226" starttime="20180811 12:14:17.220"></status>
+</kw>
+<tags>
+<tag>3rdparty</tag>
+<tag>health</tag>
+</tags>
+<timeout value="2 seconds"></timeout>
+<status status="FAIL" endtime="20180811 12:14:17.226" critical="yes" starttime="20180811 12:14:17.219">No keyword with name 'Create Session' found.</status>
+</test>
+<test id="s1-s1-s1-s1-t30" name="Basic VFC nokiav2driver API Health Check">
+<kw name="Run MSB Get Request" library="msb_interface">
+<doc>Runs MSB Get request</doc>
+<arguments>
+<arg>/api/NokiaSVNFM/v1/swagger.json</arg>
+</arguments>
+<msg timestamp="20180811 12:14:17.227" level="TRACE">Arguments: [ ${data_path}='/api/NokiaSVNFM/v1/swagger.json' ]</msg>
+<kw name="Create Session">
+<arguments>
+<arg>msb</arg>
+<arg>${MSB_ENDPOINT}</arg>
+</arguments>
+<assign>
+<var>${session}=</var>
+</assign>
+<msg timestamp="20180811 12:14:17.233" level="FAIL">No keyword with name 'Create Session' found.</msg>
+<status status="FAIL" endtime="20180811 12:14:17.233" starttime="20180811 12:14:17.233"></status>
+</kw>
+<status status="FAIL" endtime="20180811 12:14:17.233" starttime="20180811 12:14:17.227"></status>
+</kw>
+<tags>
+<tag>3rdparty</tag>
+<tag>health</tag>
+</tags>
+<timeout value="2 seconds"></timeout>
+<status status="FAIL" endtime="20180811 12:14:17.234" critical="yes" starttime="20180811 12:14:17.226">No keyword with name 'Create Session' found.</status>
+</test>
+<test id="s1-s1-s1-s1-t31" name="Basic VFC nslcm API Health Check">
+<kw name="Run MSB Get Request" library="msb_interface">
+<doc>Runs MSB Get request</doc>
+<arguments>
+<arg>/api/nslcm/v1/swagger.json</arg>
+</arguments>
+<msg timestamp="20180811 12:14:17.236" level="TRACE">Arguments: [ ${data_path}='/api/nslcm/v1/swagger.json' ]</msg>
+<kw name="Create Session">
+<arguments>
+<arg>msb</arg>
+<arg>${MSB_ENDPOINT}</arg>
+</arguments>
+<assign>
+<var>${session}=</var>
+</assign>
+<msg timestamp="20180811 12:14:17.242" level="FAIL">No keyword with name 'Create Session' found.</msg>
+<status status="FAIL" endtime="20180811 12:14:17.242" starttime="20180811 12:14:17.242"></status>
+</kw>
+<status status="FAIL" endtime="20180811 12:14:17.242" starttime="20180811 12:14:17.235"></status>
+</kw>
+<tags>
+<tag>api</tag>
+<tag>health</tag>
+</tags>
+<timeout value="2 seconds"></timeout>
+<status status="FAIL" endtime="20180811 12:14:17.242" critical="yes" starttime="20180811 12:14:17.234">No keyword with name 'Create Session' found.</status>
+</test>
+<test id="s1-s1-s1-s1-t32" name="Basic VFC resmgr API Health Check">
+<kw name="Run MSB Get Request" library="msb_interface">
+<doc>Runs MSB Get request</doc>
+<arguments>
+<arg>/api/resmgr/v1/swagger.json</arg>
+</arguments>
+<msg timestamp="20180811 12:14:17.244" level="TRACE">Arguments: [ ${data_path}='/api/resmgr/v1/swagger.json' ]</msg>
+<kw name="Create Session">
+<arguments>
+<arg>msb</arg>
+<arg>${MSB_ENDPOINT}</arg>
+</arguments>
+<assign>
+<var>${session}=</var>
+</assign>
+<msg timestamp="20180811 12:14:17.251" level="FAIL">No keyword with name 'Create Session' found.</msg>
+<status status="FAIL" endtime="20180811 12:14:17.251" starttime="20180811 12:14:17.251"></status>
+</kw>
+<status status="FAIL" endtime="20180811 12:14:17.251" starttime="20180811 12:14:17.243"></status>
+</kw>
+<tags>
+<tag>api</tag>
+<tag>health</tag>
+</tags>
+<timeout value="2 seconds"></timeout>
+<status status="FAIL" endtime="20180811 12:14:17.252" critical="yes" starttime="20180811 12:14:17.243">No keyword with name 'Create Session' found.</status>
+</test>
+<test id="s1-s1-s1-s1-t33" name="Basic VFC vnflcm API Health Check">
+<kw name="Run MSB Get Request" library="msb_interface">
+<doc>Runs MSB Get request</doc>
+<arguments>
+<arg>/api/vnflcm/v1/swagger.json</arg>
+</arguments>
+<msg timestamp="20180811 12:14:17.254" level="TRACE">Arguments: [ ${data_path}='/api/vnflcm/v1/swagger.json' ]</msg>
+<kw name="Create Session">
+<arguments>
+<arg>msb</arg>
+<arg>${MSB_ENDPOINT}</arg>
+</arguments>
+<assign>
+<var>${session}=</var>
+</assign>
+<msg timestamp="20180811 12:14:17.260" level="FAIL">No keyword with name 'Create Session' found.</msg>
+<status status="FAIL" endtime="20180811 12:14:17.260" starttime="20180811 12:14:17.260"></status>
+</kw>
+<status status="FAIL" endtime="20180811 12:14:17.260" starttime="20180811 12:14:17.253"></status>
+</kw>
+<tags>
+<tag>api</tag>
+<tag>health</tag>
+</tags>
+<timeout value="2 seconds"></timeout>
+<status status="FAIL" endtime="20180811 12:14:17.260" critical="yes" starttime="20180811 12:14:17.252">No keyword with name 'Create Session' found.</status>
+</test>
+<test id="s1-s1-s1-s1-t34" name="Basic VFC vnfmgr API Health Check">
+<kw name="Run MSB Get Request" library="msb_interface">
+<doc>Runs MSB Get request</doc>
+<arguments>
+<arg>/api/vnfmgr/v1/swagger.json</arg>
+</arguments>
+<msg timestamp="20180811 12:14:17.262" level="TRACE">Arguments: [ ${data_path}='/api/vnfmgr/v1/swagger.json' ]</msg>
+<kw name="Create Session">
+<arguments>
+<arg>msb</arg>
+<arg>${MSB_ENDPOINT}</arg>
+</arguments>
+<assign>
+<var>${session}=</var>
+</assign>
+<msg timestamp="20180811 12:14:17.267" level="FAIL">No keyword with name 'Create Session' found.</msg>
+<status status="FAIL" endtime="20180811 12:14:17.267" starttime="20180811 12:14:17.267"></status>
+</kw>
+<status status="FAIL" endtime="20180811 12:14:17.267" starttime="20180811 12:14:17.261"></status>
+</kw>
+<tags>
+<tag>api</tag>
+<tag>health</tag>
+</tags>
+<timeout value="2 seconds"></timeout>
+<status status="FAIL" endtime="20180811 12:14:17.267" critical="yes" starttime="20180811 12:14:17.261">No keyword with name 'Create Session' found.</status>
+</test>
+<test id="s1-s1-s1-s1-t35" name="Basic VFC vnfres API Health Check">
+<kw name="Run MSB Get Request" library="msb_interface">
+<doc>Runs MSB Get request</doc>
+<arguments>
+<arg>/api/vnfres/v1/swagger.json</arg>
+</arguments>
+<msg timestamp="20180811 12:14:17.269" level="TRACE">Arguments: [ ${data_path}='/api/vnfres/v1/swagger.json' ]</msg>
+<kw name="Create Session">
+<arguments>
+<arg>msb</arg>
+<arg>${MSB_ENDPOINT}</arg>
+</arguments>
+<assign>
+<var>${session}=</var>
+</assign>
+<msg timestamp="20180811 12:14:17.273" level="FAIL">No keyword with name 'Create Session' found.</msg>
+<status status="FAIL" endtime="20180811 12:14:17.273" starttime="20180811 12:14:17.273"></status>
+</kw>
+<status status="FAIL" endtime="20180811 12:14:17.274" starttime="20180811 12:14:17.268"></status>
+</kw>
+<tags>
+<tag>api</tag>
+<tag>health</tag>
+</tags>
+<timeout value="2 seconds"></timeout>
+<status status="FAIL" endtime="20180811 12:14:17.274" critical="yes" starttime="20180811 12:14:17.268">No keyword with name 'Create Session' found.</status>
+</test>
+<test id="s1-s1-s1-s1-t36" name="Basic VFC workflow API Health Check">
+<kw name="Run MSB Get Request" library="msb_interface">
+<doc>Runs MSB Get request</doc>
+<arguments>
+<arg>/api/workflow/v1/swagger.json</arg>
+</arguments>
+<msg timestamp="20180811 12:14:17.275" level="TRACE">Arguments: [ ${data_path}='/api/workflow/v1/swagger.json' ]</msg>
+<kw name="Create Session">
+<arguments>
+<arg>msb</arg>
+<arg>${MSB_ENDPOINT}</arg>
+</arguments>
+<assign>
+<var>${session}=</var>
+</assign>
+<msg timestamp="20180811 12:14:17.280" level="FAIL">No keyword with name 'Create Session' found.</msg>
+<status status="FAIL" endtime="20180811 12:14:17.280" starttime="20180811 12:14:17.279"></status>
+</kw>
+<status status="FAIL" endtime="20180811 12:14:17.280" starttime="20180811 12:14:17.275"></status>
+</kw>
+<tags>
+<tag>api</tag>
+<tag>health</tag>
+</tags>
+<timeout value="2 seconds"></timeout>
+<status status="FAIL" endtime="20180811 12:14:17.280" critical="yes" starttime="20180811 12:14:17.274">No keyword with name 'Create Session' found.</status>
+</test>
+<test id="s1-s1-s1-s1-t37" name="Basic VFC ztesdncdriver API Health Check">
+<kw name="Run MSB Get Request" library="msb_interface">
+<doc>Runs MSB Get request</doc>
+<arguments>
+<arg>/api/ztesdncdriver/v1/swagger.json</arg>
+</arguments>
+<msg timestamp="20180811 12:14:17.282" level="TRACE">Arguments: [ ${data_path}='/api/ztesdncdriver/v1/swagger.json' ]</msg>
+<kw name="Create Session">
+<arguments>
+<arg>msb</arg>
+<arg>${MSB_ENDPOINT}</arg>
+</arguments>
+<assign>
+<var>${session}=</var>
+</assign>
+<msg timestamp="20180811 12:14:17.291" level="FAIL">No keyword with name 'Create Session' found.</msg>
+<status status="FAIL" endtime="20180811 12:14:17.291" starttime="20180811 12:14:17.291"></status>
+</kw>
+<status status="FAIL" endtime="20180811 12:14:17.292" starttime="20180811 12:14:17.282"></status>
+</kw>
+<tags>
+<tag>3rdparty</tag>
+<tag>health</tag>
+</tags>
+<timeout value="2 seconds"></timeout>
+<status status="FAIL" endtime="20180811 12:14:17.292" critical="yes" starttime="20180811 12:14:17.281">No keyword with name 'Create Session' found.</status>
+</test>
+<test id="s1-s1-s1-s1-t38" name="Basic VFC ztevnfmdriver API Health Check">
+<kw name="Run MSB Get Request" library="msb_interface">
+<doc>Runs MSB Get request</doc>
+<arguments>
+<arg>/api/ztevnfmdriver/v1/swagger.json</arg>
+</arguments>
+<msg timestamp="20180811 12:14:17.294" level="TRACE">Arguments: [ ${data_path}='/api/ztevnfmdriver/v1/swagger.json' ]</msg>
+<kw name="Create Session">
+<arguments>
+<arg>msb</arg>
+<arg>${MSB_ENDPOINT}</arg>
+</arguments>
+<assign>
+<var>${session}=</var>
+</assign>
+<msg timestamp="20180811 12:14:17.302" level="FAIL">No keyword with name 'Create Session' found.</msg>
+<status status="FAIL" endtime="20180811 12:14:17.302" starttime="20180811 12:14:17.302"></status>
+</kw>
+<status status="FAIL" endtime="20180811 12:14:17.302" starttime="20180811 12:14:17.293"></status>
+</kw>
+<tags>
+<tag>3rdparty</tag>
+<tag>health</tag>
+</tags>
+<timeout value="2 seconds"></timeout>
+<status status="FAIL" endtime="20180811 12:14:17.302" critical="yes" starttime="20180811 12:14:17.292">No keyword with name 'Create Session' found.</status>
+</test>
+<test id="s1-s1-s1-s1-t39" name="Basic VID Health Check">
+<kw name="Run VID Health Check" library="vid_interface">
+<doc>Logs in to VID GUI</doc>
+<msg timestamp="20180811 12:14:17.304" level="TRACE">Arguments: [  ]</msg>
+<kw name="Run VID Get Request" library="vid_interface">
+<doc>Runs an VID get request</doc>
+<arguments>
+<arg>${VID_HEALTHCHECK_PATH}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20180811 12:14:17.305" level="TRACE">Arguments: [ ${data_path}='/vid/healthCheck' ]</msg>
+<kw name="Create List" library="BuiltIn">
+<doc>Returns a list containing given items.</doc>
+<arguments>
+<arg>${GLOBAL_VID_HEALTH_USERNAME}</arg>
+<arg>${GLOBAL_VID_HEALTH_PASSWORD}</arg>
+</arguments>
+<assign>
+<var>${auth}</var>
+</assign>
+<msg timestamp="20180811 12:14:17.306" level="TRACE">Arguments: [ b'Default' | b'AppPassword!1' ]</msg>
+<msg timestamp="20180811 12:14:17.306" level="DEBUG">Test timeout 2 seconds active. 1.997 seconds left.</msg>
+<msg timestamp="20180811 12:14:17.306" level="TRACE">Return: [b'Default', b'AppPassword!1']</msg>
+<msg timestamp="20180811 12:14:17.306" level="INFO">${auth} = ['Default', 'AppPassword!1']</msg>
+<status status="PASS" endtime="20180811 12:14:17.306" starttime="20180811 12:14:17.305"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>Creating session ${VID_ENDPOINT}</arg>
+</arguments>
+<msg timestamp="20180811 12:14:17.307" level="TRACE">Arguments: [ 'Creating session http://192.168.61.32:8080' ]</msg>
+<msg timestamp="20180811 12:14:17.307" level="DEBUG">Test timeout 2 seconds active. 1.996 seconds left.</msg>
+<msg timestamp="20180811 12:14:17.307" level="INFO">Creating session http://192.168.61.32:8080</msg>
+<msg timestamp="20180811 12:14:17.307" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20180811 12:14:17.307" starttime="20180811 12:14:17.307"></status>
+</kw>
+<kw name="Create Session">
+<arguments>
+<arg>vid</arg>
+<arg>${VID_ENDPOINT}</arg>
+<arg>auth=${auth}</arg>
+</arguments>
+<assign>
+<var>${session}=</var>
+</assign>
+<msg timestamp="20180811 12:14:17.315" level="FAIL">No keyword with name 'Create Session' found.</msg>
+<status status="FAIL" endtime="20180811 12:14:17.315" starttime="20180811 12:14:17.315"></status>
+</kw>
+<status status="FAIL" endtime="20180811 12:14:17.315" starttime="20180811 12:14:17.304"></status>
+</kw>
+<status status="FAIL" endtime="20180811 12:14:17.316" starttime="20180811 12:14:17.304"></status>
+</kw>
+<tags>
+<tag>core</tag>
+<tag>health</tag>
+</tags>
+<timeout value="2 seconds"></timeout>
+<status status="FAIL" endtime="20180811 12:14:17.316" critical="yes" starttime="20180811 12:14:17.303">No keyword with name 'Create Session' found.</status>
+</test>
+<test id="s1-s1-s1-s1-t40" name="Basic VNFSDK Health Check">
+<kw name="Run VNFSDK Health Check" library="vnfsdk_interface">
+<doc>Runs VNFSDK Health check</doc>
+<msg timestamp="20180811 12:14:17.317" level="TRACE">Arguments: [  ]</msg>
+<kw name="Run VNFSDK Get Request" library="vnfsdk_interface">
+<doc>Runs VNFSDK Get request</doc>
+<arguments>
+<arg>${VNFSDK_HEALTH_CHECK_PATH}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20180811 12:14:17.318" level="TRACE">Arguments: [ ${data_path}='/onapapi/vnfsdk-marketplace/v1/PackageResource/healthcheck' ]</msg>
+<kw name="Create Session">
+<arguments>
+<arg>vnfsdk</arg>
+<arg>${VNFSDK_ENDPOINT}</arg>
+</arguments>
+<assign>
+<var>${session}=</var>
+</assign>
+<msg timestamp="20180811 12:14:17.325" level="FAIL">No keyword with name 'Create Session' found.</msg>
+<status status="FAIL" endtime="20180811 12:14:17.325" starttime="20180811 12:14:17.325"></status>
+</kw>
+<status status="FAIL" endtime="20180811 12:14:17.326" starttime="20180811 12:14:17.318"></status>
+</kw>
+<status status="FAIL" endtime="20180811 12:14:17.326" starttime="20180811 12:14:17.317"></status>
+</kw>
+<tags>
+<tag>core</tag>
+<tag>health</tag>
+</tags>
+<timeout value="2 seconds"></timeout>
+<status status="FAIL" endtime="20180811 12:14:17.326" critical="yes" starttime="20180811 12:14:17.316">No keyword with name 'Create Session' found.</status>
+</test>
+<doc>Testing ecomp components are available via calls.
+
+Testing ecomp components are available via calls.</doc>
+<status status="FAIL" endtime="20180811 12:14:17.327" starttime="20180811 12:14:16.817"></status>
+</suite>
+<status status="FAIL" endtime="20180811 12:14:17.331" starttime="20180811 12:14:16.815"></status>
+</suite>
+<status status="FAIL" endtime="20180811 12:14:17.334" starttime="20180811 12:14:16.814"></status>
+</suite>
+<status status="FAIL" endtime="20180811 12:14:17.337" starttime="20180811 12:14:16.789"></status>
+</suite>
+<statistics>
+<total>
+<stat fail="40" pass="0">Critical Tests</stat>
+<stat fail="40" pass="0">All Tests</stat>
+</total>
+<tag>
+<stat fail="9" pass="0">3rdparty</stat>
+<stat fail="9" pass="0">api</stat>
+<stat fail="17" pass="0">core</stat>
+<stat fail="1" pass="0">dcae</stat>
+<stat fail="1" pass="0">externalapi</stat>
+<stat fail="40" pass="0">health</stat>
+<stat fail="4" pass="0">multicloud</stat>
+</tag>
+<suite>
+<stat fail="40" id="s1" name="OpenECOMP ETE" pass="0">OpenECOMP ETE</stat>
+<stat fail="40" id="s1-s1" name="Robot" pass="0">OpenECOMP ETE.Robot</stat>
+<stat fail="40" id="s1-s1-s1" name="Testsuites" pass="0">OpenECOMP ETE.Robot.Testsuites</stat>
+<stat fail="40" id="s1-s1-s1-s1" name="Health-Check" pass="0">OpenECOMP ETE.Robot.Testsuites.Health-Check</stat>
+</suite>
+</statistics>
 <errors>
+<msg timestamp="20180811 12:14:16.819" level="ERROR">Error in file '/home/orhan/ApplicationManagerGrpcTest/simple-grpc-client/src/main/resources/OpenECOMP_ETE/robot/resources/dcae_interface.robot': Importing test library 'RequestsLibrary' failed: ImportError: No module named RequestsLibrary
+Traceback (most recent call last):
+  None
+PYTHONPATH:
+  /usr/lib/python2.7
+  /usr/lib/python2.7/plat-x86_64-linux-gnu
+  /usr/lib/python2.7/lib-tk
+  /usr/lib/python2.7/lib-old
+  /usr/lib/python2.7/lib-dynload
+  /home/orhan/.local/lib/python2.7/site-packages
+  /usr/local/lib/python2.7/dist-packages
+  /usr/lib/python2.7/dist-packages</msg>
+<msg timestamp="20180811 12:14:16.820" level="ERROR">Error in file '/home/orhan/ApplicationManagerGrpcTest/simple-grpc-client/src/main/resources/OpenECOMP_ETE/robot/resources/dcae_interface.robot': Importing test library 'UUID' failed: ImportError: No module named UUID
+Traceback (most recent call last):
+  None
+PYTHONPATH:
+  /usr/lib/python2.7
+  /usr/lib/python2.7/plat-x86_64-linux-gnu
+  /usr/lib/python2.7/lib-tk
+  /usr/lib/python2.7/lib-old
+  /usr/lib/python2.7/lib-dynload
+  /home/orhan/.local/lib/python2.7/site-packages
+  /usr/local/lib/python2.7/dist-packages
+  /usr/lib/python2.7/dist-packages</msg>
+<msg timestamp="20180811 12:14:16.840" level="ERROR">Error in file '/home/orhan/ApplicationManagerGrpcTest/simple-grpc-client/src/main/resources/OpenECOMP_ETE/robot/resources/sdngc_interface.robot': Importing test library 'RequestsLibrary' failed: ImportError: No module named RequestsLibrary
+Traceback (most recent call last):
+  None
+PYTHONPATH:
+  /usr/lib/python2.7
+  /usr/lib/python2.7/plat-x86_64-linux-gnu
+  /usr/lib/python2.7/lib-tk
+  /usr/lib/python2.7/lib-old
+  /usr/lib/python2.7/lib-dynload
+  /home/orhan/.local/lib/python2.7/site-packages
+  /usr/local/lib/python2.7/dist-packages
+  /usr/lib/python2.7/dist-packages</msg>
+<msg timestamp="20180811 12:14:16.840" level="ERROR">Error in file '/home/orhan/ApplicationManagerGrpcTest/simple-grpc-client/src/main/resources/OpenECOMP_ETE/robot/resources/sdngc_interface.robot': Importing test library 'UUID' failed: ImportError: No module named UUID
+Traceback (most recent call last):
+  None
+PYTHONPATH:
+  /usr/lib/python2.7
+  /usr/lib/python2.7/plat-x86_64-linux-gnu
+  /usr/lib/python2.7/lib-tk
+  /usr/lib/python2.7/lib-old
+  /usr/lib/python2.7/lib-dynload
+  /home/orhan/.local/lib/python2.7/site-packages
+  /usr/local/lib/python2.7/dist-packages
+  /usr/lib/python2.7/dist-packages</msg>
+<msg timestamp="20180811 12:14:16.840" level="ERROR">Error in file '/home/orhan/ApplicationManagerGrpcTest/simple-grpc-client/src/main/resources/OpenECOMP_ETE/robot/resources/sdngc_interface.robot': Importing test library 'ExtendedSelenium2Library' failed: ImportError: No module named ExtendedSelenium2Library
+Traceback (most recent call last):
+  None
+PYTHONPATH:
+  /usr/lib/python2.7
+  /usr/lib/python2.7/plat-x86_64-linux-gnu
+  /usr/lib/python2.7/lib-tk
+  /usr/lib/python2.7/lib-old
+  /usr/lib/python2.7/lib-dynload
+  /home/orhan/.local/lib/python2.7/site-packages
+  /usr/local/lib/python2.7/dist-packages
+  /usr/lib/python2.7/dist-packages</msg>
+<msg timestamp="20180811 12:14:16.844" level="ERROR">Error in file '/home/orhan/ApplicationManagerGrpcTest/simple-grpc-client/src/main/resources/OpenECOMP_ETE/robot/resources/sdngc_interface.robot': Importing test library 'StringTemplater' failed: ImportError: No module named StringTemplater
+Traceback (most recent call last):
+  None
+PYTHONPATH:
+  /usr/lib/python2.7
+  /usr/lib/python2.7/plat-x86_64-linux-gnu
+  /usr/lib/python2.7/lib-tk
+  /usr/lib/python2.7/lib-old
+  /usr/lib/python2.7/lib-dynload
+  /home/orhan/.local/lib/python2.7/site-packages
+  /usr/local/lib/python2.7/dist-packages
+  /usr/lib/python2.7/dist-packages</msg>
+<msg timestamp="20180811 12:14:16.845" level="ERROR">Error in file '/home/orhan/ApplicationManagerGrpcTest/simple-grpc-client/src/main/resources/OpenECOMP_ETE/robot/resources/json_templater.robot': Importing test library 'RequestsLibrary' failed: ImportError: No module named RequestsLibrary
+Traceback (most recent call last):
+  None
+PYTHONPATH:
+  /usr/lib/python2.7
+  /usr/lib/python2.7/plat-x86_64-linux-gnu
+  /usr/lib/python2.7/lib-tk
+  /usr/lib/python2.7/lib-old
+  /usr/lib/python2.7/lib-dynload
+  /home/orhan/.local/lib/python2.7/site-packages
+  /usr/local/lib/python2.7/dist-packages
+  /usr/lib/python2.7/dist-packages</msg>
+<msg timestamp="20180811 12:14:16.845" level="ERROR">Error in file '/home/orhan/ApplicationManagerGrpcTest/simple-grpc-client/src/main/resources/OpenECOMP_ETE/robot/resources/json_templater.robot': Importing test library 'StringTemplater' failed: ImportError: No module named StringTemplater
+Traceback (most recent call last):
+  None
+PYTHONPATH:
+  /usr/lib/python2.7
+  /usr/lib/python2.7/plat-x86_64-linux-gnu
+  /usr/lib/python2.7/lib-tk
+  /usr/lib/python2.7/lib-old
+  /usr/lib/python2.7/lib-dynload
+  /home/orhan/.local/lib/python2.7/site-packages
+  /usr/local/lib/python2.7/dist-packages
+  /usr/lib/python2.7/dist-packages</msg>
+<msg timestamp="20180811 12:14:16.850" level="ERROR">Error in file '/home/orhan/ApplicationManagerGrpcTest/simple-grpc-client/src/main/resources/OpenECOMP_ETE/robot/resources/browser_setup.robot': Importing test library 'OSUtils' failed: ImportError: No module named OSUtils
+Traceback (most recent call last):
+  None
+PYTHONPATH:
+  /usr/lib/python2.7
+  /usr/lib/python2.7/plat-x86_64-linux-gnu
+  /usr/lib/python2.7/lib-tk
+  /usr/lib/python2.7/lib-old
+  /usr/lib/python2.7/lib-dynload
+  /home/orhan/.local/lib/python2.7/site-packages
+  /usr/local/lib/python2.7/dist-packages
+  /usr/lib/python2.7/dist-packages</msg>
+<msg timestamp="20180811 12:14:16.850" level="ERROR">Error in file '/home/orhan/ApplicationManagerGrpcTest/simple-grpc-client/src/main/resources/OpenECOMP_ETE/robot/resources/browser_setup.robot': Importing test library 'ExtendedSelenium2Library' failed: ImportError: No module named ExtendedSelenium2Library
+Traceback (most recent call last):
+  None
+PYTHONPATH:
+  /usr/lib/python2.7
+  /usr/lib/python2.7/plat-x86_64-linux-gnu
+  /usr/lib/python2.7/lib-tk
+  /usr/lib/python2.7/lib-old
+  /usr/lib/python2.7/lib-dynload
+  /home/orhan/.local/lib/python2.7/site-packages
+  /usr/local/lib/python2.7/dist-packages
+  /usr/lib/python2.7/dist-packages</msg>
+<msg timestamp="20180811 12:14:16.854" level="ERROR">Error in file '/home/orhan/ApplicationManagerGrpcTest/simple-grpc-client/src/main/resources/OpenECOMP_ETE/robot/resources/aai/aai_interface.robot': Importing test library 'RequestsLibrary' failed: ImportError: No module named RequestsLibrary
+Traceback (most recent call last):
+  None
+PYTHONPATH:
+  /usr/lib/python2.7
+  /usr/lib/python2.7/plat-x86_64-linux-gnu
+  /usr/lib/python2.7/lib-tk
+  /usr/lib/python2.7/lib-old
+  /usr/lib/python2.7/lib-dynload
+  /home/orhan/.local/lib/python2.7/site-packages
+  /usr/local/lib/python2.7/dist-packages
+  /usr/lib/python2.7/dist-packages</msg>
+<msg timestamp="20180811 12:14:16.854" level="ERROR">Error in file '/home/orhan/ApplicationManagerGrpcTest/simple-grpc-client/src/main/resources/OpenECOMP_ETE/robot/resources/aai/aai_interface.robot': Importing test library 'UUID' failed: ImportError: No module named UUID
+Traceback (most recent call last):
+  None
+PYTHONPATH:
+  /usr/lib/python2.7
+  /usr/lib/python2.7/plat-x86_64-linux-gnu
+  /usr/lib/python2.7/lib-tk
+  /usr/lib/python2.7/lib-old
+  /usr/lib/python2.7/lib-dynload
+  /home/orhan/.local/lib/python2.7/site-packages
+  /usr/local/lib/python2.7/dist-packages
+  /usr/lib/python2.7/dist-packages</msg>
+<msg timestamp="20180811 12:14:16.854" level="ERROR">Error in file '/home/orhan/ApplicationManagerGrpcTest/simple-grpc-client/src/main/resources/OpenECOMP_ETE/robot/resources/aai/aai_interface.robot': Importing test library 'HTTPUtils' failed: ImportError: No module named HTTPUtils
+Traceback (most recent call last):
+  None
+PYTHONPATH:
+  /usr/lib/python2.7
+  /usr/lib/python2.7/plat-x86_64-linux-gnu
+  /usr/lib/python2.7/lib-tk
+  /usr/lib/python2.7/lib-old
+  /usr/lib/python2.7/lib-dynload
+  /home/orhan/.local/lib/python2.7/site-packages
+  /usr/local/lib/python2.7/dist-packages
+  /usr/lib/python2.7/dist-packages</msg>
+<msg timestamp="20180811 12:14:16.860" level="ERROR">Error in file '/home/orhan/ApplicationManagerGrpcTest/simple-grpc-client/src/main/resources/OpenECOMP_ETE/robot/resources/vid/vid_interface.robot': Importing test library 'ExtendedSelenium2Library' failed: ImportError: No module named ExtendedSelenium2Library
+Traceback (most recent call last):
+  None
+PYTHONPATH:
+  /usr/lib/python2.7
+  /usr/lib/python2.7/plat-x86_64-linux-gnu
+  /usr/lib/python2.7/lib-tk
+  /usr/lib/python2.7/lib-old
+  /usr/lib/python2.7/lib-dynload
+  /home/orhan/.local/lib/python2.7/site-packages
+  /usr/local/lib/python2.7/dist-packages
+  /usr/lib/python2.7/dist-packages</msg>
+<msg timestamp="20180811 12:14:16.861" level="ERROR">Error in file '/home/orhan/ApplicationManagerGrpcTest/simple-grpc-client/src/main/resources/OpenECOMP_ETE/robot/resources/vid/vid_interface.robot': Importing test library 'RequestsLibrary' failed: ImportError: No module named RequestsLibrary
+Traceback (most recent call last):
+  None
+PYTHONPATH:
+  /usr/lib/python2.7
+  /usr/lib/python2.7/plat-x86_64-linux-gnu
+  /usr/lib/python2.7/lib-tk
+  /usr/lib/python2.7/lib-old
+  /usr/lib/python2.7/lib-dynload
+  /home/orhan/.local/lib/python2.7/site-packages
+  /usr/local/lib/python2.7/dist-packages
+  /usr/lib/python2.7/dist-packages</msg>
+<msg timestamp="20180811 12:14:16.861" level="ERROR">Error in file '/home/orhan/ApplicationManagerGrpcTest/simple-grpc-client/src/main/resources/OpenECOMP_ETE/robot/resources/vid/vid_interface.robot': Importing test library 'UUID' failed: ImportError: No module named UUID
+Traceback (most recent call last):
+  None
+PYTHONPATH:
+  /usr/lib/python2.7
+  /usr/lib/python2.7/plat-x86_64-linux-gnu
+  /usr/lib/python2.7/lib-tk
+  /usr/lib/python2.7/lib-old
+  /usr/lib/python2.7/lib-dynload
+  /home/orhan/.local/lib/python2.7/site-packages
+  /usr/local/lib/python2.7/dist-packages
+  /usr/lib/python2.7/dist-packages</msg>
+<msg timestamp="20180811 12:14:16.865" level="ERROR">Error in file '/home/orhan/ApplicationManagerGrpcTest/simple-grpc-client/src/main/resources/OpenECOMP_ETE/robot/resources/policy_interface.robot': Importing test library 'RequestsClientCert' failed: ImportError: No module named RequestsClientCert
+Traceback (most recent call last):
+  None
+PYTHONPATH:
+  /usr/lib/python2.7
+  /usr/lib/python2.7/plat-x86_64-linux-gnu
+  /usr/lib/python2.7/lib-tk
+  /usr/lib/python2.7/lib-old
+  /usr/lib/python2.7/lib-dynload
+  /home/orhan/.local/lib/python2.7/site-packages
+  /usr/local/lib/python2.7/dist-packages
+  /usr/lib/python2.7/dist-packages</msg>
+<msg timestamp="20180811 12:14:16.866" level="ERROR">Error in file '/home/orhan/ApplicationManagerGrpcTest/simple-grpc-client/src/main/resources/OpenECOMP_ETE/robot/resources/policy_interface.robot': Importing test library 'RequestsLibrary' failed: ImportError: No module named RequestsLibrary
+Traceback (most recent call last):
+  None
+PYTHONPATH:
+  /usr/lib/python2.7
+  /usr/lib/python2.7/plat-x86_64-linux-gnu
+  /usr/lib/python2.7/lib-tk
+  /usr/lib/python2.7/lib-old
+  /usr/lib/python2.7/lib-dynload
+  /home/orhan/.local/lib/python2.7/site-packages
+  /usr/local/lib/python2.7/dist-packages
+  /usr/lib/python2.7/dist-packages</msg>
+<msg timestamp="20180811 12:14:16.866" level="ERROR">Error in file '/home/orhan/ApplicationManagerGrpcTest/simple-grpc-client/src/main/resources/OpenECOMP_ETE/robot/resources/policy_interface.robot': Importing test library 'JSONUtils' failed: ImportError: No module named JSONUtils
+Traceback (most recent call last):
+  None
+PYTHONPATH:
+  /usr/lib/python2.7
+  /usr/lib/python2.7/plat-x86_64-linux-gnu
+  /usr/lib/python2.7/lib-tk
+  /usr/lib/python2.7/lib-old
+  /usr/lib/python2.7/lib-dynload
+  /home/orhan/.local/lib/python2.7/site-packages
+  /usr/local/lib/python2.7/dist-packages
+  /usr/lib/python2.7/dist-packages</msg>
+<msg timestamp="20180811 12:14:16.871" level="ERROR">Error in file '/home/orhan/ApplicationManagerGrpcTest/simple-grpc-client/src/main/resources/OpenECOMP_ETE/robot/resources/mso_interface.robot': Importing test library 'RequestsLibrary' failed: ImportError: No module named RequestsLibrary
+Traceback (most recent call last):
+  None
+PYTHONPATH:
+  /usr/lib/python2.7
+  /usr/lib/python2.7/plat-x86_64-linux-gnu
+  /usr/lib/python2.7/lib-tk
+  /usr/lib/python2.7/lib-old
+  /usr/lib/python2.7/lib-dynload
+  /home/orhan/.local/lib/python2.7/site-packages
+  /usr/local/lib/python2.7/dist-packages
+  /usr/lib/python2.7/dist-packages</msg>
+<msg timestamp="20180811 12:14:16.871" level="ERROR">Error in file '/home/orhan/ApplicationManagerGrpcTest/simple-grpc-client/src/main/resources/OpenECOMP_ETE/robot/resources/mso_interface.robot': Importing test library 'UUID' failed: ImportError: No module named UUID
+Traceback (most recent call last):
+  None
+PYTHONPATH:
+  /usr/lib/python2.7
+  /usr/lib/python2.7/plat-x86_64-linux-gnu
+  /usr/lib/python2.7/lib-tk
+  /usr/lib/python2.7/lib-old
+  /usr/lib/python2.7/lib-dynload
+  /home/orhan/.local/lib/python2.7/site-packages
+  /usr/local/lib/python2.7/dist-packages
+  /usr/lib/python2.7/dist-packages</msg>
+<msg timestamp="20180811 12:14:16.896" level="ERROR">Error in file '/home/orhan/ApplicationManagerGrpcTest/simple-grpc-client/src/main/resources/OpenECOMP_ETE/robot/resources/asdc_interface.robot': Importing test library 'RequestsLibrary' failed: ImportError: No module named RequestsLibrary
+Traceback (most recent call last):
+  None
+PYTHONPATH:
+  /usr/lib/python2.7
+  /usr/lib/python2.7/plat-x86_64-linux-gnu
+  /usr/lib/python2.7/lib-tk
+  /usr/lib/python2.7/lib-old
+  /usr/lib/python2.7/lib-dynload
+  /home/orhan/.local/lib/python2.7/site-packages
+  /usr/local/lib/python2.7/dist-packages
+  /usr/lib/python2.7/dist-packages</msg>
+<msg timestamp="20180811 12:14:16.897" level="ERROR">Error in file '/home/orhan/ApplicationManagerGrpcTest/simple-grpc-client/src/main/resources/OpenECOMP_ETE/robot/resources/asdc_interface.robot': Importing test library 'UUID' failed: ImportError: No module named UUID
+Traceback (most recent call last):
+  None
+PYTHONPATH:
+  /usr/lib/python2.7
+  /usr/lib/python2.7/plat-x86_64-linux-gnu
+  /usr/lib/python2.7/lib-tk
+  /usr/lib/python2.7/lib-old
+  /usr/lib/python2.7/lib-dynload
+  /home/orhan/.local/lib/python2.7/site-packages
+  /usr/local/lib/python2.7/dist-packages
+  /usr/lib/python2.7/dist-packages</msg>
+<msg timestamp="20180811 12:14:16.897" level="ERROR">Error in file '/home/orhan/ApplicationManagerGrpcTest/simple-grpc-client/src/main/resources/OpenECOMP_ETE/robot/resources/asdc_interface.robot': Importing test library 'JSONUtils' failed: ImportError: No module named JSONUtils
+Traceback (most recent call last):
+  None
+PYTHONPATH:
+  /usr/lib/python2.7
+  /usr/lib/python2.7/plat-x86_64-linux-gnu
+  /usr/lib/python2.7/lib-tk
+  /usr/lib/python2.7/lib-old
+  /usr/lib/python2.7/lib-dynload
+  /home/orhan/.local/lib/python2.7/site-packages
+  /usr/local/lib/python2.7/dist-packages
+  /usr/lib/python2.7/dist-packages</msg>
+<msg timestamp="20180811 12:14:16.898" level="ERROR">Error in file '/home/orhan/ApplicationManagerGrpcTest/simple-grpc-client/src/main/resources/OpenECOMP_ETE/robot/resources/asdc_interface.robot': Importing test library 'ExtendedSelenium2Library' failed: ImportError: No module named ExtendedSelenium2Library
+Traceback (most recent call last):
+  None
+PYTHONPATH:
+  /usr/lib/python2.7
+  /usr/lib/python2.7/plat-x86_64-linux-gnu
+  /usr/lib/python2.7/lib-tk
+  /usr/lib/python2.7/lib-old
+  /usr/lib/python2.7/lib-dynload
+  /home/orhan/.local/lib/python2.7/site-packages
+  /usr/local/lib/python2.7/dist-packages
+  /usr/lib/python2.7/dist-packages</msg>
+<msg timestamp="20180811 12:14:16.901" level="ERROR">Error in file '/home/orhan/ApplicationManagerGrpcTest/simple-grpc-client/src/main/resources/OpenECOMP_ETE/robot/resources/appc_interface.robot': Importing test library 'RequestsLibrary' failed: ImportError: No module named RequestsLibrary
+Traceback (most recent call last):
+  None
+PYTHONPATH:
+  /usr/lib/python2.7
+  /usr/lib/python2.7/plat-x86_64-linux-gnu
+  /usr/lib/python2.7/lib-tk
+  /usr/lib/python2.7/lib-old
+  /usr/lib/python2.7/lib-dynload
+  /home/orhan/.local/lib/python2.7/site-packages
+  /usr/local/lib/python2.7/dist-packages
+  /usr/lib/python2.7/dist-packages</msg>
+<msg timestamp="20180811 12:14:16.901" level="ERROR">Error in file '/home/orhan/ApplicationManagerGrpcTest/simple-grpc-client/src/main/resources/OpenECOMP_ETE/robot/resources/appc_interface.robot': Importing test library 'UUID' failed: ImportError: No module named UUID
+Traceback (most recent call last):
+  None
+PYTHONPATH:
+  /usr/lib/python2.7
+  /usr/lib/python2.7/plat-x86_64-linux-gnu
+  /usr/lib/python2.7/lib-tk
+  /usr/lib/python2.7/lib-old
+  /usr/lib/python2.7/lib-dynload
+  /home/orhan/.local/lib/python2.7/site-packages
+  /usr/local/lib/python2.7/dist-packages
+  /usr/lib/python2.7/dist-packages</msg>
+<msg timestamp="20180811 12:14:16.901" level="ERROR">Error in file '/home/orhan/ApplicationManagerGrpcTest/simple-grpc-client/src/main/resources/OpenECOMP_ETE/robot/resources/appc_interface.robot': Importing test library 'StringTemplater' failed: ImportError: No module named StringTemplater
+Traceback (most recent call last):
+  None
+PYTHONPATH:
+  /usr/lib/python2.7
+  /usr/lib/python2.7/plat-x86_64-linux-gnu
+  /usr/lib/python2.7/lib-tk
+  /usr/lib/python2.7/lib-old
+  /usr/lib/python2.7/lib-dynload
+  /home/orhan/.local/lib/python2.7/site-packages
+  /usr/local/lib/python2.7/dist-packages
+  /usr/lib/python2.7/dist-packages</msg>
+<msg timestamp="20180811 12:14:16.907" level="ERROR">Error in file '/home/orhan/ApplicationManagerGrpcTest/simple-grpc-client/src/main/resources/OpenECOMP_ETE/robot/resources/portal_interface.robot': Importing test library 'RequestsClientCert' failed: ImportError: No module named RequestsClientCert
+Traceback (most recent call last):
+  None
+PYTHONPATH:
+  /usr/lib/python2.7
+  /usr/lib/python2.7/plat-x86_64-linux-gnu
+  /usr/lib/python2.7/lib-tk
+  /usr/lib/python2.7/lib-old
+  /usr/lib/python2.7/lib-dynload
+  /home/orhan/.local/lib/python2.7/site-packages
+  /usr/local/lib/python2.7/dist-packages
+  /usr/lib/python2.7/dist-packages</msg>
+<msg timestamp="20180811 12:14:16.908" level="ERROR">Error in file '/home/orhan/ApplicationManagerGrpcTest/simple-grpc-client/src/main/resources/OpenECOMP_ETE/robot/resources/portal_interface.robot': Importing test library 'RequestsLibrary' failed: ImportError: No module named RequestsLibrary
+Traceback (most recent call last):
+  None
+PYTHONPATH:
+  /usr/lib/python2.7
+  /usr/lib/python2.7/plat-x86_64-linux-gnu
+  /usr/lib/python2.7/lib-tk
+  /usr/lib/python2.7/lib-old
+  /usr/lib/python2.7/lib-dynload
+  /home/orhan/.local/lib/python2.7/site-packages
+  /usr/local/lib/python2.7/dist-packages
+  /usr/lib/python2.7/dist-packages</msg>
+<msg timestamp="20180811 12:14:16.908" level="ERROR">Error in file '/home/orhan/ApplicationManagerGrpcTest/simple-grpc-client/src/main/resources/OpenECOMP_ETE/robot/resources/portal_interface.robot': Importing test library 'UUID' failed: ImportError: No module named UUID
+Traceback (most recent call last):
+  None
+PYTHONPATH:
+  /usr/lib/python2.7
+  /usr/lib/python2.7/plat-x86_64-linux-gnu
+  /usr/lib/python2.7/lib-tk
+  /usr/lib/python2.7/lib-old
+  /usr/lib/python2.7/lib-dynload
+  /home/orhan/.local/lib/python2.7/site-packages
+  /usr/local/lib/python2.7/dist-packages
+  /usr/lib/python2.7/dist-packages</msg>
+<msg timestamp="20180811 12:14:16.908" level="ERROR">Error in file '/home/orhan/ApplicationManagerGrpcTest/simple-grpc-client/src/main/resources/OpenECOMP_ETE/robot/resources/portal_interface.robot': Importing test library 'ExtendedSelenium2Library' failed: ImportError: No module named ExtendedSelenium2Library
+Traceback (most recent call last):
+  None
+PYTHONPATH:
+  /usr/lib/python2.7
+  /usr/lib/python2.7/plat-x86_64-linux-gnu
+  /usr/lib/python2.7/lib-tk
+  /usr/lib/python2.7/lib-old
+  /usr/lib/python2.7/lib-dynload
+  /home/orhan/.local/lib/python2.7/site-packages
+  /usr/local/lib/python2.7/dist-packages
+  /usr/lib/python2.7/dist-packages</msg>
+<msg timestamp="20180811 12:14:16.910" level="ERROR">Error in file '/home/orhan/ApplicationManagerGrpcTest/simple-grpc-client/src/main/resources/OpenECOMP_ETE/robot/resources/mr_interface.robot': Importing test library 'RequestsClientCert' failed: ImportError: No module named RequestsClientCert
+Traceback (most recent call last):
+  None
+PYTHONPATH:
+  /usr/lib/python2.7
+  /usr/lib/python2.7/plat-x86_64-linux-gnu
+  /usr/lib/python2.7/lib-tk
+  /usr/lib/python2.7/lib-old
+  /usr/lib/python2.7/lib-dynload
+  /home/orhan/.local/lib/python2.7/site-packages
+  /usr/local/lib/python2.7/dist-packages
+  /usr/lib/python2.7/dist-packages</msg>
+<msg timestamp="20180811 12:14:16.911" level="ERROR">Error in file '/home/orhan/ApplicationManagerGrpcTest/simple-grpc-client/src/main/resources/OpenECOMP_ETE/robot/resources/mr_interface.robot': Importing test library 'RequestsLibrary' failed: ImportError: No module named RequestsLibrary
+Traceback (most recent call last):
+  None
+PYTHONPATH:
+  /usr/lib/python2.7
+  /usr/lib/python2.7/plat-x86_64-linux-gnu
+  /usr/lib/python2.7/lib-tk
+  /usr/lib/python2.7/lib-old
+  /usr/lib/python2.7/lib-dynload
+  /home/orhan/.local/lib/python2.7/site-packages
+  /usr/local/lib/python2.7/dist-packages
+  /usr/lib/python2.7/dist-packages</msg>
+<msg timestamp="20180811 12:14:16.911" level="ERROR">Error in file '/home/orhan/ApplicationManagerGrpcTest/simple-grpc-client/src/main/resources/OpenECOMP_ETE/robot/resources/mr_interface.robot': Importing test library 'UUID' failed: ImportError: No module named UUID
+Traceback (most recent call last):
+  None
+PYTHONPATH:
+  /usr/lib/python2.7
+  /usr/lib/python2.7/plat-x86_64-linux-gnu
+  /usr/lib/python2.7/lib-tk
+  /usr/lib/python2.7/lib-old
+  /usr/lib/python2.7/lib-dynload
+  /home/orhan/.local/lib/python2.7/site-packages
+  /usr/local/lib/python2.7/dist-packages
+  /usr/lib/python2.7/dist-packages</msg>
+<msg timestamp="20180811 12:14:16.913" level="ERROR">Error in file '/home/orhan/ApplicationManagerGrpcTest/simple-grpc-client/src/main/resources/OpenECOMP_ETE/robot/resources/aaf_interface.robot': Importing test library 'RequestsClientCert' failed: ImportError: No module named RequestsClientCert
+Traceback (most recent call last):
+  None
+PYTHONPATH:
+  /usr/lib/python2.7
+  /usr/lib/python2.7/plat-x86_64-linux-gnu
+  /usr/lib/python2.7/lib-tk
+  /usr/lib/python2.7/lib-old
+  /usr/lib/python2.7/lib-dynload
+  /home/orhan/.local/lib/python2.7/site-packages
+  /usr/local/lib/python2.7/dist-packages
+  /usr/lib/python2.7/dist-packages</msg>
+<msg timestamp="20180811 12:14:16.913" level="ERROR">Error in file '/home/orhan/ApplicationManagerGrpcTest/simple-grpc-client/src/main/resources/OpenECOMP_ETE/robot/resources/aaf_interface.robot': Importing test library 'RequestsLibrary' failed: ImportError: No module named RequestsLibrary
+Traceback (most recent call last):
+  None
+PYTHONPATH:
+  /usr/lib/python2.7
+  /usr/lib/python2.7/plat-x86_64-linux-gnu
+  /usr/lib/python2.7/lib-tk
+  /usr/lib/python2.7/lib-old
+  /usr/lib/python2.7/lib-dynload
+  /home/orhan/.local/lib/python2.7/site-packages
+  /usr/local/lib/python2.7/dist-packages
+  /usr/lib/python2.7/dist-packages</msg>
+<msg timestamp="20180811 12:14:16.913" level="ERROR">Error in file '/home/orhan/ApplicationManagerGrpcTest/simple-grpc-client/src/main/resources/OpenECOMP_ETE/robot/resources/aaf_interface.robot': Importing test library 'UUID' failed: ImportError: No module named UUID
+Traceback (most recent call last):
+  None
+PYTHONPATH:
+  /usr/lib/python2.7
+  /usr/lib/python2.7/plat-x86_64-linux-gnu
+  /usr/lib/python2.7/lib-tk
+  /usr/lib/python2.7/lib-old
+  /usr/lib/python2.7/lib-dynload
+  /home/orhan/.local/lib/python2.7/site-packages
+  /usr/local/lib/python2.7/dist-packages
+  /usr/lib/python2.7/dist-packages</msg>
+<msg timestamp="20180811 12:14:16.914" level="ERROR">Error in file '/home/orhan/ApplicationManagerGrpcTest/simple-grpc-client/src/main/resources/OpenECOMP_ETE/robot/resources/msb_interface.robot': Importing test library 'RequestsLibrary' failed: ImportError: No module named RequestsLibrary
+Traceback (most recent call last):
+  None
+PYTHONPATH:
+  /usr/lib/python2.7
+  /usr/lib/python2.7/plat-x86_64-linux-gnu
+  /usr/lib/python2.7/lib-tk
+  /usr/lib/python2.7/lib-old
+  /usr/lib/python2.7/lib-dynload
+  /home/orhan/.local/lib/python2.7/site-packages
+  /usr/local/lib/python2.7/dist-packages
+  /usr/lib/python2.7/dist-packages</msg>
+<msg timestamp="20180811 12:14:16.916" level="ERROR">Error in file '/home/orhan/ApplicationManagerGrpcTest/simple-grpc-client/src/main/resources/OpenECOMP_ETE/robot/resources/clamp_interface.robot': Importing test library 'RequestsLibrary' failed: ImportError: No module named RequestsLibrary
+Traceback (most recent call last):
+  None
+PYTHONPATH:
+  /usr/lib/python2.7
+  /usr/lib/python2.7/plat-x86_64-linux-gnu
+  /usr/lib/python2.7/lib-tk
+  /usr/lib/python2.7/lib-old
+  /usr/lib/python2.7/lib-dynload
+  /home/orhan/.local/lib/python2.7/site-packages
+  /usr/local/lib/python2.7/dist-packages
+  /usr/lib/python2.7/dist-packages</msg>
+<msg timestamp="20180811 12:14:16.917" level="ERROR">Error in file '/home/orhan/ApplicationManagerGrpcTest/simple-grpc-client/src/main/resources/OpenECOMP_ETE/robot/resources/music/music_interface.robot': Importing test library 'RequestsClientCert' failed: ImportError: No module named RequestsClientCert
+Traceback (most recent call last):
+  None
+PYTHONPATH:
+  /usr/lib/python2.7
+  /usr/lib/python2.7/plat-x86_64-linux-gnu
+  /usr/lib/python2.7/lib-tk
+  /usr/lib/python2.7/lib-old
+  /usr/lib/python2.7/lib-dynload
+  /home/orhan/.local/lib/python2.7/site-packages
+  /usr/local/lib/python2.7/dist-packages
+  /usr/lib/python2.7/dist-packages</msg>
+<msg timestamp="20180811 12:14:16.918" level="ERROR">Error in file '/home/orhan/ApplicationManagerGrpcTest/simple-grpc-client/src/main/resources/OpenECOMP_ETE/robot/resources/music/music_interface.robot': Importing test library 'RequestsLibrary' failed: ImportError: No module named RequestsLibrary
+Traceback (most recent call last):
+  None
+PYTHONPATH:
+  /usr/lib/python2.7
+  /usr/lib/python2.7/plat-x86_64-linux-gnu
+  /usr/lib/python2.7/lib-tk
+  /usr/lib/python2.7/lib-old
+  /usr/lib/python2.7/lib-dynload
+  /home/orhan/.local/lib/python2.7/site-packages
+  /usr/local/lib/python2.7/dist-packages
+  /usr/lib/python2.7/dist-packages</msg>
+<msg timestamp="20180811 12:14:16.918" level="ERROR">Error in file '/home/orhan/ApplicationManagerGrpcTest/simple-grpc-client/src/main/resources/OpenECOMP_ETE/robot/resources/music/music_interface.robot': Importing test library 'UUID' failed: ImportError: No module named UUID
+Traceback (most recent call last):
+  None
+PYTHONPATH:
+  /usr/lib/python2.7
+  /usr/lib/python2.7/plat-x86_64-linux-gnu
+  /usr/lib/python2.7/lib-tk
+  /usr/lib/python2.7/lib-old
+  /usr/lib/python2.7/lib-dynload
+  /home/orhan/.local/lib/python2.7/site-packages
+  /usr/local/lib/python2.7/dist-packages
+  /usr/lib/python2.7/dist-packages</msg>
+<msg timestamp="20180811 12:14:16.921" level="ERROR">Error in file '/home/orhan/ApplicationManagerGrpcTest/simple-grpc-client/src/main/resources/OpenECOMP_ETE/robot/resources/test_templates/model_test_template.robot': Importing test library 'ArchiveLibrary' failed: ImportError: No module named ArchiveLibrary
+Traceback (most recent call last):
+  None
+PYTHONPATH:
+  /usr/lib/python2.7
+  /usr/lib/python2.7/plat-x86_64-linux-gnu
+  /usr/lib/python2.7/lib-tk
+  /usr/lib/python2.7/lib-old
+  /usr/lib/python2.7/lib-dynload
+  /home/orhan/.local/lib/python2.7/site-packages
+  /usr/local/lib/python2.7/dist-packages
+  /usr/lib/python2.7/dist-packages</msg>
+<msg timestamp="20180811 12:14:16.925" level="ERROR">Error in file '/home/orhan/ApplicationManagerGrpcTest/simple-grpc-client/src/main/resources/OpenECOMP_ETE/robot/resources/nbi_interface.robot': Importing test library 'RequestsLibrary' failed: ImportError: No module named RequestsLibrary
+Traceback (most recent call last):
+  None
+PYTHONPATH:
+  /usr/lib/python2.7
+  /usr/lib/python2.7/plat-x86_64-linux-gnu
+  /usr/lib/python2.7/lib-tk
+  /usr/lib/python2.7/lib-old
+  /usr/lib/python2.7/lib-dynload
+  /home/orhan/.local/lib/python2.7/site-packages
+  /usr/local/lib/python2.7/dist-packages
+  /usr/lib/python2.7/dist-packages</msg>
+<msg timestamp="20180811 12:14:16.926" level="ERROR">Error in file '/home/orhan/ApplicationManagerGrpcTest/simple-grpc-client/src/main/resources/OpenECOMP_ETE/robot/resources/cli_interface.robot': Importing test library 'RequestsClientCert' failed: ImportError: No module named RequestsClientCert
+Traceback (most recent call last):
+  None
+PYTHONPATH:
+  /usr/lib/python2.7
+  /usr/lib/python2.7/plat-x86_64-linux-gnu
+  /usr/lib/python2.7/lib-tk
+  /usr/lib/python2.7/lib-old
+  /usr/lib/python2.7/lib-dynload
+  /home/orhan/.local/lib/python2.7/site-packages
+  /usr/local/lib/python2.7/dist-packages
+  /usr/lib/python2.7/dist-packages</msg>
+<msg timestamp="20180811 12:14:16.926" level="ERROR">Error in file '/home/orhan/ApplicationManagerGrpcTest/simple-grpc-client/src/main/resources/OpenECOMP_ETE/robot/resources/cli_interface.robot': Importing test library 'RequestsLibrary' failed: ImportError: No module named RequestsLibrary
+Traceback (most recent call last):
+  None
+PYTHONPATH:
+  /usr/lib/python2.7
+  /usr/lib/python2.7/plat-x86_64-linux-gnu
+  /usr/lib/python2.7/lib-tk
+  /usr/lib/python2.7/lib-old
+  /usr/lib/python2.7/lib-dynload
+  /home/orhan/.local/lib/python2.7/site-packages
+  /usr/local/lib/python2.7/dist-packages
+  /usr/lib/python2.7/dist-packages</msg>
+<msg timestamp="20180811 12:14:16.928" level="ERROR">Error in file '/home/orhan/ApplicationManagerGrpcTest/simple-grpc-client/src/main/resources/OpenECOMP_ETE/robot/resources/vnfsdk_interface.robot': Importing test library 'RequestsClientCert' failed: ImportError: No module named RequestsClientCert
+Traceback (most recent call last):
+  None
+PYTHONPATH:
+  /usr/lib/python2.7
+  /usr/lib/python2.7/plat-x86_64-linux-gnu
+  /usr/lib/python2.7/lib-tk
+  /usr/lib/python2.7/lib-old
+  /usr/lib/python2.7/lib-dynload
+  /home/orhan/.local/lib/python2.7/site-packages
+  /usr/local/lib/python2.7/dist-packages
+  /usr/lib/python2.7/dist-packages</msg>
+<msg timestamp="20180811 12:14:16.928" level="ERROR">Error in file '/home/orhan/ApplicationManagerGrpcTest/simple-grpc-client/src/main/resources/OpenECOMP_ETE/robot/resources/vnfsdk_interface.robot': Importing test library 'RequestsLibrary' failed: ImportError: No module named RequestsLibrary
+Traceback (most recent call last):
+  None
+PYTHONPATH:
+  /usr/lib/python2.7
+  /usr/lib/python2.7/plat-x86_64-linux-gnu
+  /usr/lib/python2.7/lib-tk
+  /usr/lib/python2.7/lib-old
+  /usr/lib/python2.7/lib-dynload
+  /home/orhan/.local/lib/python2.7/site-packages
+  /usr/local/lib/python2.7/dist-packages
+  /usr/lib/python2.7/dist-packages</msg>
+<msg timestamp="20180811 12:14:16.931" level="ERROR">Error in file '/home/orhan/ApplicationManagerGrpcTest/simple-grpc-client/src/main/resources/OpenECOMP_ETE/robot/resources/log_interface.robot': Importing test library 'RequestsLibrary' failed: ImportError: No module named RequestsLibrary
+Traceback (most recent call last):
+  None
+PYTHONPATH:
+  /usr/lib/python2.7
+  /usr/lib/python2.7/plat-x86_64-linux-gnu
+  /usr/lib/python2.7/lib-tk
+  /usr/lib/python2.7/lib-old
+  /usr/lib/python2.7/lib-dynload
+  /home/orhan/.local/lib/python2.7/site-packages
+  /usr/local/lib/python2.7/dist-packages
+  /usr/lib/python2.7/dist-packages</msg>
+<msg timestamp="20180811 12:14:16.933" level="ERROR">Error in file '/home/orhan/ApplicationManagerGrpcTest/simple-grpc-client/src/main/resources/OpenECOMP_ETE/robot/resources/oof_interface.robot': Importing test library 'RequestsLibrary' failed: ImportError: No module named RequestsLibrary
+Traceback (most recent call last):
+  None
+PYTHONPATH:
+  /usr/lib/python2.7
+  /usr/lib/python2.7/plat-x86_64-linux-gnu
+  /usr/lib/python2.7/lib-tk
+  /usr/lib/python2.7/lib-old
+  /usr/lib/python2.7/lib-dynload
+  /home/orhan/.local/lib/python2.7/site-packages
+  /usr/local/lib/python2.7/dist-packages
+  /usr/lib/python2.7/dist-packages</msg>
+<msg timestamp="20180811 12:14:16.935" level="ERROR">Error in file '/home/orhan/ApplicationManagerGrpcTest/simple-grpc-client/src/main/resources/OpenECOMP_ETE/robot/resources/sms_interface.robot': Importing test library 'RequestsClientCert' failed: ImportError: No module named RequestsClientCert
+Traceback (most recent call last):
+  None
+PYTHONPATH:
+  /usr/lib/python2.7
+  /usr/lib/python2.7/plat-x86_64-linux-gnu
+  /usr/lib/python2.7/lib-tk
+  /usr/lib/python2.7/lib-old
+  /usr/lib/python2.7/lib-dynload
+  /home/orhan/.local/lib/python2.7/site-packages
+  /usr/local/lib/python2.7/dist-packages
+  /usr/lib/python2.7/dist-packages</msg>
+<msg timestamp="20180811 12:14:16.935" level="ERROR">Error in file '/home/orhan/ApplicationManagerGrpcTest/simple-grpc-client/src/main/resources/OpenECOMP_ETE/robot/resources/sms_interface.robot': Importing test library 'RequestsLibrary' failed: ImportError: No module named RequestsLibrary
+Traceback (most recent call last):
+  None
+PYTHONPATH:
+  /usr/lib/python2.7
+  /usr/lib/python2.7/plat-x86_64-linux-gnu
+  /usr/lib/python2.7/lib-tk
+  /usr/lib/python2.7/lib-old
+  /usr/lib/python2.7/lib-dynload
+  /home/orhan/.local/lib/python2.7/site-packages
+  /usr/local/lib/python2.7/dist-packages
+  /usr/lib/python2.7/dist-packages</msg>
+<msg timestamp="20180811 12:14:16.935" level="ERROR">Error in file '/home/orhan/ApplicationManagerGrpcTest/simple-grpc-client/src/main/resources/OpenECOMP_ETE/robot/resources/sms_interface.robot': Importing test library 'UUID' failed: ImportError: No module named UUID
+Traceback (most recent call last):
+  None
+PYTHONPATH:
+  /usr/lib/python2.7
+  /usr/lib/python2.7/plat-x86_64-linux-gnu
+  /usr/lib/python2.7/lib-tk
+  /usr/lib/python2.7/lib-old
+  /usr/lib/python2.7/lib-dynload
+  /home/orhan/.local/lib/python2.7/site-packages
+  /usr/local/lib/python2.7/dist-packages
+  /usr/lib/python2.7/dist-packages</msg>
 </errors>
 </robot>
