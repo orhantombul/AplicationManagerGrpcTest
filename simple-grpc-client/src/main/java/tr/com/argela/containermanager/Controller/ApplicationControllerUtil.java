@@ -5,6 +5,7 @@ import tr.com.argela.grpcserver.Container;
 import tr.com.argela.grpcserver.Docker;
 import tr.com.argela.grpcserver.DockerInfo;
 
+import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -104,7 +105,7 @@ public class ApplicationControllerUtil {
         return  new AbstractMap.SimpleEntry<>(moduleName,status);
     }
 
-    private static List<String> readLines(String filePath){
+    public static List<String> readLines(String filePath){
         Path path = Paths.get(filePath);
         if(!Files.exists(path) || !Files.isReadable(path)){
             return null;
@@ -227,4 +228,5 @@ public class ApplicationControllerUtil {
         }
         return null;
     }
+
 }

@@ -1,6 +1,7 @@
 import org.junit.Before;
 import org.junit.Test;
 import tr.com.argela.containermanager.Common.ApplicationManager;
+import tr.com.argela.containermanager.Configuration.Config;
 import tr.com.argela.containermanager.Controller.ApplicationControllerUtil;
 import tr.com.argela.containermanager.Model.Container;
 import tr.com.argela.containermanager.Model.Docker;
@@ -24,7 +25,7 @@ public class TestGrpc {
     ApplicationManager applicationManager;
     String BasicString = "Basic";
     String healthCheckString = "Health Check";
-    //Config config =new Config();
+
 
     @Before
     public void setup() {
@@ -44,8 +45,9 @@ public class TestGrpc {
 
     @Test
     public void testAppManager(){
+        //Properties config = Config.configReader();
+        //ApplicationControllerUtil.firstMailAddr=config.getProperty("firstMailAddr");
 
-       // ApplicationControllerUtil.firstMailAddr =config.getProperty("firstMailAddr");
         ApplicationControllerUtil.addDockerToAppManager("192.168.1.2","Docker11","192.168.28.61","PASS");
         ApplicationControllerUtil.addDockerToAppManager("192.168.1.2","Docker71","192.168.28.61","PASS");
         ApplicationControllerUtil.addDockerToAppManager("192.168.1.2","Docker72","192.168.28.61","PASS");
